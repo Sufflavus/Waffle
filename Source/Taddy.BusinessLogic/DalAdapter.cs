@@ -1,6 +1,7 @@
 ﻿using System;
 
 using Tabby.Dal;
+using Tabby.Dal.Domain;
 
 
 namespace Taddy.BusinessLogic
