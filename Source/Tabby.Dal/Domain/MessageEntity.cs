@@ -1,11 +1,11 @@
 ﻿using System;
 
-
+// TODO: попробовать Fluent NHibernate https://github.com/jagregory/fluent-nhibernate/wiki/Getting-started
 namespace Tabby.Dal.Domain
 {
-    public sealed class MessageEntity
+    public class MessageEntity : BaseEntity
     {
-        public Guid Id { get; set; }
-        public string Text { get; set; }
+        public virtual DateTime CreateDate { get; set; }
+        public virtual string Text { get; set; }
     }
 }

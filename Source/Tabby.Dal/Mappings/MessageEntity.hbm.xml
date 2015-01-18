@@ -8,6 +8,7 @@
       <generator class="guid" />
     </id>
     <property name="Text" />
+    <property name="CreateDate" update="false" insert="false" generated="insert" not-null="true" />
   </class>
   
 </hibernate-mapping>

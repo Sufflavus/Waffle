@@ -1,5 +1,8 @@
 ﻿using System;
 
+using Tabby.Dal.Domain;
+using Tabby.Dal.Repository;
+
 
 namespace Taddy.BusinessLogic
 {
@@ -7,6 +10,8 @@ namespace Taddy.BusinessLogic
     {
         public int SendMessage(Message message)
         {
+            MessageEntity messageEntity = DalAdapter.CreateMessageEntity(message);
+            new Repository<MessageEntity>().Add(messageEntity);
             return message.Text.Length;
         }
     }
