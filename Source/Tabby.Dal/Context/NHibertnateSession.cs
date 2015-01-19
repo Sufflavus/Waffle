@@ -1,4 +1,6 @@
-﻿using NHibernate;
+﻿using System;
+
+using NHibernate;
 using NHibernate.Cfg;
 
 using Tabby.Dal.Domain;
@@ -6,7 +8,7 @@ using Tabby.Dal.Domain;
 
 namespace Tabby.Dal.Context
 {
-    public sealed class NHibertnateSession
+    public sealed class NHibertnateSession : IDisposable
     {
         private static ISessionFactory _sessionFactory;
 
@@ -25,9 +27,19 @@ namespace Tabby.Dal.Context
             }
         }
 
+
         public static ISession OpenSession()
         {
             return SessionFactory.OpenSession();
-        } 
+        }
+
+
+        public void Dispose()
+        {
+            if (_sessionFactory != null)
+            {
+                _sessionFactory.Dispose();
+            }
+        }
     }
 }

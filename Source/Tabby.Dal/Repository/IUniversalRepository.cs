@@ -1,11 +1,11 @@
-using System;
+﻿using System;
 
 using Tabby.Dal.Domain;
 
 
-namespace Tabby.Dal.Context
+namespace Tabby.Dal.Repository
 {
-    public interface IContext
+    public interface IUniversalRepository
     {
         void AddOrUpdate<TEntity>(TEntity entity) where TEntity : BaseEntity;
         TEntity GetById<TEntity>(Guid id) where TEntity : BaseEntity;

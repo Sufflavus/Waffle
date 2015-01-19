@@ -6,12 +6,12 @@ using Taddy.BusinessLogic;
 namespace Tabby.Client.Command
 {
     /// <summary>
-    /// Команда для выполнения.
+    /// The command to execute.
     /// </summary>
     public interface ICommand
     {
         /// <summary>
-        /// Выполнить команду.
+        /// Execute command.
         /// </summary>
         void Execute();
 

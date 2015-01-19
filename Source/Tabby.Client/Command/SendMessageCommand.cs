@@ -9,7 +9,7 @@ namespace Tabby.Client.Command
     {
         public override void Execute()
         {
-            Message message = BusinessLogicAdapter.CreateMessage(MessageText);
+            Message message = BusinessLogicConverter.ToMessage(MessageText);
             int result = MessageProcessor.SendMessage(message);
             Console.WriteLine("Сообщение '{0}' отправлено. Кол-во символов в сообщении: {1}", MessageText, result);
         }

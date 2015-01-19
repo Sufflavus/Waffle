@@ -4,15 +4,15 @@
 namespace Tabby.Client.Command
 {
     /// <summary>
-    /// Класс, который преобразует строку в команду.
+    /// A class that converts a string to the command. 
     /// </summary>
     public sealed class CommandParser
     {
         /// <summary>
-        /// Распарсить команду.
+        /// Parse command.
         /// </summary>
-        /// <param name="commandText">Команда в виде текстовой строки.</param>
-        /// <returns>Класс-команда.</returns>
+        /// <param name="commandText">A command as a text string.</param>
+        /// <returns>New class.</returns>
         public static MessageCommand Parse(string commandText)
         {
             return new SendMessageCommand { MessageText = commandText };

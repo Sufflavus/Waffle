@@ -12,7 +12,7 @@ namespace Tabby.Tests.Tabby.Dal
 {
     public class GenerateSchemaTests
     {
-        [Fact]
+        [Fact(Skip = "A real DB is required")]
         public void Can_Generate_Schema()
         {
             var cfg = new Configuration();

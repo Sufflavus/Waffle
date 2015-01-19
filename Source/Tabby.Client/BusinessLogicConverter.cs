@@ -5,9 +5,9 @@ using Taddy.BusinessLogic;
 
 namespace Tabby.Client
 {
-    public sealed class BusinessLogicAdapter
+    public sealed class BusinessLogicConverter
     {
-        public static Message CreateMessage(string messageText)
+        public static Message ToMessage(string messageText)
         {
             return new Message { Text = messageText };
         }
