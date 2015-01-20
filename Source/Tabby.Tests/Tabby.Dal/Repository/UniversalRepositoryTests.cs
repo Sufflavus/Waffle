@@ -19,7 +19,7 @@ namespace Tabby.Tests.Tabby.Dal.Repository
 
             repository.AddOrUpdate(entity);
 
-            BaseEntity actual = context.Entity;
+            BaseEntity actual = context.Storage[0];
             Assert.Equal(entity, actual);
             Assert.IsType<MessageEntity>(actual);
             Assert.Equal(entity.Id, actual.Id);

@@ -1,6 +1,9 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 
 using NHibernate;
+using NHibernate.Linq;
 
 using Tabby.Dal.Domain;
 
@@ -18,6 +21,26 @@ namespace Tabby.Dal.Context
                     session.SaveOrUpdate(entity);
                     transaction.Commit();
                 }
+            }
+        }
+
+
+        public List<TEntity> Filter<TEntity>(Func<TEntity, bool> condition) where TEntity : BaseEntity
+        {
+            using (ISession session = NHibertnateSession.OpenSession())
+            {
+                return session.Query<TEntity>()
+                    .Where(condition)
+                    .ToList();
+            }
+        }
+
+
+        public List<TEntity> GetAll<TEntity>() where TEntity : BaseEntity
+        {
+            using (ISession session = NHibertnateSession.OpenSession())
+            {
+                return session.Query<TEntity>().ToList();
             }
         }
 
