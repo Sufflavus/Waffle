@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Threading;
 
 using Tabby.Client.Command;
 
@@ -17,11 +16,8 @@ namespace Tabby.Client
             Console.WriteLine();
 
             IMessageProcessor messageProcessor = new MessageProcessor();
-
-            var messageChecker = new MessageChecker(messageProcessor);
-            var autoEvent = new AutoResetEvent(false);
-            TimerCallback timerCallback = messageChecker.GetMessages;
-            var timer = new Timer(timerCallback, autoEvent, 10000, 250);
+            var timer = new MessageCheckerTimerWrapper(messageProcessor);
+            timer.Start();
 
             bool hasCommand;
             do
@@ -48,8 +44,7 @@ namespace Tabby.Client
             }
             while (hasCommand);
 
-            autoEvent.Set();
-            timer.Dispose();
+            timer.Stop();
         }
     }
 }

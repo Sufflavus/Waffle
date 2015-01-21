@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 using Taddy.BusinessLogic;
 
@@ -7,7 +8,7 @@ namespace Tabby.Client
 {
     public class MessageChecker
     {
-        private IMessageProcessor _messageProcessor;
+        private readonly IMessageProcessor _messageProcessor;
 
 
         public MessageChecker(IMessageProcessor messageProcessor)
@@ -18,7 +19,8 @@ namespace Tabby.Client
 
         public void GetMessages(Object stateInfo)
         {
-            Console.WriteLine("GetMessages");
+            List<Message> messages = _messageProcessor.GetAllMessages();
+            messages.ForEach(x => Console.WriteLine(x));
         }
     }
 }

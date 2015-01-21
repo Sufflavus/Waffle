@@ -49,6 +49,7 @@
     <Compile Include="MessageChecker.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="MessageCheckerTimerWrapper.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
