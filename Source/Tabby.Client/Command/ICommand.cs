@@ -10,13 +10,13 @@ namespace Tabby.Client.Command
     /// </summary>
     public interface ICommand
     {
+        IMessageProcessor MessageProcessor { get; set; }
+        string MessageText { get; set; }
+
+
         /// <summary>
         /// Execute command.
         /// </summary>
         void Execute();
-
-        string MessageText { get; set; }
-
-        IMessageProcessor MessageProcessor { get; set; }
     }
 }

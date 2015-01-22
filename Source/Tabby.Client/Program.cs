@@ -11,13 +11,15 @@ namespace Tabby.Client
     {
         private static void Main(string[] args)
         {
-            Console.WriteLine("Чтобы отправить сообщение, наберите сообщение и нажмите Enter");
-            Console.WriteLine("Чтобы выйти, нажмите Enter");
+            Console.WriteLine("Available commands:");
+            Console.WriteLine("Send: Message text");
+            Console.WriteLine("GetAll");
+            Console.WriteLine("GetNew");
             Console.WriteLine();
 
             IMessageProcessor messageProcessor = new MessageProcessor();
-            var timer = new MessageCheckerTimerWrapper(messageProcessor);
-            timer.Start();
+            //var timer = new MessageCheckerTimerWrapper(messageProcessor);
+            //timer.Start();
 
             bool hasCommand;
             do
@@ -34,7 +36,7 @@ namespace Tabby.Client
                     }
                     catch (ArgumentException)
                     {
-                        Console.WriteLine("Неверная команда");
+                        Console.WriteLine("Invalid command");
                     }
                     catch (Exception)
                     {
@@ -44,7 +46,7 @@ namespace Tabby.Client
             }
             while (hasCommand);
 
-            timer.Stop();
+            //timer.Stop();
         }
     }
 }

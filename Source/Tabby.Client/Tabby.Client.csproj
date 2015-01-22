@@ -43,6 +43,9 @@
   <ItemGroup>
     <Compile Include="BusinessLogicConverter.cs" />
     <Compile Include="Command\CommandParser.cs" />
+    <Compile Include="Command\CommandType.cs" />
+    <Compile Include="Command\GetNewMessagesCommand.cs" />
+    <Compile Include="Command\GetAllMessagesCommand.cs" />
     <Compile Include="Command\ICommand.cs" />
     <Compile Include="Command\MessageCommand.cs" />
     <Compile Include="Command\SendMessageCommand.cs" />

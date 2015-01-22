@@ -21,6 +21,16 @@ namespace Taddy.BusinessLogic
         }
 
 
+        public List<Message> GetNewMessages()
+        {
+            /*return repository.Filter<MessageEntity>(x=>x.CreateDate >= DateTime.Now.AddDays(-1))
+                .Select(DalConverter.ToMessage)
+                .ToList();*/
+
+            throw new NotImplementedException();
+        }
+
+
         public int SendMessage(Message message)
         {
             MessageEntity messageEntity = DalConverter.ToMessageEntity(message);
