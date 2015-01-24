@@ -10,8 +10,10 @@ namespace Tabby.Client.Command
     {
         public override void Execute()
         {
-            Console.WriteLine("New messages:");
+            Console.WriteLine();
             List<Message> messages = MessageProcessor.GetNewMessages();
+            Console.WriteLine();
+            Console.WriteLine("New messages:");
             messages.ForEach(x => Console.WriteLine(x));
         }
     }

@@ -38,6 +38,12 @@ namespace Tabby.Client.Command
         {
             int separatorIndex = commandText.IndexOf(CommandTypeSeparator);
             string messageText = commandText.Substring(separatorIndex + 1).Trim();
+
+            if (separatorIndex < 0 || string.IsNullOrEmpty(messageText))
+            {
+                throw new ArgumentException("Invalid command");
+            }
+
             return new SendMessageCommand { MessageText = messageText };
         }
 

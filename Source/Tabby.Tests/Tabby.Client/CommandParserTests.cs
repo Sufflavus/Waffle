@@ -3,6 +3,7 @@
 using Tabby.Client.Command;
 
 using Xunit;
+using Xunit.Extensions;
 
 
 namespace Tabby.Tests.Tabby.Client
@@ -36,11 +37,13 @@ namespace Tabby.Tests.Tabby.Client
         }
 
 
-        [Fact]
-        public void Parse_IncorrectCommand_ThrowsException()
+        [Theory]
+        [InlineData("FakeCommand")]
+        [InlineData("Send")]
+        [InlineData(" ")]
+        [InlineData(":")]
+        public void Parse_IncorrectCommand_ThrowsException(string commandText)
         {
-            string commandText = "FakeCommand";
-
             Exception ex = Assert.Throws<ArgumentException>(() => CommandParser.Parse(commandText));
             Assert.Equal("Invalid command", ex.Message);
         }
@@ -56,6 +59,17 @@ namespace Tabby.Tests.Tabby.Client
 
             Assert.Equal(messageText, result.MessageText);
             Assert.IsType(typeof(SendMessageCommand), result);
+        }
+
+
+        [Fact]
+        public void Parse_SendMessageCommand_EmptyMessage()
+        {
+            string messageText = "";
+            string commandText = string.Format("{0} {1}", SendCommandPrefix, messageText);
+
+            Exception ex = Assert.Throws<ArgumentException>(() => CommandParser.Parse(commandText));
+            Assert.Equal("Invalid command", ex.Message);
         }
     }
 }
