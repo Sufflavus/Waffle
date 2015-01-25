@@ -10,12 +10,24 @@ namespace Taddy.BusinessLogic
 {
     public class MessageProcessor : IMessageProcessor
     {
-        private readonly IUniversalRepository repository = new UniversalRepository();
+        private readonly IUniversalRepository _repository;
+
+
+        public MessageProcessor()
+        {
+            _repository = new UniversalRepository();
+        }
+
+
+        public MessageProcessor(IUniversalRepository repository)
+        {
+            _repository = repository;
+        }
 
 
         public List<Message> GetAllMessages()
         {
-            return repository.GetAll<MessageEntity>()
+            return _repository.GetAll<MessageEntity>()
                 .Select(DalConverter.ToMessage)
                 .ToList();
         }
@@ -23,7 +35,7 @@ namespace Taddy.BusinessLogic
 
         public List<Message> GetNewMessages()
         {
-            /*return repository.Filter<MessageEntity>(x=>x.CreateDate >= DateTime.Now.AddDays(-1))
+            /*return _repository.Filter<MessageEntity>(x=>x.CreateDate >= DateTime.Now.AddDays(-1))
                 .Select(DalConverter.ToMessage)
                 .ToList();*/
 
@@ -34,7 +46,7 @@ namespace Taddy.BusinessLogic
         public int SendMessage(Message message)
         {
             MessageEntity messageEntity = DalConverter.ToMessageEntity(message);
-            repository.AddOrUpdate(messageEntity);
+            _repository.AddOrUpdate(messageEntity);
             return message.Text.Length;
         }
     }

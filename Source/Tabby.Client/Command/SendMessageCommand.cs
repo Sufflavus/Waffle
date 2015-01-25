@@ -9,6 +9,7 @@ namespace Tabby.Client.Command
     {
         public override void Execute()
         {
+            //TODO: make it testable
             Console.WriteLine();
             Message message = BusinessLogicConverter.ToMessage(MessageText);
             int result = MessageProcessor.SendMessage(message);

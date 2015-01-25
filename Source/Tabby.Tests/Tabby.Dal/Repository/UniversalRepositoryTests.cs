@@ -43,7 +43,6 @@ namespace Tabby.Tests.Tabby.Dal.Repository
             IUniversalRepository repository = new UniversalRepository(_context);
             var entity1 = new MessageEntity { Id = Guid.NewGuid(), Text = "test1", CreateDate = DateTime.Now };
             var entity2 = new MessageEntity { Id = Guid.NewGuid(), Text = "test2", CreateDate = DateTime.Now };
-
             _context.Storage.Add(entity1);
             _context.Storage.Add(entity2);
 
