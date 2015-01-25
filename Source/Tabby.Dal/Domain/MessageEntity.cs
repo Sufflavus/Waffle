@@ -7,7 +7,7 @@ namespace Tabby.Dal.Domain
 {
     public class MessageEntity : BaseEntity
     {
-        public virtual DateTime CreateDate { get; set; }
+        public virtual DateTime? CreateDate { get; set; }
         public virtual string Text { get; set; }
     }
 }

@@ -44,8 +44,10 @@ namespace Tabby.Tests.Tabby.Client
         [InlineData(":")]
         public void Parse_IncorrectCommand_ThrowsException(string commandText)
         {
-            Exception ex = Assert.Throws<ArgumentException>(() => CommandParser.Parse(commandText));
-            Assert.Equal("Invalid command", ex.Message);
+            Exception result = Assert.Throws<ArgumentException>(() => CommandParser.Parse(commandText));
+
+            Assert.IsType(typeof(ArgumentException), result);
+            Assert.Equal("Invalid command", result.Message);
         }
 
 
@@ -63,13 +65,15 @@ namespace Tabby.Tests.Tabby.Client
 
 
         [Fact]
-        public void Parse_SendMessageCommand_EmptyMessage()
+        public void Parse_SendMessageCommand_EmptyMessage_ThrowsException()
         {
             string messageText = "";
             string commandText = string.Format("{0} {1}", SendCommandPrefix, messageText);
 
-            Exception ex = Assert.Throws<ArgumentException>(() => CommandParser.Parse(commandText));
-            Assert.Equal("Invalid command", ex.Message);
+            Exception result = Assert.Throws<ArgumentException>(() => CommandParser.Parse(commandText));
+
+            Assert.IsType(typeof(ArgumentException), result);
+            Assert.Equal("Invalid command", result.Message);
         }
     }
 }
