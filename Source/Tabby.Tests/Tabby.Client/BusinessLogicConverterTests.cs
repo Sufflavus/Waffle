@@ -21,7 +21,7 @@ namespace Tabby.Tests.Tabby.Client
         {
             Message result = BusinessLogicConverter.ToMessage(messageText);
 
-            Assert.Equal(result.Text, messageText);
+            Assert.Equal(messageText, result.Text);
         }
 
 

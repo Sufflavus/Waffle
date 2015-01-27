@@ -18,7 +18,7 @@ namespace Tabby.Tests.Taddy.BusinessLogic
 
             MessageEntity result = DalConverter.ToMessageEntity(message);
 
-            Assert.Equal(result.Text, message.Text);
+            Assert.Equal(message.Text, result.Text);
             Assert.Null(result.CreateDate);
         }
 
@@ -39,8 +39,8 @@ namespace Tabby.Tests.Taddy.BusinessLogic
 
             Message result = DalConverter.ToMessage(entity);
 
-            Assert.Equal(result.Text, entity.Text);
-            Assert.Equal(result.CreateDate, entity.CreateDate);
+            Assert.Equal(entity.Text, result.Text);
+            Assert.Equal(entity.CreateDate, result.CreateDate);
         }
 
 

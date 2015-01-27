@@ -30,9 +30,9 @@ namespace Tabby.Tests.Taddy.BusinessLogic
 
             List<Message> result = messageProcessor.GetAllMessages();
 
-            Assert.Equal(result.Count, 2);
-            Assert.Equal(result[0].Text, message1.Text);
-            Assert.Equal(result[1].Text, message2.Text);
+            Assert.Equal(2, result.Count);
+            Assert.Equal(message1.Text, result[0].Text);
+            Assert.Equal(message2.Text, result[1].Text);
         }
 
 
@@ -44,7 +44,7 @@ namespace Tabby.Tests.Taddy.BusinessLogic
 
             int result = messageProcessor.SendMessage(message);
 
-            Assert.Equal(result, message.Text.Length);
+            Assert.Equal(message.Text.Length, result);
             BaseEntity actual = _repository.Storage[0];
             Assert.IsType<MessageEntity>(actual);
             Assert.Equal(message.Text, ((MessageEntity)actual).Text);
