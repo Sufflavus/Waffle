@@ -26,7 +26,7 @@ namespace Tabby.Tests.Tabby.Dal.Repository
         }
 
         [Fact]
-        public void AddOrUpdate_CorrectInput_SavedInContext()
+        public void AddOrUpdate_GoodInput_AddedInContext()
         {
             IUniversalRepository repository = new UniversalRepository(_context);
             var entity = new MessageEntity { Id = Guid.NewGuid(), Text = "test", CreateDate = DateTime.Now };
@@ -43,9 +43,28 @@ namespace Tabby.Tests.Tabby.Dal.Repository
             Assert.Equal(itemsCount + 1, _context.Storage.Count);
         }
 
+        [Fact]
+        public void AddOrUpdate_GoodInput_UpdatedInContext()
+        {
+            IUniversalRepository repository = new UniversalRepository(_context);
+            var entity = new MessageEntity { Id = _entity1.Id, Text = "test3" };
+            int itemsCount = _context.Storage.Count;
+
+            repository.AddOrUpdate(entity);
+
+            BaseEntity actual = _context.Storage.FirstOrDefault(x => x.Id == entity.Id);
+            Assert.Equal(entity, actual);
+            Assert.IsType<MessageEntity>(actual);
+            Assert.Equal(_entity1.Id, actual.Id);
+            Assert.NotEqual(_entity1.Text, ((MessageEntity)actual).Text);
+            Assert.Equal(entity.Text, ((MessageEntity)actual).Text);
+            Assert.Equal(entity.CreateDate, ((MessageEntity)actual).CreateDate);
+            Assert.Equal(itemsCount, _context.Storage.Count);
+        }
+
 
         [Fact]
-        public void Filter_ReturnCorrectResult()
+        public void Filter_GoodInput_CorrectResult()
         {
             IUniversalRepository repository = new UniversalRepository(_context);
 
@@ -58,7 +77,7 @@ namespace Tabby.Tests.Tabby.Dal.Repository
 
 
         [Fact]
-        public void Filter_ReturnEmptyResult()
+        public void Filter_BadInput_EmptyResult()
         {
             IUniversalRepository repository = new UniversalRepository(_context);
 
@@ -69,7 +88,7 @@ namespace Tabby.Tests.Tabby.Dal.Repository
 
 
         [Fact]
-        public void GetAll_ReturnAllFromContext()
+        public void GetAll_CorrectResult()
         {
             IUniversalRepository repository = new UniversalRepository(_context);
 
@@ -88,7 +107,7 @@ namespace Tabby.Tests.Tabby.Dal.Repository
         {
             IUniversalRepository repository = new UniversalRepository(_context);
 
-            var result = repository.GetById<MessageEntity>(_entity1.Id);
+            MessageEntity result = repository.GetById<MessageEntity>(_entity1.Id);
 
             Assert.Equal(_entity1, result);
             Assert.Equal(_entity1.Text, result.Text);
@@ -100,7 +119,7 @@ namespace Tabby.Tests.Tabby.Dal.Repository
         {
             IUniversalRepository repository = new UniversalRepository(_context);
 
-            var result = repository.GetById<MessageEntity>(Guid.NewGuid());
+            MessageEntity result = repository.GetById<MessageEntity>(Guid.NewGuid());
 
             Assert.Null(result);
         }

@@ -17,7 +17,7 @@ namespace Tabby.Tests.Tabby.Client
         [InlineData("   text   ")]
         [InlineData("qwewqe qweqwe qweqwe")]
         [InlineData("rtyrtyrty rtyrtyrtyrtyrty  rtyrtyrty ")]
-        public void ToMessage_CorrectInput(string messageText)
+        public void ToMessage_GoodText_ReturnsMessage(string messageText)
         {
             Message result = BusinessLogicConverter.ToMessage(messageText);
 
@@ -26,10 +26,11 @@ namespace Tabby.Tests.Tabby.Client
 
 
         [Theory]
+        [InlineData(null)]
         [InlineData("")]
         [InlineData(" ")]
         [InlineData("      ")]
-        public void ToMessage_IncorrectInput(string messageText)
+        public void ToMessage_BadText_Throws(string messageText)
         {
             Exception result = Assert.Throws<ArgumentException>(() => BusinessLogicConverter.ToMessage(messageText));
 

@@ -9,7 +9,7 @@ namespace Tabby.Client
     {
         public static Message ToMessage(string messageText)
         {
-            if (string.IsNullOrEmpty(messageText.Trim()))
+            if (string.IsNullOrEmpty(messageText) || string.IsNullOrEmpty(messageText.Trim()))
             {
                 throw new ArgumentException("messageText can't be empty");
             }

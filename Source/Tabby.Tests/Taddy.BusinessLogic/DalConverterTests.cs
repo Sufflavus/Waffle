@@ -12,7 +12,7 @@ namespace Tabby.Tests.Taddy.BusinessLogic
     public class DalConverterTests
     {
         [Fact]
-        public void ToMessageEntity_CorrectInput()
+        public void ToMessageEntity_GoodMessage_MessageEntity()
         {
             var message = new Message { Text = "text", CreateDate = DateTime.Now };
 
@@ -24,7 +24,7 @@ namespace Tabby.Tests.Taddy.BusinessLogic
 
 
         [Fact]
-        public void ToMessageEntity_IncorrectInput_ThrowsException()
+        public void ToMessageEntity_NullMessage_Throws()
         {
             Exception result = Assert.Throws<ArgumentException>(() => DalConverter.ToMessageEntity(null));
 
@@ -33,7 +33,7 @@ namespace Tabby.Tests.Taddy.BusinessLogic
 
 
         [Fact]
-        public void ToMessage_CorrectInput()
+        public void ToMessage_GoodMessageEntity_Message()
         {
             var entity = new MessageEntity { Text = "text", CreateDate = DateTime.Now };
 
@@ -45,7 +45,7 @@ namespace Tabby.Tests.Taddy.BusinessLogic
 
 
         [Fact]
-        public void ToMessage_IncorrectInput_ThrowsException()
+        public void ToMessage_NullMessageEntity_Throws()
         {
             Exception result = Assert.Throws<ArgumentException>(() => DalConverter.ToMessage(null));
 

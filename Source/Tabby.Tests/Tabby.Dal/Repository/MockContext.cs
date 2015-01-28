@@ -8,7 +8,7 @@ using Tabby.Dal.Domain;
 
 namespace Tabby.Tests.Tabby.Dal.Repository
 {
-    //TODO: подобрать правильные моки
+    //TODO: подобрать правильные моки http://nsubstitute.github.io/
     public class MockContext : IContext
     {
         public MockContext()
@@ -22,6 +22,12 @@ namespace Tabby.Tests.Tabby.Dal.Repository
 
         public void AddOrUpdate<TEntity>(TEntity entity) where TEntity : BaseEntity
         {
+            var savedEntity = GetById<TEntity>(entity.Id);
+            if (savedEntity != null)
+            {
+                Storage.Remove(savedEntity);
+            }
+
             Storage.Add(entity);
         }
 

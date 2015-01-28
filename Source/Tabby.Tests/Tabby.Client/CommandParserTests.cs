@@ -15,8 +15,38 @@ namespace Tabby.Tests.Tabby.Client
         private const string SendCommandPrefix = "Send:";
 
 
+        [Theory]
+        [InlineData(null)]
+        [InlineData("")]
+        [InlineData(" ")]
+        [InlineData("   ")]
+        public void Parse_BadSendCommandText_Throws(string messageText)
+        {
+            string commandText = string.Format("{0} {1}", SendCommandPrefix, messageText);
+
+            Exception result = Assert.Throws<ArgumentException>(() => CommandParser.Parse(commandText));
+
+            Assert.IsType(typeof(ArgumentException), result);
+            Assert.Equal("Invalid command", result.Message);
+        }
+
+
+        [Theory]
+        [InlineData("FakeCommand")]
+        [InlineData("Send")]
+        [InlineData(" ")]
+        [InlineData(":")]
+        public void Parse_BagCommand_Throws(string commandText)
+        {
+            Exception result = Assert.Throws<ArgumentException>(() => CommandParser.Parse(commandText));
+
+            Assert.IsType(typeof(ArgumentException), result);
+            Assert.Equal("Invalid command", result.Message);
+        }
+
+
         [Fact]
-        public void Parse_GetAllMessagesCommand_CorrectCommand()
+        public void Parse_GoodGetAllCommandText_CorrectGetAllMessagesCommand()
         {
             string commandText = GetAllCommandPrefix;
 
@@ -27,7 +57,7 @@ namespace Tabby.Tests.Tabby.Client
 
 
         [Fact]
-        public void Parse_GetNewCommand_CorrectCommand()
+        public void Parse_GoodGetNewCommandText_CorrectGetNewMessagesCommand()
         {
             string commandText = GetNewCommandPrefix;
 
@@ -37,22 +67,8 @@ namespace Tabby.Tests.Tabby.Client
         }
 
 
-        [Theory]
-        [InlineData("FakeCommand")]
-        [InlineData("Send")]
-        [InlineData(" ")]
-        [InlineData(":")]
-        public void Parse_IncorrectCommand_ThrowsException(string commandText)
-        {
-            Exception result = Assert.Throws<ArgumentException>(() => CommandParser.Parse(commandText));
-
-            Assert.IsType(typeof(ArgumentException), result);
-            Assert.Equal("Invalid command", result.Message);
-        }
-
-
         [Fact]
-        public void Parse_SendMessageCommand_CorrectCommand()
+        public void Parse_GoodSendCommandText_SendMessageCommand()
         {
             string messageText = "message";
             string commandText = string.Format("{0} {1}", SendCommandPrefix, messageText);
@@ -61,19 +77,6 @@ namespace Tabby.Tests.Tabby.Client
 
             Assert.Equal(messageText, result.MessageText);
             Assert.IsType(typeof(SendMessageCommand), result);
-        }
-
-
-        [Fact]
-        public void Parse_SendMessageCommand_EmptyMessage_ThrowsException()
-        {
-            string messageText = "";
-            string commandText = string.Format("{0} {1}", SendCommandPrefix, messageText);
-
-            Exception result = Assert.Throws<ArgumentException>(() => CommandParser.Parse(commandText));
-
-            Assert.IsType(typeof(ArgumentException), result);
-            Assert.Equal("Invalid command", result.Message);
         }
     }
 }
