@@ -49,6 +49,7 @@
     <Compile Include="Command\ICommand.cs" />
     <Compile Include="Command\MessageCommand.cs" />
     <Compile Include="Command\SendMessageCommand.cs" />
+    <Compile Include="ConsoleWrapper.cs" />
     <Compile Include="MessageChecker.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

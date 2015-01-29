@@ -11,10 +11,13 @@ namespace Tabby.Client.Command
         public override void Execute()
         {
             Console.WriteLine();
+            Console.ForegroundColor = ConsoleColor.DarkGray;
             List<Message> messages = MessageProcessor.GetAllMessages();
+            Console.ForegroundColor = ConsoleColor.White;
             Console.WriteLine();
             Console.WriteLine("All messages:");
             messages.ForEach(x => Console.WriteLine(x));
+            Console.WriteLine();
         }
     }
 }

@@ -24,6 +24,7 @@ namespace Tabby.Client
             bool hasCommand;
             do
             {
+                Console.ForegroundColor = ConsoleColor.White;
                 string commandText = Console.ReadLine();
                 hasCommand = !string.IsNullOrEmpty(commandText);
                 if (hasCommand)
@@ -36,11 +37,17 @@ namespace Tabby.Client
                     }
                     catch (ArgumentException)
                     {
+                        Console.ForegroundColor = ConsoleColor.Red;
+                        Console.WriteLine();
                         Console.WriteLine("Invalid command");
+                        Console.WriteLine();
                     }
                     catch (Exception)
                     {
+                        Console.ForegroundColor = ConsoleColor.Red;
+                        Console.WriteLine();
                         Console.WriteLine("При выполнении произошла ошибка");
+                        Console.WriteLine();
                     }
                 }
             }
