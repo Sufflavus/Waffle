@@ -10,7 +10,7 @@ namespace Tabby.Dal.Repository
     public abstract class Repository<TEntity> : IRepository<TEntity> where TEntity : BaseEntity
     {
         //TODO: добавить IoC
-        private readonly IContext Context;
+        protected IContext Context;
 
 
         protected Repository()
@@ -18,11 +18,10 @@ namespace Tabby.Dal.Repository
             Context = new NHibernateContext();
         }
 
-/*
-        public Repository(IContext context)
+        protected Repository(IContext context)
         {
             Context = context;
-        }*/
+        }
 
 
         public void AddOrUpdate(TEntity entity)
