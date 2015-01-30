@@ -10,14 +10,10 @@ using Xunit;
 
 namespace Tabby.Tests.Taddy.BusinessLogic
 {
-    public class MessageProcessorTests : IUseFixture<MockRepository>
+    public class MessageProcessorTests : IUseFixture<MockMessageRepository>
     {
-        private MockRepository _repository;
+        private MockMessageRepository _repository;
 
-        public void SetFixture(MockRepository data)
-        {
-            _repository = new MockRepository();
-        }
 
         [Fact]
         public void GetAll_CorrectResult()
@@ -49,6 +45,12 @@ namespace Tabby.Tests.Taddy.BusinessLogic
             BaseEntity actual = _repository.Storage[0];
             Assert.IsType<MessageEntity>(actual);
             Assert.Equal(message.Text, ((MessageEntity)actual).Text);
+        }
+
+
+        public void SetFixture(MockMessageRepository data)
+        {
+            _repository = new MockMessageRepository();
         }
     }
 }

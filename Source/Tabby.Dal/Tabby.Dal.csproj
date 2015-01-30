@@ -51,8 +51,10 @@
     <Compile Include="Domain\BaseEntity.cs" />
     <Compile Include="Domain\MessageEntity.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Repository\IUniversalRepository.cs" />
-    <Compile Include="Repository\UniversalRepository.cs" />
+    <Compile Include="Repository\IMessageRepository.cs" />
+    <Compile Include="Repository\IRepository.cs" />
+    <Compile Include="Repository\MessageRepository.cs" />
+    <Compile Include="Repository\Repository.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

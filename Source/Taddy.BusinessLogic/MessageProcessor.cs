@@ -10,16 +10,16 @@ namespace Taddy.BusinessLogic
 {
     public class MessageProcessor : IMessageProcessor
     {
-        private readonly IUniversalRepository _repository;
+        private readonly IMessageRepository _repository;
 
 
         public MessageProcessor()
         {
-            _repository = new UniversalRepository();
+            _repository = new MessageRepository();
         }
 
 
-        public MessageProcessor(IUniversalRepository repository)
+        public MessageProcessor(IMessageRepository repository)
         {
             _repository = repository;
         }
@@ -27,7 +27,7 @@ namespace Taddy.BusinessLogic
 
         public List<Message> GetAllMessages()
         {
-            return _repository.GetAll<MessageEntity>()
+            return _repository.GetAll()
                 .Select(DalConverter.ToMessage)
                 .ToList();
         }

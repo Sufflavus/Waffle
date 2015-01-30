@@ -10,7 +10,7 @@ using Xunit;
 
 namespace Tabby.Tests.Tabby.Dal.Repository
 {
-    public class UniversalRepositoryTests : IUseFixture<MockContext>
+    public class MessageRepositoryTests : IUseFixture<MockContext>
     {
         private MockContext _context;
         private MessageEntity _entity1;
@@ -28,7 +28,7 @@ namespace Tabby.Tests.Tabby.Dal.Repository
         [Fact]
         public void AddOrUpdate_GoodInput_AddedInContext()
         {
-            IUniversalRepository repository = new UniversalRepository(_context);
+            IMessageRepository repository = new MessageRepository(_context);
             var entity = new MessageEntity { Id = Guid.NewGuid(), Text = "test", CreateDate = DateTime.Now };
             int itemsCount = _context.Storage.Count;
 
@@ -46,7 +46,7 @@ namespace Tabby.Tests.Tabby.Dal.Repository
         [Fact]
         public void AddOrUpdate_GoodInput_UpdatedInContext()
         {
-            IUniversalRepository repository = new UniversalRepository(_context);
+            IMessageRepository repository = new MessageRepository(_context);
             var entity = new MessageEntity { Id = _entity1.Id, Text = "test3" };
             int itemsCount = _context.Storage.Count;
 
@@ -66,9 +66,9 @@ namespace Tabby.Tests.Tabby.Dal.Repository
         [Fact]
         public void Filter_GoodInput_CorrectResult()
         {
-            IUniversalRepository repository = new UniversalRepository(_context);
+            IMessageRepository repository = new MessageRepository(_context);
 
-            List<MessageEntity> result = repository.Filter<MessageEntity>(x => x.Text == _entity1.Text);
+            List<MessageEntity> result = repository.Filter(x => x.Text == _entity1.Text);
 
             Assert.Equal(1, result.Count);
             Assert.Equal(_entity1, result[0]);
@@ -79,9 +79,9 @@ namespace Tabby.Tests.Tabby.Dal.Repository
         [Fact]
         public void Filter_BadInput_EmptyResult()
         {
-            IUniversalRepository repository = new UniversalRepository(_context);
+            IMessageRepository repository = new MessageRepository(_context);
 
-            List<MessageEntity> result = repository.Filter<MessageEntity>(x => x.Id == Guid.NewGuid());
+            List<MessageEntity> result = repository.Filter(x => x.Id == Guid.NewGuid());
 
             Assert.Equal(0, result.Count);
         }
@@ -90,9 +90,9 @@ namespace Tabby.Tests.Tabby.Dal.Repository
         [Fact]
         public void GetAll_CorrectResult()
         {
-            IUniversalRepository repository = new UniversalRepository(_context);
+            IMessageRepository repository = new MessageRepository(_context);
 
-            List<MessageEntity> result = repository.GetAll<MessageEntity>();
+            List<MessageEntity> result = repository.GetAll();
 
             Assert.Equal(_context.Storage.Count, result.Count);
             Assert.Equal(_entity1, result[0]);
@@ -105,9 +105,9 @@ namespace Tabby.Tests.Tabby.Dal.Repository
         [Fact]
         public void GetById_ExistingId_CorrectResult()
         {
-            IUniversalRepository repository = new UniversalRepository(_context);
+            IMessageRepository repository = new MessageRepository(_context);
 
-            MessageEntity result = repository.GetById<MessageEntity>(_entity1.Id);
+            MessageEntity result = repository.GetById(_entity1.Id);
 
             Assert.Equal(_entity1, result);
             Assert.Equal(_entity1.Text, result.Text);
@@ -117,9 +117,9 @@ namespace Tabby.Tests.Tabby.Dal.Repository
         [Fact]
         public void GetById_NotExistingId_Null()
         {
-            IUniversalRepository repository = new UniversalRepository(_context);
+            IMessageRepository repository = new MessageRepository(_context);
 
-            MessageEntity result = repository.GetById<MessageEntity>(Guid.NewGuid());
+            MessageEntity result = repository.GetById(Guid.NewGuid());
 
             Assert.Null(result);
         }

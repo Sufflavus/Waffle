@@ -7,43 +7,43 @@ using Tabby.Dal.Domain;
 
 namespace Tabby.Dal.Repository
 {
-    public class UniversalRepository : IUniversalRepository
+    public abstract class Repository<TEntity> : IRepository<TEntity> where TEntity : BaseEntity
     {
         //TODO: добавить IoC
         private readonly IContext Context;
 
 
-        public UniversalRepository()
+        protected Repository()
         {
             Context = new NHibernateContext();
         }
 
-
-        public UniversalRepository(IContext context)
+/*
+        public Repository(IContext context)
         {
             Context = context;
-        }
+        }*/
 
 
-        public void AddOrUpdate<TEntity>(TEntity entity) where TEntity : BaseEntity
+        public void AddOrUpdate(TEntity entity)
         {
             Context.AddOrUpdate(entity);
         }
 
 
-        public List<TEntity> Filter<TEntity>(Func<TEntity, bool> condition) where TEntity : BaseEntity
+        public List<TEntity> Filter(Func<TEntity, bool> condition)
         {
             return Context.Filter(condition);
         }
 
 
-        public List<TEntity> GetAll<TEntity>() where TEntity : BaseEntity
+        public List<TEntity> GetAll()
         {
             return Context.GetAll<TEntity>();
         }
 
 
-        public TEntity GetById<TEntity>(Guid id) where TEntity : BaseEntity
+        public TEntity GetById(Guid id)
         {
             return Context.GetById<TEntity>(id);
         }
