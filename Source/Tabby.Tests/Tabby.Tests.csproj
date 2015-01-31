@@ -55,12 +55,15 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Tabby.Client\CommandParserTests.cs" />
     <Compile Include="Tabby.Dal\GenerateSchemaTests.cs" />
+    <Compile Include="Tabby.Dal\Repository\UserRepositoryTests.cs" />
     <Compile Include="Tabby.Dal\Repository\MockContext.cs" />
     <Compile Include="Tabby.Dal\Repository\MessageRepositoryTests.cs" />
     <Compile Include="Tabby.Client\BusinessLogicConverterTests.cs" />
     <Compile Include="Taddy.BusinessLogic\DalConverterTests.cs" />
     <Compile Include="Taddy.BusinessLogic\MessageProcessorTests.cs" />
     <Compile Include="Taddy.BusinessLogic\MockMessageRepository.cs" />
+    <Compile Include="Taddy.BusinessLogic\MockUserRepository.cs" />
+    <Compile Include="Taddy.BusinessLogic\UserProcessorTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

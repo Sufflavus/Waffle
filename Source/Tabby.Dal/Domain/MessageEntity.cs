@@ -9,5 +9,7 @@ namespace Tabby.Dal.Domain
     {
         public virtual DateTime? CreateDate { get; set; }
         public virtual string Text { get; set; }
+        public virtual UserEntity User { get; set; }
+        public virtual Guid UserId { get; set; }
     }
 }

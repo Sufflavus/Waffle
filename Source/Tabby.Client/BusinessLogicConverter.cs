@@ -16,5 +16,16 @@ namespace Tabby.Client
 
             return new Message { Text = messageText };
         }
+
+
+        public static User ToUser(string userName)
+        {
+            if (string.IsNullOrEmpty(userName) || string.IsNullOrEmpty(userName.Trim()))
+            {
+                throw new ArgumentException("userName can't be empty");
+            }
+
+            return new User { Name = userName };
+        }
     }
 }

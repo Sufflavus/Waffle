@@ -51,5 +51,25 @@ namespace Tabby.Tests.Taddy.BusinessLogic
 
             Assert.IsType(typeof(ArgumentException), result);
         }
+
+
+        [Fact]
+        public void ToUserEntity_GoodUser_UserEntity()
+        {
+            var user = new User { Name = "user" };
+
+            UserEntity result = DalConverter.ToUserEntity(user);
+
+            Assert.Equal(user.Name, result.Name);
+        }
+
+
+        [Fact]
+        public void ToUserEntity_NullUser_Throws()
+        {
+            Exception result = Assert.Throws<ArgumentException>(() => DalConverter.ToUserEntity(null));
+
+            Assert.IsType(typeof(ArgumentException), result);
+        }
     }
 }

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 
 using Tabby.Dal.Domain;
-using Tabby.Dal.Repository;
+using Tabby.Dal.Repository.Interfaces;
 
 
 namespace Tabby.Tests.Taddy.BusinessLogic
@@ -22,6 +22,11 @@ namespace Tabby.Tests.Taddy.BusinessLogic
 
         public void AddOrUpdate(MessageEntity entity)
         {
+            var message = Storage.FirstOrDefault(x => x.Id == entity.Id);
+            if (message != null)
+            {
+                Storage.Remove(entity);
+            }
             Storage.Add(entity);
         }
 

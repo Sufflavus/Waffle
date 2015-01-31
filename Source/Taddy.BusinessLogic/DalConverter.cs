@@ -17,7 +17,8 @@ namespace Taddy.BusinessLogic
             return new Message
             {
                 Text = entity.Text,
-                CreateDate = entity.CreateDate.Value
+                CreateDate = entity.CreateDate.Value,
+                UserId = entity.UserId
             };
         }
 
@@ -29,7 +30,18 @@ namespace Taddy.BusinessLogic
                 throw new ArgumentException("Message can't be null");
             }
 
-            return new MessageEntity { Text = message.Text };
+            return new MessageEntity { Text = message.Text, UserId = message.UserId };
+        }
+
+
+        public static UserEntity ToUserEntity(User user)
+        {
+            if (user == null)
+            {
+                throw new ArgumentException("User can't be null");
+            }
+
+            return new UserEntity { Name = user.Name };
         }
     }
 }

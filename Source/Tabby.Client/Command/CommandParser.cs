@@ -1,5 +1,7 @@
 ﻿using System;
 
+using Tabby.Client.Command.Message;
+
 
 namespace Tabby.Client.Command
 {

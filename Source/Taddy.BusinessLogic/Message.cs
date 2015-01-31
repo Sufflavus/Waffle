@@ -7,11 +7,12 @@ namespace Taddy.BusinessLogic
     {
         public DateTime CreateDate { get; set; }
         public string Text { get; set; }
+        public Guid UserId { get; set; }
 
 
         public override string ToString()
         {
-            return string.Format("CreateDate: {0}, Text: {1}", CreateDate, Text);
+            return string.Format("CreateDate: {0}, Text: {1}, UserId: {2}", CreateDate, Text, UserId);
         }
     }
 }

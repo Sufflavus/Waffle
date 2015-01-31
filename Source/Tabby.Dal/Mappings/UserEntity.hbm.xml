@@ -3,14 +3,12 @@
                    assembly="Tabby.Dal"
                    namespace="Tabby.Dal.Domain">
 
-  <class name="MessageEntity" table="Message">
+  <class name="UserEntity" table="[dbo].[User]">
     <id name="Id">
       <generator class="guid" />
     </id>
-    <property name="UserId" not-null="true" />
-    <one-to-one name="User" class="UserEntity"/>
-    <property name="Text" not-null="true" />
-    <property name="CreateDate" update="false" insert="false" generated="insert" not-null="true" />
+    <property name="Name" not-null="true" />
+    <property name="IsOnline" not-null="true" />
   </class>
   
 </hibernate-mapping>

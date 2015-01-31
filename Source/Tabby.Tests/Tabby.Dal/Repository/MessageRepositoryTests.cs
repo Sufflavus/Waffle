@@ -4,6 +4,7 @@ using System.Linq;
 
 using Tabby.Dal.Domain;
 using Tabby.Dal.Repository;
+using Tabby.Dal.Repository.Interfaces;
 
 using Xunit;
 

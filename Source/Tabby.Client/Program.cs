@@ -1,6 +1,8 @@
 ﻿using System;
 
 using Tabby.Client.Command;
+using Tabby.Client.Command.Message;
+using Tabby.Client.Command.User;
 
 using Taddy.BusinessLogic;
 
@@ -11,6 +13,14 @@ namespace Tabby.Client
     {
         private static void Main(string[] args)
         {
+            IUserProcessor userProcessor = new UserProcessor();
+
+            Console.WriteLine("Please, enter a NikName:");
+            string userName = Console.ReadLine();
+            var loginCommand = new LoginUserCommand { UserProcessor = userProcessor, UserName = userName };
+            loginCommand.Execute();
+            Guid userId = loginCommand.Result;
+
             Console.WriteLine("Available commands:");
             Console.WriteLine("Send: Message text");
             Console.WriteLine("GetAll");
@@ -33,6 +43,7 @@ namespace Tabby.Client
                     {
                         MessageCommand command = CommandParser.Parse(commandText);
                         command.MessageProcessor = messageProcessor;
+                        command.UserId = userId;
                         command.Execute();
                     }
                     catch (ArgumentException)
@@ -52,6 +63,9 @@ namespace Tabby.Client
                 }
             }
             while (hasCommand);
+
+            var logoutCommand = new LogoutUserCommand { UserProcessor = userProcessor, UserId = userId };
+            logoutCommand.Execute();
 
             //timer.Stop();
         }

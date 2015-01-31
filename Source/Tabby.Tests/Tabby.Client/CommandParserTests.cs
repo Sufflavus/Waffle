@@ -1,6 +1,7 @@
 ﻿using System;
 
 using Tabby.Client.Command;
+using Tabby.Client.Command.Message;
 
 using Xunit;
 using Xunit.Extensions;

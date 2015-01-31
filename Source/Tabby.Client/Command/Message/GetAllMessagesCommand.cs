@@ -1,21 +1,19 @@
 ﻿using System;
 using System.Collections.Generic;
 
-using Taddy.BusinessLogic;
 
-
-namespace Tabby.Client.Command
+namespace Tabby.Client.Command.Message
 {
-    public sealed class GetNewMessagesCommand : MessageCommand
+    public sealed class GetAllMessagesCommand : MessageCommand
     {
         public override void Execute()
         {
             Console.WriteLine();
             Console.ForegroundColor = ConsoleColor.DarkGray;
-            List<Message> messages = MessageProcessor.GetNewMessages();
+            List<Taddy.BusinessLogic.Message> messages = MessageProcessor.GetAllMessages();
             Console.ForegroundColor = ConsoleColor.White;
             Console.WriteLine();
-            Console.WriteLine("New messages:");
+            Console.WriteLine("All messages:");
             messages.ForEach(x => Console.WriteLine(x));
             Console.WriteLine();
         }
