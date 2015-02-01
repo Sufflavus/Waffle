@@ -35,12 +35,26 @@ namespace Tabby.Tests.Taddy.BusinessLogic
         [Fact]
         public void ToMessage_GoodMessageEntity_Message()
         {
-            var entity = new MessageEntity { Text = "text", CreateDate = DateTime.Now };
+            Guid userId = Guid.NewGuid();
+            var entity = new MessageEntity
+            {
+                Text = "text",
+                CreateDate = DateTime.Now,
+                UserId = userId,
+                User = new UserEntity
+                {
+                    Id = userId,
+                    Name = "user"
+                }
+            };
 
             Message result = DalConverter.ToMessage(entity);
 
             Assert.Equal(entity.Text, result.Text);
             Assert.Equal(entity.CreateDate, result.CreateDate);
+            Assert.Equal(entity.UserId, result.UserId);
+            Assert.Equal(entity.User.Id, result.User.Id);
+            Assert.Equal(entity.User.Name, result.User.Name);
         }
 
 
@@ -68,6 +82,27 @@ namespace Tabby.Tests.Taddy.BusinessLogic
         public void ToUserEntity_NullUser_Throws()
         {
             Exception result = Assert.Throws<ArgumentException>(() => DalConverter.ToUserEntity(null));
+
+            Assert.IsType(typeof(ArgumentException), result);
+        }
+
+
+        [Fact]
+        public void ToUser_GoodUserEntity_User()
+        {
+            var enrity = new UserEntity { Id = Guid.NewGuid(), Name = "user" };
+
+            User result = DalConverter.ToUser(enrity);
+
+            Assert.Equal(enrity.Id, result.Id);
+            Assert.Equal(enrity.Name, result.Name);
+        }
+
+
+        [Fact]
+        public void ToUser_NullUserEntity_Throws()
+        {
+            Exception result = Assert.Throws<ArgumentException>(() => DalConverter.ToUser(null));
 
             Assert.IsType(typeof(ArgumentException), result);
         }

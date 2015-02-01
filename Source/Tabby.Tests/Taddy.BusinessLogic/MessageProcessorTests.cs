@@ -19,8 +19,23 @@ namespace Tabby.Tests.Taddy.BusinessLogic
         [Fact]
         public void GetAll_CorrectResult()
         {
-            var message1 = new MessageEntity { Id = Guid.NewGuid(), Text = "text1", CreateDate = DateTime.Now };
-            var message2 = new MessageEntity { Id = Guid.NewGuid(), Text = "text2", CreateDate = DateTime.Now };
+            var user = new UserEntity { Id = Guid.NewGuid(), Name = "user" };
+            var message1 = new MessageEntity
+            {
+                Id = Guid.NewGuid(), 
+                Text = "text1", 
+                CreateDate = DateTime.Now,
+                UserId = user.Id,
+                User = user
+            };
+            var message2 = new MessageEntity
+            {
+                Id = Guid.NewGuid(), 
+                Text = "text2", 
+                CreateDate = DateTime.Now,
+                UserId = user.Id,
+                User = user
+            };
             _repository.AddOrUpdate(message1);
             _repository.AddOrUpdate(message2);
             int itemsCount = _repository.Storage.Count;
