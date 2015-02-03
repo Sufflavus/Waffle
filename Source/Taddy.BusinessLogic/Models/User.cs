@@ -1,7 +1,7 @@
 ﻿using System;
 
 
-namespace Taddy.BusinessLogic
+namespace Taddy.BusinessLogic.Models
 {
     public sealed class User
     {

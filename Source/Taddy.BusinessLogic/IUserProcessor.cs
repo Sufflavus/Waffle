@@ -1,5 +1,7 @@
 ﻿using System;
 
+using Taddy.BusinessLogic.Models;
+
 
 namespace Taddy.BusinessLogic
 {

@@ -2,6 +2,8 @@
 
 using Tabby.Dal.Domain;
 
+using Taddy.BusinessLogic.Models;
+
 
 namespace Taddy.BusinessLogic
 {

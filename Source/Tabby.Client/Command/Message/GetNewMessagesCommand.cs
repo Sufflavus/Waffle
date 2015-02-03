@@ -10,7 +10,7 @@ namespace Tabby.Client.Command.Message
         {
             Console.WriteLine();
             Console.ForegroundColor = ConsoleColor.DarkGray;
-            List<Taddy.BusinessLogic.Message> messages = MessageProcessor.GetNewMessages();
+            List<Taddy.BusinessLogic.Models.Message> messages = MessageProcessor.GetNewMessages();
             Console.ForegroundColor = ConsoleColor.White;
             Console.WriteLine();
             Console.WriteLine("New messages:");

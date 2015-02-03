@@ -1,6 +1,7 @@
 ﻿using System;
 
 using Taddy.BusinessLogic;
+using Taddy.BusinessLogic.Models;
 
 
 namespace Tabby.Client

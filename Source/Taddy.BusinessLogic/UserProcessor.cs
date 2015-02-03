@@ -4,6 +4,8 @@ using Tabby.Dal.Domain;
 using Tabby.Dal.Repository;
 using Tabby.Dal.Repository.Interfaces;
 
+using Taddy.BusinessLogic.Models;
+
 
 namespace Taddy.BusinessLogic
 {

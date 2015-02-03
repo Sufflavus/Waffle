@@ -3,6 +3,7 @@
 using Tabby.Client;
 
 using Taddy.BusinessLogic;
+using Taddy.BusinessLogic.Models;
 
 using Xunit;
 using Xunit.Extensions;

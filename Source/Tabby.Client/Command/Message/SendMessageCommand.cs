@@ -10,7 +10,7 @@ namespace Tabby.Client.Command.Message
             //TODO: make it testable
             Console.WriteLine();
             Console.ForegroundColor = ConsoleColor.DarkGray;
-            Taddy.BusinessLogic.Message message = BusinessLogicConverter.ToMessage(MessageText);
+            Taddy.BusinessLogic.Models.Message message = BusinessLogicConverter.ToMessage(MessageText);
             message.UserId = UserId;
             int result = MessageProcessor.SendMessage(message);
             Console.ForegroundColor = ConsoleColor.White;

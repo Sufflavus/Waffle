@@ -10,7 +10,7 @@ namespace Tabby.Client.Command.User
 
         public override void Execute()
         {
-            Taddy.BusinessLogic.User user = BusinessLogicConverter.ToUser(UserName);
+            Taddy.BusinessLogic.Models.User user = BusinessLogicConverter.ToUser(UserName);
             UserProcessor.LogIn(user);
             Result = user.Id;
 

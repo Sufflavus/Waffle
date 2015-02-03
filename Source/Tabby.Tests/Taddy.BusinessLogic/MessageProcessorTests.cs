@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using Tabby.Dal.Domain;
 
 using Taddy.BusinessLogic;
+using Taddy.BusinessLogic.Models;
 
 using Xunit;
 

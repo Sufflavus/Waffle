@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 
+using Taddy.BusinessLogic.Models;
+
 
 namespace Taddy.BusinessLogic
 {
