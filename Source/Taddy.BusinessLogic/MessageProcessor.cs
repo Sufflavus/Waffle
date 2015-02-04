@@ -36,13 +36,9 @@ namespace Taddy.BusinessLogic
         }
 
 
-        public List<Message> GetNewMessages()
+        public List<Message> GetNewMessages(Guid userId)
         {
-            /*return _repository.Filter<MessageEntity>(x=>x.CreateDate >= DateTime.Now.AddDays(-1))
-                .Select(DalConverter.ToMessage)
-                .ToList();*/
-
-            throw new NotImplementedException();
+            return _repository.GetNewMessages(userId).Select(DalConverter.ToMessage).ToList();
         }
 
 

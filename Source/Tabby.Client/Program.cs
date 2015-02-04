@@ -15,7 +15,8 @@ namespace Tabby.Client
         {
             IUserProcessor userProcessor = new UserProcessor();
 
-            Console.WriteLine("Please, enter a NikName:");
+            Console.ForegroundColor = ConsoleColor.White;
+            Console.WriteLine("Please, enter your NikName:");
             string userName = Console.ReadLine();
             var loginCommand = new LoginUserCommand { UserProcessor = userProcessor, UserName = userName };
             loginCommand.Execute();

@@ -47,5 +47,11 @@ namespace Tabby.Tests.Taddy.BusinessLogic
         {
             return Storage.FirstOrDefault(x => x.Id == id);
         }
+
+
+        public List<MessageEntity> GetNewMessages(Guid userId)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

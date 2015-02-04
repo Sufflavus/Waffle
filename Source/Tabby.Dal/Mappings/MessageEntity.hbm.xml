@@ -11,6 +11,10 @@
     <many-to-one name="User" class="UserEntity" column="UserId" unique="true" lazy="false"/>
     <property name="Text" not-null="true" />
     <property name="CreateDate" update="false" insert="false" generated="insert" not-null="true" />
+    <bag name="Recipients" inverse="true" table="DeliveredMessage" cascade="all-delete-orphan" lazy="false" >
+        <key column="Id"/>
+        <many-to-many class="UserEntity" column="RecipientUserId"/>
+    </bag>
   </class>
   
 </hibernate-mapping>
