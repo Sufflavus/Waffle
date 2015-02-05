@@ -1,6 +1,5 @@
 ﻿using System;
 
-using Taddy.BusinessLogic;
 using Taddy.BusinessLogic.Models;
 
 

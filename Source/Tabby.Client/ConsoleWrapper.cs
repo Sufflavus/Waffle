@@ -3,14 +3,14 @@
 
 namespace Tabby.Client
 {
-    public class ConsoleWrapper
+    public static class ConsoleWrapper
     {
         public static void WriteError(string errorText)
         {
             ConsoleColor foregroundColor = Console.ForegroundColor;
             Console.ForegroundColor = ConsoleColor.Red;
             Console.WriteLine();
-            Console.WriteLine("Invalid command");
+            Console.WriteLine(errorText);
             Console.WriteLine();
             Console.ForegroundColor = foregroundColor;
         }

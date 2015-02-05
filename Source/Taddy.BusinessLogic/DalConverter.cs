@@ -20,8 +20,8 @@ namespace Taddy.BusinessLogic
             {
                 Text = entity.Text,
                 CreateDate = entity.CreateDate.Value,
-                UserId = entity.SenderId,
-                User = ToUser(entity.Sender)
+                SenderId = entity.SenderId,
+                Sender = ToUser(entity.Sender)
             };
         }
 
@@ -33,7 +33,7 @@ namespace Taddy.BusinessLogic
                 throw new ArgumentException("Message can't be null");
             }
 
-            return new MessageEntity { Text = message.Text, SenderId = message.UserId };
+            return new MessageEntity { Text = message.Text, SenderId = message.SenderId };
         }
 
 
@@ -41,7 +41,7 @@ namespace Taddy.BusinessLogic
         {
             if (entity == null)
             {
-                throw new ArgumentException("User can't be null");
+                throw new ArgumentException("Sender can't be null");
             }
 
             return new User { Id = entity.Id, Name = entity.Name };
@@ -52,7 +52,7 @@ namespace Taddy.BusinessLogic
         {
             if (user == null)
             {
-                throw new ArgumentException("User can't be null");
+                throw new ArgumentException("Sender can't be null");
             }
 
             return new UserEntity { Name = user.Name };

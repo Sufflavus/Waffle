@@ -7,11 +7,8 @@ namespace Tabby.Client.Command.Message
     {
         public override void Execute()
         {
-            //TODO: make it testable
-            Console.WriteLine();
-            Console.ForegroundColor = ConsoleColor.DarkGray;
             Taddy.BusinessLogic.Models.Message message = BusinessLogicConverter.ToMessage(MessageText);
-            message.UserId = UserId;
+            message.SenderId = UserId;
             int result = MessageProcessor.SendMessage(message);
             Console.ForegroundColor = ConsoleColor.White;
             Console.WriteLine();

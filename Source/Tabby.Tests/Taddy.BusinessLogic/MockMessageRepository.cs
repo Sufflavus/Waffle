@@ -20,9 +20,15 @@ namespace Tabby.Tests.Taddy.BusinessLogic
         public List<MessageEntity> Storage { get; private set; }
 
 
+        public List<MessageEntity> GetNewMessages(Guid userId)
+        {
+            throw new NotImplementedException();
+        }
+
+
         public void AddOrUpdate(MessageEntity entity)
         {
-            var message = Storage.FirstOrDefault(x => x.Id == entity.Id);
+            MessageEntity message = Storage.FirstOrDefault(x => x.Id == entity.Id);
             if (message != null)
             {
                 Storage.Remove(entity);
@@ -46,12 +52,6 @@ namespace Tabby.Tests.Taddy.BusinessLogic
         public MessageEntity GetById(Guid id)
         {
             return Storage.FirstOrDefault(x => x.Id == id);
-        }
-
-
-        public List<MessageEntity> GetNewMessages(Guid userId)
-        {
-            throw new NotImplementedException();
         }
     }
 }

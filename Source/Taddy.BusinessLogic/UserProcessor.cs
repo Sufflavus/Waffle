@@ -44,7 +44,7 @@ namespace Taddy.BusinessLogic
             UserEntity entity = _repository.GetById(userId);
             if (entity == null)
             {
-                throw new ArgumentException("User is not exists");
+                throw new ArgumentException("Sender is not exists");
             }
             entity.IsOnline = false;
             _repository.AddOrUpdate(entity);

@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 
 
 namespace Tabby.Dal.Domain
@@ -8,6 +7,5 @@ namespace Tabby.Dal.Domain
     {
         public virtual bool IsOnline { get; set; }
         public virtual string Name { get; set; }
-
     }
 }

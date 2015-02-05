@@ -5,8 +5,9 @@ namespace Tabby.Client.Command.User
 {
     public class LoginUserCommand : UserCommand
     {
-        public string UserName { get; set; }
         public Guid Result { get; set; }
+        public string UserName { get; set; }
+
 
         public override void Execute()
         {

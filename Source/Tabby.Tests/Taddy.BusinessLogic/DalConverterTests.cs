@@ -60,9 +60,9 @@ namespace Tabby.Tests.Taddy.BusinessLogic
 
             Assert.Equal(entity.Text, result.Text);
             Assert.Equal(entity.CreateDate, result.CreateDate);
-            Assert.Equal(entity.SenderId, result.UserId);
-            Assert.Equal(entity.Sender.Id, result.User.Id);
-            Assert.Equal(entity.Sender.Name, result.User.Name);
+            Assert.Equal(entity.SenderId, result.SenderId);
+            Assert.Equal(entity.Sender.Id, result.Sender.Id);
+            Assert.Equal(entity.Sender.Name, result.Sender.Name);
         }
 
 

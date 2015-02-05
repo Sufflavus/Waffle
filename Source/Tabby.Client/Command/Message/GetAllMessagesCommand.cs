@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 
 
 namespace Tabby.Client.Command.Message
@@ -8,13 +9,20 @@ namespace Tabby.Client.Command.Message
     {
         public override void Execute()
         {
-            Console.WriteLine();
-            Console.ForegroundColor = ConsoleColor.DarkGray;
             List<Taddy.BusinessLogic.Models.Message> messages = MessageProcessor.GetAllMessages();
+
             Console.ForegroundColor = ConsoleColor.White;
             Console.WriteLine();
-            Console.WriteLine("All messages:");
-            messages.ForEach(x => Console.WriteLine(x));
+
+            if (messages.Any())
+            {
+                Console.WriteLine("All messages:");
+                messages.ForEach(x => Console.WriteLine(x));
+            }
+            else
+            {
+                Console.WriteLine("There is not any message");
+            }
             Console.WriteLine();
         }
     }

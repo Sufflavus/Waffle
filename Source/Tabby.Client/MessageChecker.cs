@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 
 using Taddy.BusinessLogic;
 using Taddy.BusinessLogic.Models;
@@ -10,18 +11,31 @@ namespace Tabby.Client
     public class MessageChecker
     {
         private readonly IMessageProcessor _messageProcessor;
+        private readonly Guid _userId;
 
 
-        public MessageChecker(IMessageProcessor messageProcessor)
+        public MessageChecker(IMessageProcessor messageProcessor, Guid userId)
         {
             _messageProcessor = messageProcessor;
+            _userId = userId;
         }
 
 
-        public void GetMessages(Object stateInfo)
+        public void GetNewMessages(Object stateInfo)
         {
-            List<Message> messages = _messageProcessor.GetAllMessages();
-            messages.ForEach(x => Console.WriteLine(x));
+            List<Message> messages = _messageProcessor.GetNewMessages(_userId);
+            Console.ForegroundColor = ConsoleColor.White;
+            Console.WriteLine();
+            if (messages.Any())
+            {
+                Console.WriteLine("New messages:");
+                messages.ForEach(x => Console.WriteLine(x));
+            }
+            else
+            {
+                Console.WriteLine("There are no new messages");
+            }
+            Console.WriteLine();
         }
     }
 }

@@ -13,24 +13,27 @@ namespace Taddy.BusinessLogic
 {
     public class MessageProcessor : IMessageProcessor
     {
-        private readonly IMessageRepository _repository;
+        private readonly IMessageRepository _messageRepository;
+        private readonly IUserRepository _userRepository;
 
 
         public MessageProcessor()
         {
-            _repository = new MessageRepository();
+            _messageRepository = new MessageRepository();
+            _userRepository = new UserRepository();
         }
 
 
-        public MessageProcessor(IMessageRepository repository)
+        public MessageProcessor(IMessageRepository messageRepository, IUserRepository userRepository)
         {
-            _repository = repository;
+            _messageRepository = messageRepository;
+            _userRepository = userRepository;
         }
 
 
         public List<Message> GetAllMessages()
         {
-            return _repository.GetAll()
+            return _messageRepository.GetAll()
                 .Select(DalConverter.ToMessage)
                 .ToList();
         }
@@ -38,14 +41,27 @@ namespace Taddy.BusinessLogic
 
         public List<Message> GetNewMessages(Guid userId)
         {
-            return _repository.Filter(x=>x.RecipientId == userId && !x.DeliveryDate.HasValue).Select(DalConverter.ToMessage).ToList();
+            List<MessageEntity> newMessages = _messageRepository.Filter(x => x.SenderId != userId && x.RecipientId == userId && !x.DeliveryDate.HasValue);
+            List<Message> result = newMessages.Select(DalConverter.ToMessage).ToList();
+            newMessages.ForEach(x =>
+            {
+                x.DeliveryDate = DateTime.Now;
+                _messageRepository.AddOrUpdate(x);
+            });
+            return result;
         }
 
 
         public int SendMessage(Message message)
         {
-            MessageEntity messageEntity = DalConverter.ToMessageEntity(message);
-            _repository.AddOrUpdate(messageEntity);
+            List<UserEntity> recipients = _userRepository.Filter(x => x.Id != message.SenderId);
+            recipients.ForEach(x =>
+            {
+                MessageEntity messageEntity = DalConverter.ToMessageEntity(message);
+                messageEntity.RecipientId = x.Id;
+                _messageRepository.AddOrUpdate(messageEntity);
+            });
+
             return message.Text.Length;
         }
     }

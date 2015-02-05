@@ -7,6 +7,7 @@ namespace Tabby.Client.Command.User
     {
         public Guid UserId { get; set; }
 
+
         public override void Execute()
         {
             UserProcessor.LogOut(UserId);

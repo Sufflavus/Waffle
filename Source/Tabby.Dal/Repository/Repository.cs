@@ -8,7 +8,8 @@ using Tabby.Dal.Repository.Interfaces;
 
 namespace Tabby.Dal.Repository
 {
-    public abstract class Repository<TEntity> : IRepository<TEntity> where TEntity : BaseEntity
+    public abstract class Repository<TEntity> : IRepository<TEntity>
+        where TEntity : BaseEntity
     {
         //TODO: добавить IoC
         protected IContext Context;
@@ -18,6 +19,7 @@ namespace Tabby.Dal.Repository
         {
             Context = new NHibernateContext();
         }
+
 
         protected Repository(IContext context)
         {

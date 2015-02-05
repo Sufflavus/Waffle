@@ -6,7 +6,8 @@ using Tabby.Dal.Domain;
 
 namespace Tabby.Dal.Repository.Interfaces
 {
-    public interface IRepository<TEntity> where TEntity : BaseEntity
+    public interface IRepository<TEntity>
+        where TEntity : BaseEntity
     {
         void AddOrUpdate(TEntity entity);
         List<TEntity> Filter(Func<TEntity, bool> condition);
