@@ -38,7 +38,7 @@ namespace Taddy.BusinessLogic
 
         public List<Message> GetNewMessages(Guid userId)
         {
-            return _repository.GetNewMessages(userId).Select(DalConverter.ToMessage).ToList();
+            return _repository.Filter(x=>x.RecipientId == userId && !x.DeliveryDate.HasValue).Select(DalConverter.ToMessage).ToList();
         }
 
 

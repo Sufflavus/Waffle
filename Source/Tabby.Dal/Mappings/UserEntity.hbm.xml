@@ -9,10 +9,7 @@
     </id>
     <property name="Name" not-null="true" />
     <property name="IsOnline" not-null="true" />
-    <bag name="DeliveredMessages" table="DeliveredMessage" inverse="true" lazy="true">
-        <key column="Id"/>
-        <many-to-many class="MessageEntity" column="MessageId"/>
-    </bag>
+    
   </class>
   
 </hibernate-mapping>

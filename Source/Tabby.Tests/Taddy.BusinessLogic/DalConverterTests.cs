@@ -36,16 +36,23 @@ namespace Tabby.Tests.Taddy.BusinessLogic
         [Fact]
         public void ToMessage_GoodMessageEntity_Message()
         {
-            Guid userId = Guid.NewGuid();
+            Guid userId1 = Guid.NewGuid();
+            Guid userId2 = Guid.NewGuid();
             var entity = new MessageEntity
             {
                 Text = "text",
                 CreateDate = DateTime.Now,
-                UserId = userId,
-                User = new UserEntity
+                SenderId = userId1,
+                Sender = new UserEntity
                 {
-                    Id = userId,
-                    Name = "user"
+                    Id = userId1,
+                    Name = "user1"
+                },
+                RecipientId = userId2,
+                Recipient = new UserEntity
+                {
+                    Id = userId2,
+                    Name = "user2"
                 }
             };
 
@@ -53,9 +60,9 @@ namespace Tabby.Tests.Taddy.BusinessLogic
 
             Assert.Equal(entity.Text, result.Text);
             Assert.Equal(entity.CreateDate, result.CreateDate);
-            Assert.Equal(entity.UserId, result.UserId);
-            Assert.Equal(entity.User.Id, result.User.Id);
-            Assert.Equal(entity.User.Name, result.User.Name);
+            Assert.Equal(entity.SenderId, result.UserId);
+            Assert.Equal(entity.Sender.Id, result.User.Id);
+            Assert.Equal(entity.Sender.Name, result.User.Name);
         }
 
 

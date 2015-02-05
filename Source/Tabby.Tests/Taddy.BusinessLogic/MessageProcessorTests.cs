@@ -26,16 +26,16 @@ namespace Tabby.Tests.Taddy.BusinessLogic
                 Id = Guid.NewGuid(), 
                 Text = "text1", 
                 CreateDate = DateTime.Now,
-                UserId = user.Id,
-                User = user
+                SenderId = user.Id,
+                Sender = user
             };
             var message2 = new MessageEntity
             {
                 Id = Guid.NewGuid(), 
                 Text = "text2", 
                 CreateDate = DateTime.Now,
-                UserId = user.Id,
-                User = user
+                SenderId = user.Id,
+                Sender = user
             };
             _repository.AddOrUpdate(message1);
             _repository.AddOrUpdate(message2);

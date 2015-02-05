@@ -7,14 +7,18 @@
     <id name="Id">
       <generator class="guid" />
     </id>
-    <property name="UserId" not-null="true" />
-    <many-to-one name="User" class="UserEntity" column="UserId" unique="true" lazy="false"/>
+      
+    <property name="SenderId" not-null="true" />
+    <many-to-one name="Sender" class="UserEntity" column="SenderId" unique="true" lazy="false"/>
+
+    <property name="RecipientId" not-null="true" />
+    <many-to-one name="Recipient" class="UserEntity" column="RecipientId" unique="true" lazy="false"/>
+      
     <property name="Text" not-null="true" />
+      
     <property name="CreateDate" update="false" insert="false" generated="insert" not-null="true" />
-    <bag name="Recipients" inverse="true" table="DeliveredMessage" cascade="all-delete-orphan" lazy="false" >
-        <key column="Id"/>
-        <many-to-many class="UserEntity" column="RecipientUserId"/>
-    </bag>
+    <property name="DeliveryDate" update="false" insert="false" not-null="false" />
+    
   </class>
   
 </hibernate-mapping>
