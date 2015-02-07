@@ -46,7 +46,7 @@ namespace Tabby.Tests.Tabby.Dal.Repository
             repository.AddOrUpdate(entity);
 
             BaseEntity actual = _context.Storage.FirstOrDefault(x => x.Id == entity.Id);
-            Assert.Null(((MessageEntity)actual).DeliveryDate);
+            Assert.False(((MessageEntity)actual).IsDelivered);
         }
 
 

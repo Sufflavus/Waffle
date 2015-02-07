@@ -26,7 +26,7 @@ namespace Tabby.Client
             var messageChecker = new MessageChecker(_messageProcessor, _userId);
             _resetEvent = new AutoResetEvent(false);
             TimerCallback timerCallback = messageChecker.GetNewMessages;
-            _timer = new Timer(timerCallback, _resetEvent, 10000, 250);
+            _timer = new Timer(timerCallback, _resetEvent, 10000, 10000);
         }
 
 

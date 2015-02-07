@@ -26,7 +26,8 @@ GO
 ALTER TABLE [dbo].[User] ADD  CONSTRAINT [DF_User_IsOnline]  DEFAULT ((0)) FOR [IsOnline]
 GO
 
-/****** Object:  Table [dbo].[Message]    Script Date: 02/05/2015 21:03:29 ******/
+
+/****** Object:  Table [dbo].[Message]    Script Date: 02/07/2015 22:11:54 ******/
 SET ANSI_NULLS ON
 GO
 
@@ -39,7 +40,7 @@ CREATE TABLE [dbo].[Message](
 	[RecipientId] [uniqueidentifier] NOT NULL,
 	[Text] [nvarchar](max) NOT NULL,
 	[CreateDate] [datetime2](7) NOT NULL,
-	[DeliveryDate] [datetime2](7) NULL,
+	[IsDelivered] [bit] NOT NULL,
  CONSTRAINT [PK_Message] PRIMARY KEY CLUSTERED 
 (
 	[Id] ASC
@@ -70,4 +71,5 @@ GO
 ALTER TABLE [dbo].[Message] ADD  CONSTRAINT [DF_Message_CreateDate]  DEFAULT (getdate()) FOR [CreateDate]
 GO
 
-
+ALTER TABLE [dbo].[Message] ADD  CONSTRAINT [DF_Message_IsDelivered]  DEFAULT ((0)) FOR [IsDelivered]
+GO

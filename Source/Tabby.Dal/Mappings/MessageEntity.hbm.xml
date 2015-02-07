@@ -9,18 +9,14 @@
     </id>
       
     <property name="SenderId" not-null="true" />
-    <many-to-one name="Sender" class="UserEntity" insert="false" column="SenderId" unique="true" lazy="false"/>
+    <many-to-one name="Sender" class="UserEntity" insert="false" update="false" column="SenderId" unique="true" lazy="false"/>
 
     <property name="RecipientId" not-null="true" />
-    <many-to-one name="Recipient" class="UserEntity" insert="false" column="RecipientId" unique="true" lazy="false"/>
+    <many-to-one name="Recipient" class="UserEntity" insert="false" update="false" column="RecipientId" unique="true" lazy="false"/>
       
     <property name="Text" not-null="true" update="false" />
-      
     <property name="CreateDate" update="false" insert="false" generated="insert" not-null="true" />
-
-    <property name="DeliveryDate">
-        <column name="DeliveryDate" sql-type="datetime" not-null="false" />
-    </property>
+    <property name="IsDelivered" not-null="true" />
   </class>
   
 </hibernate-mapping>

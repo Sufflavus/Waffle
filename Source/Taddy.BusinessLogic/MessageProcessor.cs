@@ -41,11 +41,11 @@ namespace Taddy.BusinessLogic
 
         public List<Message> GetNewMessages(Guid userId)
         {
-            List<MessageEntity> newMessages = _messageRepository.Filter(x => x.SenderId != userId && x.RecipientId == userId && !x.DeliveryDate.HasValue);
+            List<MessageEntity> newMessages = _messageRepository.Filter(x => x.SenderId != userId && x.RecipientId == userId && !x.IsDelivered);
             List<Message> result = newMessages.Select(DalConverter.ToMessage).ToList();
             newMessages.ForEach(x =>
             {
-                x.DeliveryDate = DateTime.Now;
+                x.IsDelivered = true;
                 _messageRepository.AddOrUpdate(x);
             });
             return result;
