@@ -21,6 +21,7 @@ namespace Tabby.Tests.Taddy.BusinessLogic
 
             Assert.Equal(message.Text, result.Text);
             Assert.Null(result.CreateDate);
+            Assert.False(result.IsDelivered);
         }
 
 
@@ -83,6 +84,7 @@ namespace Tabby.Tests.Taddy.BusinessLogic
             UserEntity result = DalConverter.ToUserEntity(user);
 
             Assert.Equal(user.Name, result.Name);
+            Assert.False(result.IsOnline);
         }
 
 

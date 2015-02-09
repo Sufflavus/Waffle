@@ -33,6 +33,7 @@ namespace Tabby.Tests.Tabby.Dal.Repository
             Assert.Equal(entity.Id, actual.Id);
             Assert.Equal(entity.Text, ((MessageEntity)actual).Text);
             Assert.Equal(entity.CreateDate, ((MessageEntity)actual).CreateDate);
+            Assert.False(((MessageEntity)actual).IsDelivered);
             Assert.Equal(itemsCount + 1, _context.Storage.Count);
         }
 
@@ -54,7 +55,7 @@ namespace Tabby.Tests.Tabby.Dal.Repository
         public void AddOrUpdate_GoodInput_UpdatedInContext()
         {
             IMessageRepository repository = new MessageRepository(_context);
-            var entity = new MessageEntity { Id = _message1.Id, Text = "test3" };
+            var entity = new MessageEntity { Id = _message1.Id, Text = "test3", IsDelivered = true };
             int itemsCount = _context.Storage.Count;
 
             repository.AddOrUpdate(entity);
@@ -66,6 +67,7 @@ namespace Tabby.Tests.Tabby.Dal.Repository
             Assert.NotEqual(_message1.Text, ((MessageEntity)actual).Text);
             Assert.Equal(entity.Text, ((MessageEntity)actual).Text);
             Assert.Equal(entity.CreateDate, ((MessageEntity)actual).CreateDate);
+            Assert.Equal(entity.IsDelivered, ((MessageEntity)actual).IsDelivered);
             Assert.Equal(itemsCount, _context.Storage.Count);
         }
 

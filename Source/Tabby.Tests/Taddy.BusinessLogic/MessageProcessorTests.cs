@@ -37,7 +37,8 @@ namespace Tabby.Tests.Taddy.BusinessLogic
                 Text = "text1",
                 CreateDate = DateTime.Now,
                 SenderId = user.Id,
-                Sender = user
+                Sender = user,
+                IsDelivered = false
             };
             var message2 = new MessageEntity
             {
@@ -45,7 +46,8 @@ namespace Tabby.Tests.Taddy.BusinessLogic
                 Text = "text2",
                 CreateDate = DateTime.Now,
                 SenderId = user.Id,
-                Sender = user
+                Sender = user,
+                IsDelivered = true
             };
             _messageRepository.AddOrUpdate(message1);
             _messageRepository.AddOrUpdate(message2);
@@ -114,7 +116,7 @@ namespace Tabby.Tests.Taddy.BusinessLogic
 
 
         [Fact]
-        public void SendMessage_GoodInput_AddedInRepository()
+        public void SendMessage_GoodInput_AddedInRepositoryForAllRecipients()
         {
             var user1 = new UserEntity { Id = Guid.NewGuid() };
             var user2 = new UserEntity { Id = Guid.NewGuid() };
@@ -134,6 +136,7 @@ namespace Tabby.Tests.Taddy.BusinessLogic
                 MessageEntity actual = _messageRepository.Storage.First(y => y.RecipientId == x.Id);
                 Assert.IsType<MessageEntity>(actual);
                 Assert.NotEqual(actual.RecipientId, message.SenderId);
+                Assert.False(actual.IsDelivered);
             });
         }
     }
