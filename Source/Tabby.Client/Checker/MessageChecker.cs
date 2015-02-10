@@ -4,9 +4,10 @@ using System.Linq;
 
 using Taddy.BusinessLogic;
 using Taddy.BusinessLogic.Models;
+using Taddy.BusinessLogic.Processor;
 
 
-namespace Tabby.Client
+namespace Tabby.Client.Checker
 {
     public class MessageChecker
     {

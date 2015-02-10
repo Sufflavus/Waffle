@@ -7,7 +7,7 @@ using Tabby.Dal.Repository.Interfaces;
 using Taddy.BusinessLogic.Models;
 
 
-namespace Taddy.BusinessLogic
+namespace Taddy.BusinessLogic.Processor
 {
     public class UserProcessor : IUserProcessor
     {

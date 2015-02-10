@@ -1,10 +1,12 @@
 ﻿using System;
 
+using Tabby.Client.Checker;
 using Tabby.Client.Command;
 using Tabby.Client.Command.Message;
 using Tabby.Client.Command.User;
 
 using Taddy.BusinessLogic;
+using Taddy.BusinessLogic.Processor;
 
 
 namespace Tabby.Client

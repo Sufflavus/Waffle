@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using Taddy.BusinessLogic.Models;
 
 
-namespace Taddy.BusinessLogic
+namespace Taddy.BusinessLogic.Processor
 {
     public interface IMessageProcessor
     {

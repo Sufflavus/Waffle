@@ -6,6 +6,7 @@ using Tabby.Dal.Domain;
 
 using Taddy.BusinessLogic;
 using Taddy.BusinessLogic.Models;
+using Taddy.BusinessLogic.Processor;
 
 using Xunit;
 

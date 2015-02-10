@@ -53,10 +53,10 @@
     <Compile Include="Command\Message\SendMessageCommand.cs" />
     <Compile Include="Command\User\UserCommand.cs" />
     <Compile Include="ConsoleWrapper.cs" />
-    <Compile Include="MessageChecker.cs" />
+    <Compile Include="Checker\MessageChecker.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="MessageCheckerTimerWrapper.cs" />
+    <Compile Include="Checker\MessageCheckerTimerWrapper.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

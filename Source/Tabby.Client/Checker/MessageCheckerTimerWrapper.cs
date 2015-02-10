@@ -2,9 +2,10 @@
 using System.Threading;
 
 using Taddy.BusinessLogic;
+using Taddy.BusinessLogic.Processor;
 
 
-namespace Tabby.Client
+namespace Tabby.Client.Checker
 {
     public class MessageCheckerTimerWrapper : IDisposable
     {
