@@ -2,6 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 
+using NSubstitute;
+
+using Tabby.Dal.Context;
 using Tabby.Dal.Domain;
 using Tabby.Dal.Repository;
 using Tabby.Dal.Repository.Interfaces;
@@ -16,6 +19,19 @@ namespace Tabby.Tests.Tabby.Dal.Repository
         private MockContext _context;
         private MessageEntity _message1;
         private MessageEntity _message2;
+
+
+        [Fact]
+        public void AddOrUpdate_AddOrUpdateCalledInContext()
+        {
+            var context = Substitute.For<IContext>();
+            IMessageRepository repository = new MessageRepository(context);
+            var entity = new MessageEntity { Id = Guid.NewGuid(), Text = "test", CreateDate = DateTime.Now };
+
+            repository.AddOrUpdate(entity);
+
+            context.Received().AddOrUpdate(entity);
+        }
 
 
         [Fact]
@@ -97,6 +113,19 @@ namespace Tabby.Tests.Tabby.Dal.Repository
 
 
         [Fact]
+        public void Filter_FilterCalledInContext()
+        {
+            var context = Substitute.For<IContext>();
+            IMessageRepository repository = new MessageRepository(context);
+            Func<MessageEntity, bool> condition = x => x.Text == "text";
+            
+            repository.Filter(condition);
+
+            context.Received().Filter(condition);
+        }
+
+
+        [Fact]
         public void GetAll_CorrectResult()
         {
             IMessageRepository repository = new MessageRepository(_context);
@@ -112,6 +141,18 @@ namespace Tabby.Tests.Tabby.Dal.Repository
 
 
         [Fact]
+        public void GetAll_GetAllCalledInContext()
+        {
+            var context = Substitute.For<IContext>();
+            IMessageRepository repository = new MessageRepository(context);
+
+            repository.GetAll();
+
+            context.Received().GetAll<MessageEntity>();
+        }
+
+
+        [Fact]
         public void GetById_ExistingId_CorrectResult()
         {
             IMessageRepository repository = new MessageRepository(_context);
@@ -120,6 +161,19 @@ namespace Tabby.Tests.Tabby.Dal.Repository
 
             Assert.Equal(_message1, result);
             Assert.Equal(_message1.Text, result.Text);
+        }
+
+
+        [Fact]
+        public void GetById_GetByIdCalledInContext()
+        {
+            var context = Substitute.For<IContext>();
+            IMessageRepository repository = new MessageRepository(context);
+            Guid id = Guid.NewGuid();
+
+            repository.GetById(id);
+
+            context.Received().GetById<MessageEntity>(id);
         }
 
 
