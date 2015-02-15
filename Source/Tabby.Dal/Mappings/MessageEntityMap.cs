@@ -30,11 +30,21 @@ namespace Tabby.Dal.Mappings
 
             Map(x => x.SenderId, "SenderId")
                 .Not.Nullable();
-            References(x => x.Sender, "SenderId");
+
+            References(x => x.Sender, "SenderId")
+                .Unique()
+                .LazyLoad(Laziness.False)
+                .Not.Insert()
+                .Not.Update();
 
             Map(x => x.RecipientId, "RecipientId")
                 .Not.Nullable();
-            References(x => x.Recipient, "RecipientId");
+
+            References(x => x.Recipient, "RecipientId")
+                .Unique()
+                .LazyLoad(Laziness.False)
+                .Not.Insert()
+                .Not.Update();
         }
     }
 }
