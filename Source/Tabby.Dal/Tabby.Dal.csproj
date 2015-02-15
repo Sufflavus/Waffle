@@ -30,6 +30,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="FluentNHibernate">
+      <HintPath>..\..\packages\FluentNHibernate.2.0.1.0\lib\net40\FluentNHibernate.dll</HintPath>
+    </Reference>
     <Reference Include="Iesi.Collections">
       <HintPath>..\..\packages\Iesi.Collections.4.0.0.4000\lib\net40\Iesi.Collections.dll</HintPath>
     </Reference>
@@ -45,12 +48,15 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Context\FluentNHibertnateSession.cs" />
     <Compile Include="Context\NHibernateContext.cs" />
     <Compile Include="Context\IContext.cs" />
     <Compile Include="Context\NHibertnateSession.cs" />
     <Compile Include="Domain\BaseEntity.cs" />
     <Compile Include="Domain\MessageEntity.cs" />
     <Compile Include="Domain\UserEntity.cs" />
+    <Compile Include="Mappings\MessageEntityMap.cs" />
+    <Compile Include="Mappings\UserEntityMap.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repository\Interfaces\IMessageRepository.cs" />
     <Compile Include="Repository\Interfaces\IRepository.cs" />

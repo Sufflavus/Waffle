@@ -14,7 +14,7 @@ namespace Tabby.Dal.Context
     {
         public void AddOrUpdate<TEntity>(TEntity entity) where TEntity : BaseEntity
         {
-            using (ISession session = NHibertnateSession.OpenSession())
+            using (ISession session = FluentNHibertnateSession.OpenSession())
             {
                 using (ITransaction transaction = session.BeginTransaction())
                 {
@@ -27,7 +27,7 @@ namespace Tabby.Dal.Context
 
         public List<TEntity> Filter<TEntity>(Func<TEntity, bool> condition) where TEntity : BaseEntity
         {
-            using (ISession session = NHibertnateSession.OpenSession())
+            using (ISession session = FluentNHibertnateSession.OpenSession())
             {
                 return session.Query<TEntity>()
                     .Where(condition)
@@ -38,7 +38,7 @@ namespace Tabby.Dal.Context
 
         public List<TEntity> GetAll<TEntity>() where TEntity : BaseEntity
         {
-            using (ISession session = NHibertnateSession.OpenSession())
+            using (ISession session = FluentNHibertnateSession.OpenSession())
             {
                 return session.Query<TEntity>().ToList();
             }
@@ -47,7 +47,7 @@ namespace Tabby.Dal.Context
 
         public TEntity GetById<TEntity>(Guid id) where TEntity : BaseEntity
         {
-            using (ISession session = NHibertnateSession.OpenSession())
+            using (ISession session = FluentNHibertnateSession.OpenSession())
             {
                 return session.Get<TEntity>(id);
             }
