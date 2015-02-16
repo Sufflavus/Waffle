@@ -14,7 +14,6 @@ namespace Tabby.Dal.Context
 {
     public sealed class FluentNHibertnateSession : IDisposable
     {
-        private const string ConnectionString = @"Server=TATA-SPACESHIP\SQLEXPRESS;database=Waffle; Integrated Security=SSPI";
         private static ISessionFactory _sessionFactory;
 
         private static ISessionFactory SessionFactory
@@ -24,7 +23,7 @@ namespace Tabby.Dal.Context
                 if (_sessionFactory == null)
                 {
                     _sessionFactory = Fluently.Configure()
-                        .Database(MsSqlConfiguration.MsSql2008.ConnectionString(ConnectionString))
+                        .Database(MsSqlConfiguration.MsSql2008.ConnectionString(ConnectionManagerHelper.ConnectionString))
                         .Mappings(m => m.FluentMappings.AddFromAssemblyOf<MessageEntity>())
                         .ExposeConfiguration(BuildSchema)
                         .BuildSessionFactory();
