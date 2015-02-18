@@ -15,10 +15,7 @@ namespace Tabby.Client.Command.User
             UserProcessor.LogIn(user);
             Result = user.Id;
 
-            Console.ForegroundColor = ConsoleColor.White;
-            Console.WriteLine();
-            Console.WriteLine("User '{0}' has been logged in. UserId: {1}", UserName, user.Id);
-            Console.WriteLine();
+            Logger.Trace(string.Format("User '{0}' has been logged in. UserId: {1}", UserName, user.Id));
         }
     }
 }

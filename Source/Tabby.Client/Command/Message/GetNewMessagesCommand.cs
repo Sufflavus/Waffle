@@ -11,19 +11,15 @@ namespace Tabby.Client.Command.Message
         {
             List<Taddy.BusinessLogic.Models.Message> messages = MessageProcessor.GetNewMessages(UserId);
 
-            Console.ForegroundColor = ConsoleColor.White;
-            Console.WriteLine();
-
             if (messages.Any())
             {
-                Console.WriteLine("New messages:");
-                messages.ForEach(x => Console.WriteLine(x));
+                Logger.Trace("New messages:");
+                messages.ForEach(x => Logger.Trace(x.ToString()));
             }
             else
             {
-                Console.WriteLine("There are no new messages");
+                Logger.Trace("There is not any message");
             }
-            Console.WriteLine();
         }
     }
 }
