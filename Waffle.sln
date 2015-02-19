@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tabby.Dal", "Source\Tabby.D
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tabby.Tests", "Source\Tabby.Tests\Tabby.Tests.csproj", "{9706D167-0CAD-4DA2-9770-8F4A08202AE5}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bijuu.Service", "Source\Bijuu.Service\Bijuu.Service.csproj", "{4DEE89F0-21EE-4873-A96F-1223D5B9B229}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -31,6 +33,10 @@ Global
 		{9706D167-0CAD-4DA2-9770-8F4A08202AE5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9706D167-0CAD-4DA2-9770-8F4A08202AE5}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9706D167-0CAD-4DA2-9770-8F4A08202AE5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4DEE89F0-21EE-4873-A96F-1223D5B9B229}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4DEE89F0-21EE-4873-A96F-1223D5B9B229}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4DEE89F0-21EE-4873-A96F-1223D5B9B229}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4DEE89F0-21EE-4873-A96F-1223D5B9B229}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

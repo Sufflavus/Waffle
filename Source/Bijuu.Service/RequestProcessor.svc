@@ -1,0 +1,1 @@
+﻿<%@ ServiceHost Language="C#" Debug="true" Service="Bijuu.Service.RequestProcessor" CodeBehind="RequestProcessor.svc.cs" %>
