@@ -9,8 +9,8 @@ namespace Bijuu.Service
     public interface IRequestProcessor
     {
         [OperationContract]
-        [WebGet(ResponseFormat = WebMessageFormat.Json, UriTemplate = "/GetAllMessages?message={message}")]
-        void GetAllMessages(string message);
+        [WebGet(ResponseFormat = WebMessageFormat.Json, UriTemplate = "/GetAllMessages")]
+        void GetAllMessages();
 
 
         [OperationContract]

@@ -5,7 +5,7 @@ namespace Bijuu.Service
 {
     public class RequestProcessor : IRequestProcessor
     {
-        public void GetAllMessages(string message)
+        public void GetAllMessages()
         {
             throw new NotImplementedException();
         }
