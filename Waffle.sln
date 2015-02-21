@@ -13,6 +13,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bijuu.Service", "Source\Bij
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bijuu.Server", "Source\Bijuu.Server\Bijuu.Server.csproj", "{CC265D8C-65CE-4217-83E0-AB6B81C5E2E2}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bijuu.Contracts", "Source\Bijuu.Contracts\Bijuu.Contracts.csproj", "{F39FE194-52EC-49B0-B096-721B6987B19E}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -43,6 +45,10 @@ Global
 		{CC265D8C-65CE-4217-83E0-AB6B81C5E2E2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{CC265D8C-65CE-4217-83E0-AB6B81C5E2E2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{CC265D8C-65CE-4217-83E0-AB6B81C5E2E2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F39FE194-52EC-49B0-B096-721B6987B19E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F39FE194-52EC-49B0-B096-721B6987B19E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F39FE194-52EC-49B0-B096-721B6987B19E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F39FE194-52EC-49B0-B096-721B6987B19E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
