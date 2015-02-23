@@ -69,7 +69,12 @@
       <DependentUpon>RequestProcessor.svc</DependentUpon>
     </Compile>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\Bijuu.Contracts\Bijuu.Contracts.csproj">
+      <Project>{F39FE194-52EC-49B0-B096-721B6987B19E}</Project>
+      <Name>Bijuu.Contracts</Name>
+    </ProjectReference>
+  </ItemGroup>
   <ItemGroup>
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>

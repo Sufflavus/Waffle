@@ -1,6 +1,9 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.ServiceModel;
 using System.ServiceModel.Web;
+
+using Bijuu.Contracts;
 
 
 namespace Bijuu.Service
@@ -10,12 +13,12 @@ namespace Bijuu.Service
     {
         [OperationContract]
         [WebGet(ResponseFormat = WebMessageFormat.Json, UriTemplate = "/GetAllMessages")]
-        void GetAllMessages();
+        List<MessageInfo> GetAllMessages();
 
 
         [OperationContract]
         [WebGet(ResponseFormat = WebMessageFormat.Json, UriTemplate = "/GetNewMessages?userId={userId}")]
-        void GetNewMessages(Guid userId);
+        List<MessageInfo> GetNewMessages(Guid userId);
 
 
         [OperationContract]

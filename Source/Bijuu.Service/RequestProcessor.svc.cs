@@ -1,37 +1,57 @@
 ﻿using System;
+using System.Collections.Generic;
+
+using Bijuu.Contracts;
 
 
 namespace Bijuu.Service
 {
     public class RequestProcessor : IRequestProcessor
     {
-        public void GetAllMessages()
+        public List<MessageInfo> GetAllMessages()
         {
-            throw new NotImplementedException();
+            var message = new MessageInfo
+            {
+                Id = Guid.NewGuid(),
+                Text = "text",
+                IsDelivered = false,
+                CreateDate = DateTime.Now,
+                SenderId = Guid.NewGuid(),
+                RecipientId = Guid.NewGuid()
+            };
+            return new List<MessageInfo> { message };
         }
 
 
-        public void GetNewMessages(Guid userId)
+        public List<MessageInfo> GetNewMessages(Guid userId)
         {
-            throw new NotImplementedException();
+            var message = new MessageInfo
+            {
+                Id = Guid.NewGuid(),
+                Text = "text",
+                IsDelivered = false,
+                CreateDate = DateTime.Now,
+                SenderId = userId,
+                RecipientId = Guid.NewGuid()
+            };
+            return new List<MessageInfo> { message };
         }
 
 
         public Guid LogIn(string userName)
         {
-            throw new NotImplementedException();
+            return Guid.NewGuid();
         }
 
 
         public void LogOut(Guid userId)
         {
-            throw new NotImplementedException();
         }
 
 
         public int SendMessage(string message)
         {
-            throw new NotImplementedException();
+            return 1;
         }
     }
 }

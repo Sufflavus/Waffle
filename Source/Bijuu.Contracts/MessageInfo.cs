@@ -11,6 +11,9 @@ namespace Bijuu.Contracts
         public DateTime? CreateDate { get; set; }
 
         [DataMember(IsRequired = true)]
+        public Guid Id { get; set; }
+
+        [DataMember(IsRequired = true)]
         public bool IsDelivered { get; set; }
 
         [DataMember(IsRequired = true)]
