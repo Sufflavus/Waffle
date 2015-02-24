@@ -21,6 +21,24 @@ namespace Bijuu.ServiceProvider
         }
 
 
+        public static string LogIn(string userName)
+        {
+            return CreateUri(string.Format(Terms.LogIn, userName));
+        }
+
+
+        public static string LogOut(Guid userId)
+        {
+            return CreateUri(string.Format(Terms.LogOut, userId));
+        }
+
+
+        public static string SendMessage()
+        {
+            return CreateUri(Terms.SendMessage);
+        }
+
+
         private static string CreateUri(string relativeUrl)
         {
             return UrlPathCombine(_baseUri, relativeUrl);

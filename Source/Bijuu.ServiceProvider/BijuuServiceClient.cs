@@ -30,19 +30,29 @@ namespace Bijuu.ServiceProvider
 
         public Guid LogIn(string userName)
         {
-            throw new NotImplementedException();
+            string uri = UrlAddressFactory.LogIn(userName);
+            var data = GetData<Guid>(uri);
+            return data;
         }
 
 
         public void LogOut(Guid userId)
         {
-            throw new NotImplementedException();
+            string uri = UrlAddressFactory.LogOut(userId);
+            GetData<Guid>(uri); // POST?
         }
 
 
         public int SendMessage(string message)
         {
-            throw new NotImplementedException();
+            string uri = UrlAddressFactory.SendMessage();
+            var data = new List<KeyValuePair<string, string>>
+            {
+                new KeyValuePair<string, string>("message", message)
+            };
+            //return PostData(uri, data);
+            PostData(uri, data);
+            return message.Length;
         }
 
 
@@ -57,6 +67,22 @@ namespace Bijuu.ServiceProvider
                     Task<string> jsonResult = response.Content.ReadAsStringAsync();
                     var result = JsonConvert.DeserializeObject<T>(jsonResult.Result);
                     return result;
+                }
+            }
+        }
+
+
+        private bool PostData(string uri, List<KeyValuePair<string, string>> postData)
+        {
+            using (var client = new HttpClient())
+            {
+                client.BaseAddress = new Uri(uri);
+                HttpContent content = new FormUrlEncodedContent(postData);
+
+                using (Task<HttpResponseMessage> task = client.PostAsync(uri, content))
+                {
+                    task.Result.EnsureSuccessStatusCode();
+                    return true;
                 }
             }
         }
