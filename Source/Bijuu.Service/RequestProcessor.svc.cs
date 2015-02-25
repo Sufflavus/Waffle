@@ -49,9 +49,8 @@ namespace Bijuu.Service
         }
 
 
-        public int SendMessage(string message)
+        public void SendMessage(MessageInfo message)
         {
-            return 1;
         }
     }
 }

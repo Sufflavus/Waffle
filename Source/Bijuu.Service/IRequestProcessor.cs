@@ -32,7 +32,7 @@ namespace Bijuu.Service
 
 
         [OperationContract]
-        [WebInvoke(Method = "POST", UriTemplate = "/SendMessage?message={message}")]
-        int SendMessage(string message);
+        [WebInvoke(Method = "POST", RequestFormat = WebMessageFormat.Json, UriTemplate = "/SendMessage")]
+        void SendMessage(MessageInfo message);
     }
 }

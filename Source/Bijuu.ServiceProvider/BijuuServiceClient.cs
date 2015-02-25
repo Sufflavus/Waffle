@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Net.Http;
+using System.Text;
 using System.Threading.Tasks;
 
 using Bijuu.Contracts;
@@ -12,6 +13,9 @@ namespace Bijuu.ServiceProvider
 {
     public class BijuuServiceClient : IBijuuServiceClient
     {
+        private const string JsonMediaType = "application/json";
+
+
         public List<MessageInfo> GetAllMessages()
         {
             string uri = UrlAddressFactory.GetAllMessages();
@@ -46,12 +50,17 @@ namespace Bijuu.ServiceProvider
         public int SendMessage(string message)
         {
             string uri = UrlAddressFactory.SendMessage();
-            var data = new List<KeyValuePair<string, string>>
+            var messageInfo = new MessageInfo
             {
-                new KeyValuePair<string, string>("message", message)
+                Id = Guid.NewGuid(),
+                IsDelivered = false,
+                CreateDate = null,
+                RecipientId = Guid.NewGuid(),
+                SenderId = Guid.NewGuid(),
+                Text = message
             };
-            //return PostData(uri, data);
-            PostData(uri, data);
+            string jsonPostData = JsonConvert.SerializeObject(messageInfo);
+            PostData(uri, jsonPostData);
             return message.Length;
         }
 
@@ -72,14 +81,15 @@ namespace Bijuu.ServiceProvider
         }
 
 
-        private bool PostData(string uri, List<KeyValuePair<string, string>> postData)
+        private bool PostData(string uri, string jsonPostData)
         {
             using (var client = new HttpClient())
             {
                 client.BaseAddress = new Uri(uri);
-                HttpContent content = new FormUrlEncodedContent(postData);
 
-                using (Task<HttpResponseMessage> task = client.PostAsync(uri, content))
+                var requestContent = new StringContent(jsonPostData, Encoding.UTF8, JsonMediaType);
+
+                using (Task<HttpResponseMessage> task = client.PostAsync(uri, requestContent))
                 {
                     task.Result.EnsureSuccessStatusCode();
                     return true;
