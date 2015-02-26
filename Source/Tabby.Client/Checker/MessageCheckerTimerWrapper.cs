@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Threading;
 
+using Tabby.Client.Logger;
+
 using Taddy.BusinessLogic.Processor;
 
 
@@ -8,22 +10,29 @@ namespace Tabby.Client.Checker
 {
     public class MessageCheckerTimerWrapper : IDisposable
     {
-        private readonly IMessageProcessor _messageProcessor;
         private readonly Guid _userId;
         private AutoResetEvent _resetEvent;
         private Timer _timer;
 
 
-        public MessageCheckerTimerWrapper(IMessageProcessor messageProcessor, Guid userId)
+        public MessageCheckerTimerWrapper(Guid userId)
         {
-            _messageProcessor = messageProcessor;
             _userId = userId;
         }
 
 
+        public ILogger Logger { get; set; }
+
+        public IMessageProcessor MessageProcessor { get; set; }
+
+
         public void Start()
         {
-            var messageChecker = new MessageChecker(_messageProcessor, _userId);
+            var messageChecker = new MessageChecker(_userId)
+            {
+                MessageProcessor = MessageProcessor,
+                Logger = Logger
+            };
             _resetEvent = new AutoResetEvent(false);
             TimerCallback timerCallback = messageChecker.GetNewMessages;
             _timer = new Timer(timerCallback, _resetEvent, 10000, 10000);

@@ -54,8 +54,12 @@ namespace Tabby.Client
             Console.WriteLine("GetAll");
             Console.WriteLine("GetNew");
 
-            //var timer = new MessageCheckerTimerWrapper(_messageProcessor, userId);
-            //timer.Start();
+            /*var timer = new MessageCheckerTimerWrapper(userId)
+            {
+                MessageProcessor = _messageProcessor, 
+                Logger = _logger
+            };
+            timer.Start();*/
 
             bool hasCommand;
             do
