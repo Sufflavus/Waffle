@@ -17,7 +17,13 @@ namespace Bijuu.Contracts
         public bool IsDelivered { get; set; }
 
         [DataMember(IsRequired = true)]
+        public UserInfo Recipient { get; set; }
+
+        [DataMember(IsRequired = true)]
         public Guid RecipientId { get; set; }
+
+        [DataMember(IsRequired = true)]
+        public UserInfo Sender { get; set; }
 
         [DataMember(IsRequired = true)]
         public Guid SenderId { get; set; }

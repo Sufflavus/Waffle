@@ -70,7 +70,9 @@ namespace Tabby.Tests.Taddy.BusinessLogic
         [Fact]
         public void ToMessage_NullMessageEntity_Throws()
         {
-            Exception result = Assert.Throws<ArgumentException>(() => DalConverter.ToMessage(null));
+            MessageEntity entity = null;
+
+            Exception result = Assert.Throws<ArgumentException>(() => DalConverter.ToMessage(entity));
 
             Assert.IsType(typeof(ArgumentException), result);
         }
@@ -112,7 +114,9 @@ namespace Tabby.Tests.Taddy.BusinessLogic
         [Fact]
         public void ToUser_NullUserEntity_Throws()
         {
-            Exception result = Assert.Throws<ArgumentException>(() => DalConverter.ToUser(null));
+            UserEntity entity = null;
+
+            Exception result = Assert.Throws<ArgumentException>(() => DalConverter.ToUser(entity));
 
             Assert.IsType(typeof(ArgumentException), result);
         }

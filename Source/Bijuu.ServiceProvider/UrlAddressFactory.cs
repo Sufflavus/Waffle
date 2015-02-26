@@ -27,9 +27,9 @@ namespace Bijuu.ServiceProvider
         }
 
 
-        public static string LogOut(Guid userId)
+        public static string LogOut()
         {
-            return CreateUri(string.Format(Terms.LogOut, userId));
+            return CreateUri(Terms.LogOut);
         }
 
 

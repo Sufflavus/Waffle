@@ -10,7 +10,7 @@ namespace Bijuu.ServiceProvider
     {
         List<MessageInfo> GetAllMessages();
         List<MessageInfo> GetNewMessages(Guid userId);
-        Guid LogIn(string userName);
+        UserInfo LogIn(string userName);
         void LogOut(Guid userId);
         int SendMessage(string message);
     }

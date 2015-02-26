@@ -73,6 +73,10 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Bijuu.Contracts\Bijuu.Contracts.csproj">
+      <Project>{f39fe194-52ec-49b0-b096-721b6987b19e}</Project>
+      <Name>Bijuu.Contracts</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Tabby.Client\Tabby.Client.csproj">
       <Project>{2645621b-f3da-46d0-b71f-2d757a8d4dc0}</Project>
       <Name>Tabby.Client</Name>

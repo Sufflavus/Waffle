@@ -100,6 +100,19 @@ namespace Tabby.Tests.Tabby.Dal.Repository
 
 
         [Fact]
+        public void Filter_FilterCalledInContext()
+        {
+            var context = Substitute.For<IContext>();
+            IMessageRepository repository = new MessageRepository(context);
+            Func<MessageEntity, bool> condition = x => x.Text == "text";
+
+            repository.Filter(condition);
+
+            context.Received().Filter(condition);
+        }
+
+
+        [Fact]
         public void Filter_GoodInput_CorrectResult()
         {
             IMessageRepository repository = new MessageRepository(_context);
@@ -109,19 +122,6 @@ namespace Tabby.Tests.Tabby.Dal.Repository
             Assert.Equal(1, result.Count);
             Assert.Equal(_message1, result[0]);
             Assert.Equal(_message1.Text, result[0].Text);
-        }
-
-
-        [Fact]
-        public void Filter_FilterCalledInContext()
-        {
-            var context = Substitute.For<IContext>();
-            IMessageRepository repository = new MessageRepository(context);
-            Func<MessageEntity, bool> condition = x => x.Text == "text";
-            
-            repository.Filter(condition);
-
-            context.Received().Filter(condition);
         }
 
 

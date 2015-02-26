@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 
-using Taddy.BusinessLogic;
 using Taddy.BusinessLogic.Models;
 using Taddy.BusinessLogic.Processor;
 

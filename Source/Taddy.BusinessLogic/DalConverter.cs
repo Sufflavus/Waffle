@@ -1,5 +1,7 @@
 ﻿using System;
 
+using Bijuu.Contracts;
+
 using Tabby.Dal.Domain;
 
 using Taddy.BusinessLogic.Models;
@@ -26,6 +28,23 @@ namespace Taddy.BusinessLogic
         }
 
 
+        public static Message ToMessage(MessageInfo messageInfo)
+        {
+            if (messageInfo == null)
+            {
+                throw new ArgumentException("Message can't be null");
+            }
+
+            return new Message
+            {
+                Text = messageInfo.Text,
+                CreateDate = messageInfo.CreateDate.Value,
+                SenderId = messageInfo.SenderId,
+                Sender = ToUser(messageInfo.Sender)
+            };
+        }
+
+
         public static MessageEntity ToMessageEntity(Message message)
         {
             if (message == null)
@@ -41,10 +60,21 @@ namespace Taddy.BusinessLogic
         {
             if (entity == null)
             {
-                throw new ArgumentException("Sender can't be null");
+                throw new ArgumentException("User can't be null");
             }
 
             return new User { Id = entity.Id, Name = entity.Name };
+        }
+
+
+        public static User ToUser(UserInfo userInfo)
+        {
+            if (userInfo == null)
+            {
+                throw new ArgumentException("User can't be null");
+            }
+
+            return new User { Id = userInfo.Id, Name = userInfo.Name };
         }
 
 
@@ -52,7 +82,7 @@ namespace Taddy.BusinessLogic
         {
             if (user == null)
             {
-                throw new ArgumentException("Sender can't be null");
+                throw new ArgumentException("User can't be null");
             }
 
             return new UserEntity { Name = user.Name };

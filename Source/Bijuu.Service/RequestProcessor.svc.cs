@@ -10,14 +10,28 @@ namespace Bijuu.Service
     {
         public List<MessageInfo> GetAllMessages()
         {
+            Guid recipientId = Guid.NewGuid();
+            Guid senderId = Guid.NewGuid();
             var message = new MessageInfo
             {
                 Id = Guid.NewGuid(),
                 Text = "text",
                 IsDelivered = false,
                 CreateDate = DateTime.Now,
-                SenderId = Guid.NewGuid(),
-                RecipientId = Guid.NewGuid()
+                SenderId = senderId,
+                Sender = new UserInfo
+                {
+                    Id = recipientId,
+                    IsOnline = true,
+                    Name = "Bijuu"
+                },
+                RecipientId = recipientId,
+                Recipient = new UserInfo
+                {
+                    Id = recipientId,
+                    IsOnline = true,
+                    Name = "Tabby"
+                }
             };
             return new List<MessageInfo> { message };
         }
@@ -25,6 +39,7 @@ namespace Bijuu.Service
 
         public List<MessageInfo> GetNewMessages(Guid userId)
         {
+            Guid recipientId = Guid.NewGuid();
             var message = new MessageInfo
             {
                 Id = Guid.NewGuid(),
@@ -32,19 +47,31 @@ namespace Bijuu.Service
                 IsDelivered = false,
                 CreateDate = DateTime.Now,
                 SenderId = userId,
-                RecipientId = Guid.NewGuid()
+                Sender = new UserInfo
+                {
+                    Id = userId,
+                    IsOnline = true,
+                    Name = "Tabby"
+                },
+                RecipientId = recipientId,
+                Recipient = new UserInfo
+                {
+                    Id = recipientId,
+                    IsOnline = true,
+                    Name = "Bijuu"
+                }
             };
             return new List<MessageInfo> { message };
         }
 
 
-        public Guid LogIn(string userName)
+        public UserInfo LogIn(string userName)
         {
-            return Guid.NewGuid();
+            return new UserInfo { Id = Guid.NewGuid(), IsOnline = true, Name = "Bijuu" };
         }
 
 
-        public void LogOut(Guid userId)
+        public void LogOut(UserInfo user)
         {
         }
 

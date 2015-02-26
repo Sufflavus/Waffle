@@ -13,8 +13,8 @@ namespace Tabby.Client
     internal class Program
     {
         private static readonly ILogger _logger = new NLogLogger();
-        private static readonly IMessageProcessor _messageProcessor = new MessageProcessor();
-        private static readonly IUserProcessor _userProcessor = new UserProcessor();
+        private static readonly IMessageProcessor _messageProcessor = new MessageProcessor1();
+        private static readonly IUserProcessor _userProcessor = new UserProcessor1();
 
 
         private static Guid Login(IUserProcessor userProcessor)
@@ -53,7 +53,7 @@ namespace Tabby.Client
             Console.WriteLine("Send: Message text");
             Console.WriteLine("GetAll");
             Console.WriteLine("GetNew");
-            
+
             //var timer = new MessageCheckerTimerWrapper(_messageProcessor, userId);
             //timer.Start();
 

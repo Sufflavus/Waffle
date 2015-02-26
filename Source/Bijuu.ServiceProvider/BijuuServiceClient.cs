@@ -32,18 +32,25 @@ namespace Bijuu.ServiceProvider
         }
 
 
-        public Guid LogIn(string userName)
+        public UserInfo LogIn(string userName)
         {
             string uri = UrlAddressFactory.LogIn(userName);
-            var data = GetData<Guid>(uri);
+            var data = GetData<UserInfo>(uri);
             return data;
         }
 
 
         public void LogOut(Guid userId)
         {
-            string uri = UrlAddressFactory.LogOut(userId);
-            GetData<Guid>(uri); // POST?
+            string uri = UrlAddressFactory.LogOut();
+            var userInfo = new UserInfo
+            {
+                Id = userId,
+                Name = "name",
+                IsOnline = false
+            };
+            string jsonPostData = JsonConvert.SerializeObject(userInfo);
+            PostData(uri, jsonPostData);
         }
 
 

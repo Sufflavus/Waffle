@@ -23,12 +23,12 @@ namespace Bijuu.Service
 
         [OperationContract]
         [WebGet(ResponseFormat = WebMessageFormat.Json, UriTemplate = "/LogIn?userName={userName}")]
-        Guid LogIn(string userName);
+        UserInfo LogIn(string userName);
 
 
         [OperationContract]
-        [WebGet(ResponseFormat = WebMessageFormat.Json, UriTemplate = "/LogOut?userId={userId}")]
-        void LogOut(Guid userId);
+        [WebInvoke(Method = "POST", RequestFormat = WebMessageFormat.Json, UriTemplate = "/LogOut")]
+        void LogOut(UserInfo user);
 
 
         [OperationContract]

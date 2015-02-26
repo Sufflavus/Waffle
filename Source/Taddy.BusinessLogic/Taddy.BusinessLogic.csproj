@@ -39,6 +39,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Processor\MessageProcessor1.cs" />
+    <Compile Include="Processor\UserProcessor1.cs" />
     <Compile Include="Processor\IUserProcessor.cs" />
     <Compile Include="DalConverter.cs" />
     <Compile Include="Processor\IMessageProcessor.cs" />
@@ -49,6 +51,14 @@
     <Compile Include="Processor\UserProcessor.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Bijuu.Contracts\Bijuu.Contracts.csproj">
+      <Project>{f39fe194-52ec-49b0-b096-721b6987b19e}</Project>
+      <Name>Bijuu.Contracts</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Bijuu.ServiceProvider\Bijuu.ServiceProvider.csproj">
+      <Project>{093E45F6-BADF-4309-9F03-629BD20AEFF3}</Project>
+      <Name>Bijuu.ServiceProvider</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Tabby.Dal\Tabby.Dal.csproj">
       <Project>{035e2aca-31cb-4339-b83d-71012a44ea67}</Project>
       <Name>Tabby.Dal</Name>

@@ -8,6 +8,9 @@ namespace Bijuu.Contracts
     public sealed class UserInfo
     {
         [DataMember(IsRequired = true)]
+        public Guid Id { get; set; }
+
+        [DataMember(IsRequired = true)]
         public bool IsOnline { get; set; }
 
         [DataMember(IsRequired = true)]
