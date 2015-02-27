@@ -70,9 +70,17 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Bijuu.BusinessLogic\Bijuu.BusinessLogic.csproj">
+      <Project>{7c5e5f37-373c-4992-96de-358579d60344}</Project>
+      <Name>Bijuu.BusinessLogic</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Bijuu.Contracts\Bijuu.Contracts.csproj">
       <Project>{F39FE194-52EC-49B0-B096-721B6987B19E}</Project>
       <Name>Bijuu.Contracts</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Tabby.Dal\Tabby.Dal.csproj">
+      <Project>{035E2ACA-31CB-4339-B83D-71012A44EA67}</Project>
+      <Name>Tabby.Dal</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

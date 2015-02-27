@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
+using Bijuu.BusinessLogic.Managers;
 using Bijuu.Contracts;
 
 
@@ -8,76 +9,37 @@ namespace Bijuu.Service
 {
     public class RequestProcessor : IRequestProcessor
     {
+        private readonly IMessageManager _messageManager = new MessageManager();
+        private readonly IUserManager _userManager = new UserManager();
+
+
         public List<MessageInfo> GetAllMessages()
         {
-            Guid recipientId = Guid.NewGuid();
-            Guid senderId = Guid.NewGuid();
-            var message = new MessageInfo
-            {
-                Id = Guid.NewGuid(),
-                Text = "text",
-                IsDelivered = false,
-                CreateDate = DateTime.Now,
-                SenderId = senderId,
-                Sender = new UserInfo
-                {
-                    Id = recipientId,
-                    IsOnline = true,
-                    Name = "Bijuu"
-                },
-                RecipientId = recipientId,
-                Recipient = new UserInfo
-                {
-                    Id = recipientId,
-                    IsOnline = true,
-                    Name = "Tabby"
-                }
-            };
-            return new List<MessageInfo> { message };
+            return _messageManager.GetAllMessages();
         }
 
 
         public List<MessageInfo> GetNewMessages(Guid userId)
         {
-            Guid recipientId = Guid.NewGuid();
-            var message = new MessageInfo
-            {
-                Id = Guid.NewGuid(),
-                Text = "text",
-                IsDelivered = false,
-                CreateDate = DateTime.Now,
-                SenderId = userId,
-                Sender = new UserInfo
-                {
-                    Id = userId,
-                    IsOnline = true,
-                    Name = "Tabby"
-                },
-                RecipientId = recipientId,
-                Recipient = new UserInfo
-                {
-                    Id = recipientId,
-                    IsOnline = true,
-                    Name = "Bijuu"
-                }
-            };
-            return new List<MessageInfo> { message };
+            return _messageManager.GetNewMessages(userId);
         }
 
 
         public UserInfo LogIn(string userName)
         {
-            return new UserInfo { Id = Guid.NewGuid(), IsOnline = true, Name = "Bijuu" };
+            return _userManager.LogIn(userName);
         }
 
 
         public void LogOut(UserInfo user)
         {
+            _userManager.LogOut(user.Id);
         }
 
 
         public void SendMessage(MessageInfo message)
         {
+            _messageManager.SendMessage(message);
         }
     }
 }
