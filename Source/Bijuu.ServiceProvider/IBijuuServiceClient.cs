@@ -12,6 +12,6 @@ namespace Bijuu.ServiceProvider
         List<MessageInfo> GetNewMessages(Guid userId);
         UserInfo LogIn(string userName);
         void LogOut(Guid userId);
-        int SendMessage(string message);
+        int SendMessage(string message, Guid senderId);
     }
 }

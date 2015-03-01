@@ -8,7 +8,7 @@ using Xunit;
 using Xunit.Extensions;
 
 
-namespace Tabby.Tests.Tabby.Client
+namespace Waffle.Tests.Tabby.Client
 {
     public class BusinessLogicConverterTests
     {

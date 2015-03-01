@@ -6,7 +6,7 @@ using Tabby.Dal.Context;
 using Tabby.Dal.Domain;
 
 
-namespace Tabby.Tests.Tabby.Dal.Repository
+namespace Waffle.Tests.Tabby.Dal.Repository
 {
     //TODO: подобрать правильные моки http://nsubstitute.github.io/
     public class MockContext : IContext

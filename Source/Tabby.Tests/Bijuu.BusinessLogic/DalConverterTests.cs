@@ -1,21 +1,21 @@
 ﻿using System;
 
-using Tabby.Dal.Domain;
+using Bijuu.BusinessLogic;
+using Bijuu.Contracts;
 
-using Taddy.BusinessLogic;
-using Taddy.BusinessLogic.Models;
+using Tabby.Dal.Domain;
 
 using Xunit;
 
 
-namespace Waffle.Tests.Taddy.BusinessLogic
+namespace Waffle.Tests.Bijuu.BusinessLogic
 {
     public class DalConverterTests
     {
         [Fact]
-        public void ToMessageEntity_GoodMessage_MessageEntity()
+        public void ToMessageEntity_GoodMessageInfo_MessageEntity()
         {
-            var message = new Message { Text = "text", CreateDate = DateTime.Now };
+            var message = new MessageInfo { Text = "text", CreateDate = DateTime.Now };
 
             MessageEntity result = DalConverter.ToMessageEntity(message);
 
@@ -35,7 +35,7 @@ namespace Waffle.Tests.Taddy.BusinessLogic
 
 
         [Fact]
-        public void ToMessage_GoodMessageEntity_Message()
+        public void ToMessageInfo_GoodMessageEntity_MessageInfo()
         {
             Guid userId1 = Guid.NewGuid();
             Guid userId2 = Guid.NewGuid();
@@ -57,54 +57,36 @@ namespace Waffle.Tests.Taddy.BusinessLogic
                 }
             };
 
-            Message result = DalConverter.ToMessage(entity);
+            MessageInfo result = DalConverter.ToMessageInfo(entity);
 
             Assert.Equal(entity.Text, result.Text);
             Assert.Equal(entity.CreateDate, result.CreateDate);
             Assert.Equal(entity.SenderId, result.SenderId);
             Assert.Equal(entity.Sender.Id, result.Sender.Id);
             Assert.Equal(entity.Sender.Name, result.Sender.Name);
+            Assert.Equal(entity.RecipientId, result.RecipientId);
+            Assert.Equal(entity.Recipient.Id, result.Recipient.Id);
+            Assert.Equal(entity.Recipient.Name, result.Recipient.Name);
         }
 
 
         [Fact]
-        public void ToMessage_NullMessageEntity_Throws()
+        public void ToMessageInfo_NullMessageEntity_Throws()
         {
             MessageEntity entity = null;
 
-            Exception result = Assert.Throws<ArgumentException>(() => DalConverter.ToMessage(entity));
+            Exception result = Assert.Throws<ArgumentException>(() => DalConverter.ToMessageInfo(entity));
 
             Assert.IsType(typeof(ArgumentException), result);
         }
 
 
         [Fact]
-        public void ToUserEntity_GoodUser_UserEntity()
-        {
-            var user = new User { Name = "user" };
-
-            UserEntity result = DalConverter.ToUserEntity(user);
-
-            Assert.Equal(user.Name, result.Name);
-            Assert.False(result.IsOnline);
-        }
-
-
-        [Fact]
-        public void ToUserEntity_NullUser_Throws()
-        {
-            Exception result = Assert.Throws<ArgumentException>(() => DalConverter.ToUserEntity(null));
-
-            Assert.IsType(typeof(ArgumentException), result);
-        }
-
-
-        [Fact]
-        public void ToUser_GoodUserEntity_User()
+        public void ToUserInfo_GoodUserEntity_UserInfo()
         {
             var enrity = new UserEntity { Id = Guid.NewGuid(), Name = "user" };
 
-            User result = DalConverter.ToUser(enrity);
+            UserInfo result = DalConverter.ToUserInfo(enrity);
 
             Assert.Equal(enrity.Id, result.Id);
             Assert.Equal(enrity.Name, result.Name);
@@ -112,11 +94,11 @@ namespace Waffle.Tests.Taddy.BusinessLogic
 
 
         [Fact]
-        public void ToUser_NullUserEntity_Throws()
+        public void ToUserInfo_NullUserEntity_Throws()
         {
             UserEntity entity = null;
 
-            Exception result = Assert.Throws<ArgumentException>(() => DalConverter.ToUser(entity));
+            Exception result = Assert.Throws<ArgumentException>(() => DalConverter.ToUserInfo(entity));
 
             Assert.IsType(typeof(ArgumentException), result);
         }

@@ -12,7 +12,7 @@ using Tabby.Dal.Repository.Interfaces;
 using Xunit;
 
 
-namespace Tabby.Tests.Tabby.Dal.Repository
+namespace Waffle.Tests.Tabby.Dal.Repository
 {
     public class MessageRepositoryTests : IUseFixture<MockContext>
     {

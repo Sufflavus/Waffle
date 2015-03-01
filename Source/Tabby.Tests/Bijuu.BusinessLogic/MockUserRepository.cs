@@ -6,7 +6,7 @@ using Tabby.Dal.Domain;
 using Tabby.Dal.Repository.Interfaces;
 
 
-namespace Waffle.Tests.Taddy.BusinessLogic
+namespace Waffle.Tests.Bijuu.BusinessLogic
 {
     public class MockUserRepository : IUserRepository
     {

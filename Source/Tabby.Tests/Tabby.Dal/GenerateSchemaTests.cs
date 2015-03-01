@@ -8,7 +8,7 @@ using Tabby.Dal.Domain;
 using Xunit;
 
 
-namespace Tabby.Tests.Tabby.Dal
+namespace Waffle.Tests.Tabby.Dal
 {
     public class GenerateSchemaTests
     {

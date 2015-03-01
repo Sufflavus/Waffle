@@ -10,19 +10,19 @@ namespace Bijuu.Contracts
         [DataMember(IsRequired = false)]
         public DateTime? CreateDate { get; set; }
 
-        [DataMember(IsRequired = true)]
-        public Guid Id { get; set; }
+        [DataMember(IsRequired = false)]
+        public Guid? Id { get; set; }
 
         [DataMember(IsRequired = true)]
         public bool IsDelivered { get; set; }
 
-        [DataMember(IsRequired = true)]
+        [DataMember(IsRequired = false)]
         public UserInfo Recipient { get; set; }
 
-        [DataMember(IsRequired = true)]
-        public Guid RecipientId { get; set; }
+        [DataMember(IsRequired = false)]
+        public Guid? RecipientId { get; set; }
 
-        [DataMember(IsRequired = true)]
+        [DataMember(IsRequired = false)]
         public UserInfo Sender { get; set; }
 
         [DataMember(IsRequired = true)]

@@ -54,17 +54,16 @@ namespace Bijuu.ServiceProvider
         }
 
 
-        public int SendMessage(string message)
+        public int SendMessage(string message, Guid senderId)
         {
             string uri = UrlAddressFactory.SendMessage();
             var messageInfo = new MessageInfo
             {
-                Id = Guid.NewGuid(),
+                Id = null,
+                SenderId = senderId,
+                Text = message,
                 IsDelivered = false,
                 CreateDate = null,
-                RecipientId = Guid.NewGuid(),
-                SenderId = Guid.NewGuid(),
-                Text = message
             };
             string jsonPostData = JsonConvert.SerializeObject(messageInfo);
             PostData(uri, jsonPostData);

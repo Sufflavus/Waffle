@@ -2,42 +2,45 @@
 using System.Collections.Generic;
 using System.Linq;
 
-using Tabby.Dal.Domain;
+using Bijuu.BusinessLogic.Managers;
+using Bijuu.Contracts;
 
-using Taddy.BusinessLogic.Models;
-using Taddy.BusinessLogic.Processor;
+using Tabby.Dal.Domain;
 
 using Xunit;
 
 
-namespace Waffle.Tests.Taddy.BusinessLogic
+namespace Waffle.Tests.Bijuu.BusinessLogic
 {
-    public class MessageProcessorTests
+    public class MessageManagerTests
     {
-        private readonly IMessageProcessor _messageProcessor;
+        private readonly IMessageManager _messageManager;
         private readonly MockMessageRepository _messageRepository;
         private readonly MockUserRepository _userRepository;
 
 
-        public MessageProcessorTests()
+        public MessageManagerTests()
         {
             _messageRepository = new MockMessageRepository();
             _userRepository = new MockUserRepository();
-            _messageProcessor = new MessageProcessor(_messageRepository, _userRepository);
+            _messageManager = new MessageManager(_messageRepository, _userRepository);
         }
 
 
         [Fact]
         public void GetAllMessages_CorrectResult()
         {
-            var user = new UserEntity { Id = Guid.NewGuid(), Name = "user" };
+            var user1 = new UserEntity { Id = Guid.NewGuid(), Name = "user1" };
+            var user2 = new UserEntity { Id = Guid.NewGuid(), Name = "user2" };
             var message1 = new MessageEntity
             {
                 Id = Guid.NewGuid(),
                 Text = "text1",
                 CreateDate = DateTime.Now,
-                SenderId = user.Id,
-                Sender = user,
+                SenderId = user1.Id,
+                Sender = user1,
+                RecipientId = user2.Id,
+                Recipient = user2,
                 IsDelivered = false
             };
             var message2 = new MessageEntity
@@ -45,15 +48,17 @@ namespace Waffle.Tests.Taddy.BusinessLogic
                 Id = Guid.NewGuid(),
                 Text = "text2",
                 CreateDate = DateTime.Now,
-                SenderId = user.Id,
-                Sender = user,
+                SenderId = user2.Id,
+                Sender = user2,
+                RecipientId = user1.Id,
+                Recipient = user1,
                 IsDelivered = true
             };
             _messageRepository.AddOrUpdate(message1);
             _messageRepository.AddOrUpdate(message2);
             int itemsCount = _messageRepository.Storage.Count;
 
-            List<Message> result = _messageProcessor.GetAllMessages();
+            List<MessageInfo> result = _messageManager.GetAllMessages();
 
             Assert.Equal(itemsCount, result.Count);
             Assert.Equal(message1.Text, result[0].Text);
@@ -105,7 +110,7 @@ namespace Waffle.Tests.Taddy.BusinessLogic
             _messageRepository.AddOrUpdate(message2);
             _messageRepository.AddOrUpdate(message3);
 
-            List<Message> result = _messageProcessor.GetNewMessages(user1.Id);
+            List<MessageInfo> result = _messageManager.GetNewMessages(user1.Id);
 
             Assert.Equal(1, result.Count);
             Assert.Equal(message2.Text, result[0].Text);
@@ -124,11 +129,11 @@ namespace Waffle.Tests.Taddy.BusinessLogic
             _userRepository.AddOrUpdate(user1);
             _userRepository.AddOrUpdate(user2);
             _userRepository.AddOrUpdate(user3);
-            var message = new Message { Text = "text", SenderId = user1.Id };
+            var message = new MessageInfo { Text = "text", SenderId = user1.Id };
             List<UserEntity> recipients = _userRepository.Storage.Where(x => x.Id != message.SenderId).ToList();
             int messagesCount = _messageRepository.Storage.Count;
 
-            _messageProcessor.SendMessage(message);
+            _messageManager.SendMessage(message);
 
             Assert.Equal(messagesCount + recipients.Count, _messageRepository.Storage.Count);
             recipients.ForEach(x =>

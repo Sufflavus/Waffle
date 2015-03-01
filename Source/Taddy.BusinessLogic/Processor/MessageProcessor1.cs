@@ -44,7 +44,7 @@ namespace Taddy.BusinessLogic.Processor
 
         public int SendMessage(Message message)
         {
-            return _serviceClient.SendMessage(message.Text);
+            return _serviceClient.SendMessage(message.Text, message.SenderId);
         }
     }
 }

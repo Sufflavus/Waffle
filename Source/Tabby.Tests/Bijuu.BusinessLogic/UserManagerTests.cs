@@ -1,19 +1,19 @@
 ﻿using System;
 
-using Tabby.Dal.Domain;
+using Bijuu.BusinessLogic.Managers;
+using Bijuu.Contracts;
 
-using Taddy.BusinessLogic.Models;
-using Taddy.BusinessLogic.Processor;
+using Tabby.Dal.Domain;
 
 using Xunit;
 
 
-namespace Waffle.Tests.Taddy.BusinessLogic
+namespace Waffle.Tests.Bijuu.BusinessLogic
 {
-    public class UserProcessorTests : IUseFixture<MockUserRepository>
+    public class UserManagerTests : IUseFixture<MockUserRepository>
     {
         private MockUserRepository _repository;
-        private IUserProcessor _userProcessor;
+        private IUserManager _userManager;
 
 
         [Fact]
@@ -26,12 +26,11 @@ namespace Waffle.Tests.Taddy.BusinessLogic
             _repository.AddOrUpdate(user2);
             int itemsCount = _repository.Storage.Count;
 
-            var userForLogin = new User { Name = user1.Name };
+            UserInfo result = _userManager.LogIn(user1.Name);
 
-            _userProcessor.LogIn(userForLogin);
-
+            Assert.True(result.IsOnline);
             Assert.True(user1.IsOnline);
-            Assert.Equal(userForLogin.Id, user1.Id);
+            Assert.Equal(user1.Id, result.Id);
             Assert.Equal(_repository.Storage.Count, itemsCount);
         }
 
@@ -41,9 +40,10 @@ namespace Waffle.Tests.Taddy.BusinessLogic
         {
             int itemsCount = _repository.Storage.Count;
 
-            _userProcessor.LogIn(new User { Name = "newUser" });
+            UserInfo result = _userManager.LogIn("newUser");
 
             Assert.Equal(_repository.Storage.Count, itemsCount + 1);
+            Assert.True(result.IsOnline);
             BaseEntity actual = _repository.Storage[0];
             Assert.True(((UserEntity)actual).IsOnline);
         }
@@ -58,7 +58,7 @@ namespace Waffle.Tests.Taddy.BusinessLogic
             _repository.AddOrUpdate(user1);
             _repository.AddOrUpdate(user2);
 
-            _userProcessor.LogOut(user1.Id);
+            _userManager.LogOut(user1.Id);
 
             Assert.False(user1.IsOnline);
             Assert.True(user2.IsOnline);
@@ -68,7 +68,7 @@ namespace Waffle.Tests.Taddy.BusinessLogic
         [Fact]
         public void LogOut_NotExistingUser_Throws()
         {
-            Exception result = Assert.Throws<ArgumentException>(() => _userProcessor.LogOut(Guid.NewGuid()));
+            Exception result = Assert.Throws<ArgumentException>(() => _userManager.LogOut(Guid.NewGuid()));
 
             Assert.IsType(typeof(ArgumentException), result);
         }
@@ -77,7 +77,7 @@ namespace Waffle.Tests.Taddy.BusinessLogic
         public void SetFixture(MockUserRepository data)
         {
             _repository = new MockUserRepository();
-            _userProcessor = new UserProcessor(_repository);
+            _userManager = new UserManager(_repository);
         }
     }
 }
