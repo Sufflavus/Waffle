@@ -3,7 +3,10 @@
 using Bijuu.BusinessLogic.Managers;
 using Bijuu.Contracts;
 
+using NSubstitute;
+
 using Tabby.Dal.Domain;
+using Tabby.Dal.Repository.Interfaces;
 
 using Xunit;
 
@@ -50,6 +53,22 @@ namespace Waffle.Tests.Bijuu.BusinessLogic
 
 
         [Fact]
+        public void LogIn__GetByNameCalledInRepository()
+        {
+            var repository = Substitute.For<IUserRepository>();
+            IUserManager manager = new UserManager(repository);
+            string userName = "user";
+            var user = new UserEntity { Id = Guid.NewGuid(), Name = userName, IsOnline = false };
+            repository.GetByName(userName).Returns(user);
+
+            manager.LogIn(userName);
+
+            repository.Received().GetByName(userName);
+            repository.Received().AddOrUpdate(user);
+        }
+
+
+        [Fact]
         public void LogOut_ExistingOnlineUser_Offline()
         {
             var user1 = new UserEntity { Id = Guid.NewGuid(), Name = "user1", IsOnline = true };
@@ -71,6 +90,23 @@ namespace Waffle.Tests.Bijuu.BusinessLogic
             Exception result = Assert.Throws<ArgumentException>(() => _userManager.LogOut(Guid.NewGuid()));
 
             Assert.IsType(typeof(ArgumentException), result);
+        }
+
+
+        [Fact]
+        public void LogOut__GetByIdCalledInRepository()
+        {
+            var repository = Substitute.For<IUserRepository>();
+            IUserManager manager = new UserManager(repository);
+            Guid userId = Guid.NewGuid();
+            var user = new UserEntity { Id = userId, Name = "user", IsOnline = true };
+            repository.GetById(userId).Returns(user);
+
+            manager.LogOut(userId);
+
+            repository.Received().GetById(userId);
+            repository.Received().AddOrUpdate(user);
+            Assert.False(user.IsOnline);
         }
 
 
