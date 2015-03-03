@@ -5,7 +5,10 @@ using System.Linq;
 using Bijuu.BusinessLogic.Managers;
 using Bijuu.Contracts;
 
+using NSubstitute;
+
 using Tabby.Dal.Domain;
+using Tabby.Dal.Repository.Interfaces;
 
 using Xunit;
 
@@ -65,6 +68,20 @@ namespace Waffle.Tests.Bijuu.BusinessLogic
             Assert.Equal(message1.SenderId, result[0].SenderId);
             Assert.Equal(message2.Text, result[1].Text);
             Assert.Equal(message2.SenderId, result[1].SenderId);
+        }
+
+
+        [Fact]
+        public void GetAllMessages_RepositoryCalled()
+        {
+            var userRepository = Substitute.For<IUserRepository>();
+            var messageRepository = Substitute.For<IMessageRepository>();
+            messageRepository.GetAll().Returns(new List<MessageEntity>());
+            IMessageManager manager = new MessageManager(messageRepository, userRepository);
+
+            manager.GetAllMessages();
+
+            messageRepository.Received().GetAll();
         }
 
 
