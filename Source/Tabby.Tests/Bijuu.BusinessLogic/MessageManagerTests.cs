@@ -33,41 +33,20 @@ namespace Waffle.Tests.Bijuu.BusinessLogic
         [Fact]
         public void GetAllMessages_CorrectResult()
         {
-            var user1 = new UserEntity { Id = Guid.NewGuid(), Name = "user1" };
-            var user2 = new UserEntity { Id = Guid.NewGuid(), Name = "user2" };
-            var message1 = new MessageEntity
-            {
-                Id = Guid.NewGuid(),
-                Text = "text1",
-                CreateDate = DateTime.Now,
-                SenderId = user1.Id,
-                Sender = user1,
-                RecipientId = user2.Id,
-                Recipient = user2,
-                IsDelivered = false
-            };
-            var message2 = new MessageEntity
-            {
-                Id = Guid.NewGuid(),
-                Text = "text2",
-                CreateDate = DateTime.Now,
-                SenderId = user2.Id,
-                Sender = user2,
-                RecipientId = user1.Id,
-                Recipient = user1,
-                IsDelivered = true
-            };
-            _messageRepository.AddOrUpdate(message1);
-            _messageRepository.AddOrUpdate(message2);
+            List<UserEntity> users = CreateUsers();
+            _userRepository.Storage.AddRange(users);
+            List<MessageEntity> messages = CreateMessages();
+            _messageRepository.Storage.AddRange(messages);
+
             int itemsCount = _messageRepository.Storage.Count;
 
             List<MessageInfo> result = _messageManager.GetAllMessages();
 
             Assert.Equal(itemsCount, result.Count);
-            Assert.Equal(message1.Text, result[0].Text);
-            Assert.Equal(message1.SenderId, result[0].SenderId);
-            Assert.Equal(message2.Text, result[1].Text);
-            Assert.Equal(message2.SenderId, result[1].SenderId);
+            Assert.Equal(messages[0].Text, result[0].Text);
+            Assert.Equal(messages[0].SenderId, result[0].SenderId);
+            Assert.Equal(messages[1].Text, result[1].Text);
+            Assert.Equal(messages[1].SenderId, result[1].SenderId);
         }
 
 
@@ -88,8 +67,52 @@ namespace Waffle.Tests.Bijuu.BusinessLogic
         [Fact]
         public void GetNewMessages_CorrectResult()
         {
-            var user1 = new UserEntity { Id = Guid.NewGuid(), Name = "user" };
-            var user2 = new UserEntity { Id = Guid.NewGuid(), Name = "user" };
+            List<UserEntity> users = CreateUsers();
+            _userRepository.Storage.AddRange(users);
+            List<MessageEntity> messages = CreateMessages();
+            _messageRepository.Storage.AddRange(messages);
+
+            List<MessageInfo> result = _messageManager.GetNewMessages(users[0].Id);
+
+            Assert.Equal(1, result.Count);
+            Assert.Equal(messages[1].Text, result[0].Text);
+            Assert.Equal(messages[1].SenderId, result[0].SenderId);
+            MessageEntity actual = _messageRepository.Storage.First(x => x.Id == messages[1].Id);
+            Assert.True(actual.IsDelivered);
+        }
+
+
+        [Fact]
+        public void SendMessage_GoodInput_AddedInRepositoryForAllRecipients()
+        {
+            List<UserEntity> users = CreateUsers();
+            _userRepository.Storage.AddRange(users);
+            List<MessageEntity> messages = CreateMessages();
+            _messageRepository.Storage.AddRange(messages);
+
+            var newMessage = new MessageInfo { Text = "text", SenderId = users[0].Id };
+            List<UserEntity> recipients = _userRepository.Storage.Where(x => x.Id != newMessage.SenderId).ToList();
+            int messagesCount = _messageRepository.Storage.Count;
+
+            _messageManager.SendMessage(newMessage);
+
+            Assert.Equal(messagesCount + recipients.Count, _messageRepository.Storage.Count);
+            recipients.ForEach(x =>
+            {
+                MessageEntity actual = _messageRepository.Storage.First(y => y.RecipientId == x.Id);
+                Assert.IsType<MessageEntity>(actual);
+                Assert.NotEqual(actual.RecipientId, newMessage.SenderId);
+                Assert.False(actual.IsDelivered);
+            });
+        }
+
+
+        private List<MessageEntity> CreateMessages()
+        {
+            List<UserEntity> users = _userRepository.Storage;
+            UserEntity user1 = users[0];
+            UserEntity user2 = users[1];
+
             var message1 = new MessageEntity
             {
                 Id = Guid.NewGuid(),
@@ -123,43 +146,15 @@ namespace Waffle.Tests.Bijuu.BusinessLogic
                 Recipient = user1,
                 IsDelivered = true
             };
-            _messageRepository.AddOrUpdate(message1);
-            _messageRepository.AddOrUpdate(message2);
-            _messageRepository.AddOrUpdate(message3);
-
-            List<MessageInfo> result = _messageManager.GetNewMessages(user1.Id);
-
-            Assert.Equal(1, result.Count);
-            Assert.Equal(message2.Text, result[0].Text);
-            Assert.Equal(message2.SenderId, result[0].SenderId);
-            MessageEntity actual = _messageRepository.Storage.First(x => x.Id == message2.Id);
-            Assert.True(actual.IsDelivered);
+            return new List<MessageEntity> { message1, message2, message3 };
         }
 
 
-        [Fact]
-        public void SendMessage_GoodInput_AddedInRepositoryForAllRecipients()
+        private List<UserEntity> CreateUsers()
         {
-            var user1 = new UserEntity { Id = Guid.NewGuid() };
-            var user2 = new UserEntity { Id = Guid.NewGuid() };
-            var user3 = new UserEntity { Id = Guid.NewGuid() };
-            _userRepository.AddOrUpdate(user1);
-            _userRepository.AddOrUpdate(user2);
-            _userRepository.AddOrUpdate(user3);
-            var message = new MessageInfo { Text = "text", SenderId = user1.Id };
-            List<UserEntity> recipients = _userRepository.Storage.Where(x => x.Id != message.SenderId).ToList();
-            int messagesCount = _messageRepository.Storage.Count;
-
-            _messageManager.SendMessage(message);
-
-            Assert.Equal(messagesCount + recipients.Count, _messageRepository.Storage.Count);
-            recipients.ForEach(x =>
-            {
-                MessageEntity actual = _messageRepository.Storage.First(y => y.RecipientId == x.Id);
-                Assert.IsType<MessageEntity>(actual);
-                Assert.NotEqual(actual.RecipientId, message.SenderId);
-                Assert.False(actual.IsDelivered);
-            });
+            var user1 = new UserEntity { Id = Guid.NewGuid(), Name = "user1" };
+            var user2 = new UserEntity { Id = Guid.NewGuid(), Name = "user2" };
+            return new List<UserEntity> { user1, user2 };
         }
     }
 }
