@@ -17,30 +17,15 @@ namespace Waffle.Tests.Bijuu.BusinessLogic
 {
     public class MessageManagerTests
     {
-        private readonly IMessageManager _messageManager;
-        private readonly MockMessageRepository _messageRepository;
-        private readonly MockUserRepository _userRepository;
-
-
-        public MessageManagerTests()
-        {
-            _messageRepository = new MockMessageRepository();
-            _userRepository = new MockUserRepository();
-            _messageManager = new MessageManager(_messageRepository, _userRepository);
-        }
-
-
-        [Fact]
         public void GetAllMessages_CorrectResult()
         {
-            List<UserEntity> users = CreateUsers();
-            _userRepository.Storage.AddRange(users);
-            List<MessageEntity> messages = CreateMessages();
-            _messageRepository.Storage.AddRange(messages);
+            MockUserRepository userRepository = InitMockUserRepository();
+            MockMessageRepository messageRepository = InitMockMessageRepository(userRepository);
+            IMessageManager messageManager = new MessageManager(messageRepository, userRepository);
+            List<MessageEntity> messages = messageRepository.Storage;
+            int itemsCount = messageRepository.Storage.Count;
 
-            int itemsCount = _messageRepository.Storage.Count;
-
-            List<MessageInfo> result = _messageManager.GetAllMessages();
+            List<MessageInfo> result = messageManager.GetAllMessages();
 
             Assert.Equal(itemsCount, result.Count);
             Assert.Equal(messages[0].Text, result[0].Text);
@@ -67,17 +52,18 @@ namespace Waffle.Tests.Bijuu.BusinessLogic
         [Fact]
         public void GetNewMessages_CorrectResult()
         {
-            List<UserEntity> users = CreateUsers();
-            _userRepository.Storage.AddRange(users);
-            List<MessageEntity> messages = CreateMessages();
-            _messageRepository.Storage.AddRange(messages);
+            MockUserRepository userRepository = InitMockUserRepository();
+            MockMessageRepository messageRepository = InitMockMessageRepository(userRepository);
+            IMessageManager messageManager = new MessageManager(messageRepository, userRepository);
+            List<MessageEntity> messages = messageRepository.Storage;
+            List<UserEntity> users = userRepository.Storage;
 
-            List<MessageInfo> result = _messageManager.GetNewMessages(users[0].Id);
+            List<MessageInfo> result = messageManager.GetNewMessages(users[0].Id);
 
             Assert.Equal(1, result.Count);
             Assert.Equal(messages[1].Text, result[0].Text);
             Assert.Equal(messages[1].SenderId, result[0].SenderId);
-            MessageEntity actual = _messageRepository.Storage.First(x => x.Id == messages[1].Id);
+            MessageEntity actual = messageRepository.Storage.First(x => x.Id == messages[1].Id);
             Assert.True(actual.IsDelivered);
         }
 
@@ -85,21 +71,21 @@ namespace Waffle.Tests.Bijuu.BusinessLogic
         [Fact]
         public void SendMessage_GoodInput_AddedInRepositoryForAllRecipients()
         {
-            List<UserEntity> users = CreateUsers();
-            _userRepository.Storage.AddRange(users);
-            List<MessageEntity> messages = CreateMessages();
-            _messageRepository.Storage.AddRange(messages);
+            MockUserRepository userRepository = InitMockUserRepository();
+            MockMessageRepository messageRepository = InitMockMessageRepository(userRepository);
+            IMessageManager messageManager = new MessageManager(messageRepository, userRepository);
+            List<UserEntity> users = userRepository.Storage;
 
             var newMessage = new MessageInfo { Text = "text", SenderId = users[0].Id };
-            List<UserEntity> recipients = _userRepository.Storage.Where(x => x.Id != newMessage.SenderId).ToList();
-            int messagesCount = _messageRepository.Storage.Count;
+            List<UserEntity> recipients = userRepository.Storage.Where(x => x.Id != newMessage.SenderId).ToList();
+            int messagesCount = messageRepository.Storage.Count;
 
-            _messageManager.SendMessage(newMessage);
+            messageManager.SendMessage(newMessage);
 
-            Assert.Equal(messagesCount + recipients.Count, _messageRepository.Storage.Count);
+            Assert.Equal(messagesCount + recipients.Count, messageRepository.Storage.Count);
             recipients.ForEach(x =>
             {
-                MessageEntity actual = _messageRepository.Storage.First(y => y.RecipientId == x.Id);
+                MessageEntity actual = messageRepository.Storage.First(y => y.RecipientId == x.Id);
                 Assert.IsType<MessageEntity>(actual);
                 Assert.NotEqual(actual.RecipientId, newMessage.SenderId);
                 Assert.False(actual.IsDelivered);
@@ -107,9 +93,9 @@ namespace Waffle.Tests.Bijuu.BusinessLogic
         }
 
 
-        private List<MessageEntity> CreateMessages()
+        private List<MessageEntity> CreateMessages(MockUserRepository userRepository)
         {
-            List<UserEntity> users = _userRepository.Storage;
+            List<UserEntity> users = userRepository.Storage;
             UserEntity user1 = users[0];
             UserEntity user2 = users[1];
 
@@ -155,6 +141,24 @@ namespace Waffle.Tests.Bijuu.BusinessLogic
             var user1 = new UserEntity { Id = Guid.NewGuid(), Name = "user1" };
             var user2 = new UserEntity { Id = Guid.NewGuid(), Name = "user2" };
             return new List<UserEntity> { user1, user2 };
+        }
+
+
+        private MockMessageRepository InitMockMessageRepository(MockUserRepository userRepository)
+        {
+            var messageRepository = new MockMessageRepository();
+            List<MessageEntity> messages = CreateMessages(userRepository);
+            messageRepository.Storage.AddRange(messages);
+            return messageRepository;
+        }
+
+
+        private MockUserRepository InitMockUserRepository()
+        {
+            var repository = new MockUserRepository();
+            List<UserEntity> users = CreateUsers();
+            repository.Storage.AddRange(users);
+            return repository;
         }
     }
 }
