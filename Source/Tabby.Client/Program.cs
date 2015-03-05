@@ -1,5 +1,7 @@
 ﻿using System;
 
+using Microsoft.Practices.Unity;
+
 using Tabby.Client.Command;
 using Tabby.Client.Command.Message;
 using Tabby.Client.Command.User;
@@ -12,10 +14,12 @@ namespace Tabby.Client
 {
     internal class Program
     {
-        private static readonly ILogger _logger = new NLogLogger();
+        //private static readonly ILogger _logger = new NLogLogger();
         private static readonly IMessageProcessor _messageProcessor = new MessageProcessor1();
         private static readonly IUserProcessor _userProcessor = new UserProcessor1();
 
+        [Dependency]
+        public static ILogger Logger { get; set; }
 
         private static Guid Login(IUserProcessor userProcessor)
         {
@@ -25,19 +29,19 @@ namespace Tabby.Client
             {
                 try
                 {
-                    _logger.Info("Please, enter your NikName: ");
+                    Logger.Info("Please, enter your NikName: ");
                     string userName = Console.ReadLine();
-                    var loginCommand = new LoginUserCommand { UserProcessor = userProcessor, UserName = userName, Logger = _logger };
+                    var loginCommand = new LoginUserCommand { UserProcessor = userProcessor, UserName = userName, Logger = Logger };
                     loginCommand.Execute();
                     userId = loginCommand.Result;
                 }
                 catch (ArgumentException)
                 {
-                    _logger.Error("Invalid NikName");
+                    Logger.Error("Invalid NikName");
                 }
                 catch (Exception)
                 {
-                    _logger.Error("Error occured");
+                    Logger.Error("Error occured");
                 }
             }
             while (!userId.HasValue);
@@ -47,12 +51,17 @@ namespace Tabby.Client
 
         private static void Main(string[] args)
         {
+            //Bootstrapper.Initialize();
+            Logger = Bootstrapper.Resolve<ILogger>();
+            //Logger=new NLogLogger();
+            //new ChatUi().Start();
+
             Guid userId = Login(_userProcessor);
 
-            Console.WriteLine("Available commands:");
-            Console.WriteLine("Send: Message text");
-            Console.WriteLine("GetAll");
-            Console.WriteLine("GetNew");
+            Logger.Info("Available commands:");
+            Logger.Info("Send: Message text");
+            Logger.Info("GetAll");
+            Logger.Info("GetNew");
 
             /*var timer = new MessageCheckerTimerWrapper(userId)
             {
@@ -73,17 +82,17 @@ namespace Tabby.Client
                     {
                         MessageCommand command = CommandParser.Parse(commandText);
                         command.MessageProcessor = _messageProcessor;
-                        command.Logger = _logger;
+                        command.Logger = Logger;
                         command.UserId = userId;
                         command.Execute();
                     }
                     catch (ArgumentException)
                     {
-                        _logger.Error("Invalid command");
+                        Logger.Error("Invalid command");
                     }
                     catch (Exception)
                     {
-                        _logger.Error("Error occured");
+                        Logger.Error("Error occured");
                     }
                 }
             }
