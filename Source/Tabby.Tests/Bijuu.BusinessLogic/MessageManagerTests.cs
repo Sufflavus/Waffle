@@ -61,9 +61,9 @@ namespace Waffle.Tests.Bijuu.BusinessLogic
             List<MessageInfo> result = messageManager.GetNewMessages(users[0].Id);
 
             Assert.Equal(1, result.Count);
-            Assert.Equal(messages[1].Text, result[0].Text);
-            Assert.Equal(messages[1].SenderId, result[0].SenderId);
-            MessageEntity actual = messageRepository.Storage.First(x => x.Id == messages[1].Id);
+            Assert.Equal(messages[2].Text, result[0].Text);
+            Assert.Equal(messages[2].SenderId, result[0].SenderId);
+            MessageEntity actual = messageRepository.Storage.First(x => x.Id == messages[2].Id);
             Assert.True(actual.IsDelivered);
         }
 
