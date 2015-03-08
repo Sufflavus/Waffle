@@ -31,7 +31,7 @@ namespace Tabby.Client
                 {
                     Logger.Info("Please, enter your NikName: ");
                     string userName = Console.ReadLine();
-                    var loginCommand = new LoginUserCommand { UserProcessor = userProcessor, UserName = userName, Logger = Logger };
+                    var loginCommand = new LoginUserCommand { UserProcessor = userProcessor, UserName = userName };
                     loginCommand.Execute();
                     userId = loginCommand.Result;
                 }
@@ -82,7 +82,7 @@ namespace Tabby.Client
                     {
                         MessageCommand command = CommandParser.Parse(commandText);
                         command.MessageProcessor = _messageProcessor;
-                        command.Logger = Logger;
+                        //command.Logger = Logger;
                         command.UserId = userId;
                         command.Execute();
                     }

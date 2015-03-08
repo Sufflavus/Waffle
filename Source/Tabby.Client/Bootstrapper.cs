@@ -4,6 +4,7 @@ using System.Configuration;
 using Microsoft.Practices.Unity;
 using Microsoft.Practices.Unity.Configuration;
 
+using Tabby.Client.Command.User;
 using Tabby.Client.Logger;
 
 
@@ -47,8 +48,10 @@ namespace Tabby.Client
             Container = new UnityContainer();
             //Container.RegisterType<ILogger, NLogLogger>();
             UnityConfigurationSection section = (UnityConfigurationSection)ConfigurationManager.GetSection("unity");
+            section.Configure(Container, "Core");
+            Container.RegisterType<UserCommand>(new InjectionProperty("Logger"));
             //section.Containers["default"].Configure(Container);
-            Container.LoadConfiguration(section);
+            //Container.LoadConfiguration(section);
             //Container.RegisterInstance(new NLogLogger());
         }
     }
