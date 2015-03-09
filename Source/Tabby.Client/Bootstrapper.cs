@@ -16,7 +16,7 @@ using Taddy.BusinessLogic.Processor;
 
 namespace Tabby.Client
 {
-    public sealed class Bootstrapper : IDisposable
+    internal sealed class Bootstrapper : IDisposable
     {
         static Bootstrapper()
         {

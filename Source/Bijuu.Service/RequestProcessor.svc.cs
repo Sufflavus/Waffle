@@ -9,8 +9,17 @@ namespace Bijuu.Service
 {
     public class RequestProcessor : IRequestProcessor
     {
-        private readonly IMessageManager _messageManager = new MessageManager();
-        private readonly IUserManager _userManager = new UserManager();
+        // TODO: multi-thread support
+
+        private readonly IMessageManager _messageManager;
+        private readonly IUserManager _userManager;
+
+
+        private RequestProcessor()
+        {
+            _messageManager = Bootstrapper.Resolve<IMessageManager>();
+            _userManager = Bootstrapper.Resolve<IUserManager>();
+        }
 
 
         public List<MessageInfo> GetAllMessages()

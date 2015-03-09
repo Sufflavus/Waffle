@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 
+using Microsoft.Practices.Unity;
+
 using Tabby.Dal.Context;
 using Tabby.Dal.Domain;
 using Tabby.Dal.Repository.Interfaces;
@@ -11,20 +13,14 @@ namespace Tabby.Dal.Repository
     public abstract class Repository<TEntity> : IRepository<TEntity>
         where TEntity : BaseEntity
     {
-        //TODO: добавить IoC
-        protected IContext Context;
-
-
-        protected Repository()
-        {
-            Context = new NHibernateContext();
-        }
-
-
         protected Repository(IContext context)
         {
             Context = context;
         }
+
+
+        [Dependency]
+        public IContext Context { get; set; }
 
 
         public void AddOrUpdate(TEntity entity)

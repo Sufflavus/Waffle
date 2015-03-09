@@ -10,11 +10,6 @@ namespace Tabby.Dal.Repository
 {
     public class UserRepository : Repository<UserEntity>, IUserRepository
     {
-        public UserRepository()
-        {
-        }
-
-
         public UserRepository(IContext context) : base(context)
         {
         }
