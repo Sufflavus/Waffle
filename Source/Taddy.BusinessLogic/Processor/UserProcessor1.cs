@@ -3,6 +3,8 @@
 using Bijuu.Contracts;
 using Bijuu.ServiceProvider;
 
+using Microsoft.Practices.Unity;
+
 using Taddy.BusinessLogic.Models;
 
 
@@ -10,31 +12,26 @@ namespace Taddy.BusinessLogic.Processor
 {
     public class UserProcessor1 : IUserProcessor
     {
-        private readonly IBijuuServiceClient _serviceClient;
-
-
-        public UserProcessor1()
-        {
-            _serviceClient = new BijuuServiceClient();
-        }
-
-
         public UserProcessor1(IBijuuServiceClient serviceClient)
         {
-            _serviceClient = serviceClient;
+            ServiceClient = serviceClient;
         }
+
+
+        [Dependency]
+        public IBijuuServiceClient ServiceClient { get; set; }
 
 
         public void LogIn(User user)
         {
-            UserInfo userInfo = _serviceClient.LogIn(user.Name);
+            UserInfo userInfo = ServiceClient.LogIn(user.Name);
             user.Id = userInfo.Id;
         }
 
 
         public void LogOut(Guid userId)
         {
-            _serviceClient.LogOut(userId);
+            ServiceClient.LogOut(userId);
         }
     }
 }

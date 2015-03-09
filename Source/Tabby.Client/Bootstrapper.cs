@@ -1,20 +1,23 @@
 ﻿using System;
-using System.Configuration;
+
+using Bijuu.ServiceProvider;
 
 using Microsoft.Practices.Unity;
-using Microsoft.Practices.Unity.Configuration;
 
+using Tabby.Client.Checker;
+using Tabby.Client.Command.Message;
 using Tabby.Client.Command.User;
 using Tabby.Client.Logger;
+using Tabby.Dal.Repository;
+using Tabby.Dal.Repository.Interfaces;
+
+using Taddy.BusinessLogic.Processor;
 
 
 namespace Tabby.Client
 {
     public sealed class Bootstrapper : IDisposable
     {
-        private static IUnityContainer Container { get; set; }
-
-
         static Bootstrapper()
         {
             CreateContainer();
@@ -22,18 +25,26 @@ namespace Tabby.Client
             //http://weblogs.asp.net/podwysocki/ioc-and-unity-configuration-changes-for-the-better
             //https://msdn.microsoft.com/en-us/library/ff660914(v=pandp.20).aspx
             //https://www.youtube.com/watch?v=89hyTXa8aY8
+            //https://www.youtube.com/watch?v=FuAhnqSDe-o
         }
 
+
+        private static IUnityContainer Container { get; set; }
 
         /*public static void Initialize()
         {
             CreateContainer();
         }*/
 
-
-        public static T Resolve<T>()
+        /*public static T Resolve<T>()
         {
             return Container.Resolve<T>();
+        }*/
+
+
+        public static T Resolve<T>(params ParameterOverride[] overrides)
+        {
+            return Container.Resolve<T>(overrides);
         }
 
 
@@ -46,10 +57,20 @@ namespace Tabby.Client
         private static void CreateContainer()
         {
             Container = new UnityContainer();
-            //Container.RegisterType<ILogger, NLogLogger>();
-            UnityConfigurationSection section = (UnityConfigurationSection)ConfigurationManager.GetSection("unity");
-            section.Configure(Container, "Core");
-            Container.RegisterType<UserCommand>(new InjectionProperty("Logger"));
+            Container.RegisterType<Chatter>();
+            Container.RegisterType<MessageChecker>();
+            Container.RegisterType<UserCommand>();
+            Container.RegisterType<MessageCommand>();
+
+            Container.RegisterType<ILogger, NLogLogger>();
+            Container.RegisterType<IMessageProcessor, MessageProcessor1>();
+            Container.RegisterType<IUserProcessor, UserProcessor1>();
+            Container.RegisterType<IBijuuServiceClient, BijuuServiceClient>();
+            Container.RegisterType<IUserRepository, UserRepository>();
+            Container.RegisterType<IMessageRepository, MessageRepository>();
+
+            //UnityConfigurationSection section = (UnityConfigurationSection)ConfigurationManager.GetSection("unity");
+            //section.Configure(Container, "Core");
             //section.Containers["default"].Configure(Container);
             //Container.LoadConfiguration(section);
             //Container.RegisterInstance(new NLogLogger());

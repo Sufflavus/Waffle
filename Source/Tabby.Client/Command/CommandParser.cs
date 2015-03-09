@@ -27,9 +27,9 @@ namespace Tabby.Client.Command
                 case CommandType.Send:
                     return CreateSendMessageCommand(commandText);
                 case CommandType.GetAll:
-                    return new GetAllMessagesCommand();
+                    return Bootstrapper.Resolve<GetAllMessagesCommand>();
                 case CommandType.GetNew:
-                    return new GetNewMessagesCommand();
+                    return Bootstrapper.Resolve<GetNewMessagesCommand>();
                 default:
                     throw new ArgumentException("Invalid command");
             }
@@ -46,7 +46,9 @@ namespace Tabby.Client.Command
                 throw new ArgumentException("Invalid command");
             }
 
-            return new SendMessageCommand { MessageText = messageText };
+            var command = Bootstrapper.Resolve<SendMessageCommand>();
+            command.MessageText = messageText;
+            return command;
         }
 
 

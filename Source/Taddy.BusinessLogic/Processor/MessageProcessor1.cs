@@ -4,6 +4,8 @@ using System.Linq;
 
 using Bijuu.ServiceProvider;
 
+using Microsoft.Practices.Unity;
+
 using Taddy.BusinessLogic.Models;
 
 
@@ -11,24 +13,19 @@ namespace Taddy.BusinessLogic.Processor
 {
     public class MessageProcessor1 : IMessageProcessor
     {
-        private readonly IBijuuServiceClient _serviceClient;
-
-
-        public MessageProcessor1()
-        {
-            _serviceClient = new BijuuServiceClient();
-        }
-
-
         public MessageProcessor1(IBijuuServiceClient serviceClient)
         {
-            _serviceClient = serviceClient;
+            ServiceClient = serviceClient;
         }
+
+
+        [Dependency]
+        public IBijuuServiceClient ServiceClient { get; set; }
 
 
         public List<Message> GetAllMessages()
         {
-            return _serviceClient.GetAllMessages()
+            return ServiceClient.GetAllMessages()
                 .Select(DalConverter.ToMessage)
                 .ToList();
         }
@@ -36,7 +33,7 @@ namespace Taddy.BusinessLogic.Processor
 
         public List<Message> GetNewMessages(Guid userId)
         {
-            return _serviceClient.GetNewMessages(userId)
+            return ServiceClient.GetNewMessages(userId)
                 .Select(DalConverter.ToMessage)
                 .ToList();
         }
@@ -44,7 +41,7 @@ namespace Taddy.BusinessLogic.Processor
 
         public int SendMessage(Message message)
         {
-            return _serviceClient.SendMessage(message.Text, message.SenderId);
+            return ServiceClient.SendMessage(message.Text, message.SenderId);
         }
     }
 }

@@ -1,9 +1,7 @@
 ﻿using System;
 using System.Threading;
 
-using Tabby.Client.Logger;
-
-using Taddy.BusinessLogic.Processor;
+using Microsoft.Practices.Unity;
 
 
 namespace Tabby.Client.Checker
@@ -21,18 +19,9 @@ namespace Tabby.Client.Checker
         }
 
 
-        public ILogger Logger { get; set; }
-
-        public IMessageProcessor MessageProcessor { get; set; }
-
-
         public void Start()
         {
-            var messageChecker = new MessageChecker(_userId)
-            {
-                MessageProcessor = MessageProcessor,
-                Logger = Logger
-            };
+            var messageChecker = Bootstrapper.Resolve<MessageChecker>(new ParameterOverride("userId", _userId));
             _resetEvent = new AutoResetEvent(false);
             TimerCallback timerCallback = messageChecker.GetNewMessages;
             _timer = new Timer(timerCallback, _resetEvent, 10000, 10000);

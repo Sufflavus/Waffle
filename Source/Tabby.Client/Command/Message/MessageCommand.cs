@@ -14,6 +14,7 @@ namespace Tabby.Client.Command.Message
         [Dependency]
         public ILogger Logger { get; set; }
 
+        [Dependency]
         public IMessageProcessor MessageProcessor { get; set; }
 
         public string MessageText { get; set; }

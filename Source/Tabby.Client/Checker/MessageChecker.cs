@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 
+using Microsoft.Practices.Unity;
+
 using Tabby.Client.Logger;
 
 using Taddy.BusinessLogic.Models;
@@ -21,8 +23,10 @@ namespace Tabby.Client.Checker
         }
 
 
+        [Dependency]
         public ILogger Logger { get; set; }
 
+        [Dependency]
         public IMessageProcessor MessageProcessor { get; set; }
 
 

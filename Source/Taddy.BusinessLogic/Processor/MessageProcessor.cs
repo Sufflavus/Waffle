@@ -2,8 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 
+using Microsoft.Practices.Unity;
+
 using Tabby.Dal.Domain;
-using Tabby.Dal.Repository;
 using Tabby.Dal.Repository.Interfaces;
 
 using Taddy.BusinessLogic.Models;
@@ -13,27 +14,23 @@ namespace Taddy.BusinessLogic.Processor
 {
     public class MessageProcessor : IMessageProcessor
     {
-        private readonly IMessageRepository _messageRepository;
-        private readonly IUserRepository _userRepository;
-
-
-        public MessageProcessor()
-        {
-            _messageRepository = new MessageRepository();
-            _userRepository = new UserRepository();
-        }
-
-
         public MessageProcessor(IMessageRepository messageRepository, IUserRepository userRepository)
         {
-            _messageRepository = messageRepository;
-            _userRepository = userRepository;
+            MessageRepository = messageRepository;
+            UserRepository = userRepository;
         }
+
+
+        [Dependency]
+        public IMessageRepository MessageRepository { get; set; }
+
+        [Dependency]
+        public IUserRepository UserRepository { get; set; }
 
 
         public List<Message> GetAllMessages()
         {
-            return _messageRepository.GetAll()
+            return MessageRepository.GetAll()
                 .Select(DalConverter.ToMessage)
                 .ToList();
         }
@@ -41,12 +38,12 @@ namespace Taddy.BusinessLogic.Processor
 
         public List<Message> GetNewMessages(Guid userId)
         {
-            List<MessageEntity> newMessages = _messageRepository.Filter(x => x.SenderId != userId && x.RecipientId == userId && !x.IsDelivered);
+            List<MessageEntity> newMessages = MessageRepository.Filter(x => x.SenderId != userId && x.RecipientId == userId && !x.IsDelivered);
             List<Message> result = newMessages.Select(DalConverter.ToMessage).ToList();
             newMessages.ForEach(x =>
             {
                 x.IsDelivered = true;
-                _messageRepository.AddOrUpdate(x);
+                MessageRepository.AddOrUpdate(x);
             });
             return result;
         }
@@ -54,12 +51,12 @@ namespace Taddy.BusinessLogic.Processor
 
         public int SendMessage(Message message)
         {
-            List<UserEntity> recipients = _userRepository.Filter(x => x.Id != message.SenderId);
+            List<UserEntity> recipients = UserRepository.Filter(x => x.Id != message.SenderId);
             recipients.ForEach(x =>
             {
                 MessageEntity messageEntity = DalConverter.ToMessageEntity(message);
                 messageEntity.RecipientId = x.Id;
-                _messageRepository.AddOrUpdate(messageEntity);
+                MessageRepository.AddOrUpdate(messageEntity);
             });
 
             return message.Text.Length;

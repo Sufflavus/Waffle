@@ -14,7 +14,9 @@ namespace Tabby.Client.Command.User
         [Dependency]
         public ILogger Logger { get; set; }
 
+        [Dependency]
         public IUserProcessor UserProcessor { get; set; }
+
         public abstract void Execute();
     }
 }
