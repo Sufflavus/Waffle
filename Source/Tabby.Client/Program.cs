@@ -9,6 +9,7 @@ namespace Tabby.Client
         {
             var chatter = Bootstrapper.Resolve<Chatter>();
             chatter.Start();
+            chatter.Dispose();
         }
     }
 }

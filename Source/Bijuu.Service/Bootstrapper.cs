@@ -28,13 +28,11 @@ namespace Bijuu.Service
             return Container.Resolve<T>(overrides);
         }
 
-
-        public void Dispose()
+        public static void Dispose()
         {
             Container.Dispose();
         }
-
-
+        
         private static void CreateContainer()
         {
             Container = new UnityContainer();
@@ -46,6 +44,12 @@ namespace Bijuu.Service
             Container.RegisterType<IContext, NHibernateContext>();
             Container.RegisterType<IUserRepository, UserRepository>();
             Container.RegisterType<IMessageRepository, MessageRepository>();
+        }
+
+
+        void IDisposable.Dispose()
+        {
+            Dispose();
         }
     }
 }

@@ -2,14 +2,16 @@
 using System.Collections.Generic;
 using System.Linq;
 
+using Taddy.BusinessLogic.Models;
 
-namespace Tabby.Client.Command.Message
+
+namespace Tabby.Client.Command.MessageModule
 {
     public sealed class GetNewMessagesCommand : MessageCommand
     {
         public override void Execute()
         {
-            List<Taddy.BusinessLogic.Models.Message> messages = MessageProcessor.GetNewMessages(UserId);
+            List<Message> messages = MessageProcessor.GetNewMessages(UserId);
 
             if (messages.Any())
             {

@@ -7,7 +7,7 @@ using Bijuu.Contracts;
 
 namespace Bijuu.Service
 {
-    public class RequestProcessor : IRequestProcessor
+    public class RequestProcessor : IRequestProcessor, IDisposable
     {
         // TODO: multi-thread support
 
@@ -19,6 +19,12 @@ namespace Bijuu.Service
         {
             _messageManager = Bootstrapper.Resolve<IMessageManager>();
             _userManager = Bootstrapper.Resolve<IUserManager>();
+        }
+
+
+        public void Dispose()
+        {
+            Bootstrapper.Dispose();
         }
 
 

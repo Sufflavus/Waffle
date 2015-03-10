@@ -1,6 +1,6 @@
 ﻿using System;
 
-using Tabby.Client.Command.Message;
+using Tabby.Client.Command.MessageModule;
 
 
 namespace Tabby.Client.Command

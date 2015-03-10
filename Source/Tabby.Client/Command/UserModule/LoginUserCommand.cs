@@ -1,7 +1,9 @@
 ﻿using System;
 
+using Taddy.BusinessLogic.Models;
 
-namespace Tabby.Client.Command.User
+
+namespace Tabby.Client.Command.UserModule
 {
     public class LoginUserCommand : UserCommand
     {
@@ -11,7 +13,7 @@ namespace Tabby.Client.Command.User
 
         public override void Execute()
         {
-            Taddy.BusinessLogic.Models.User user = BusinessLogicConverter.ToUser(UserName);
+            User user = BusinessLogicConverter.ToUser(UserName);
             UserProcessor.LogIn(user);
             Result = user.Id;
 

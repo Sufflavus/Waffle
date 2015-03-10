@@ -7,7 +7,7 @@ using Tabby.Client.Logger;
 using Taddy.BusinessLogic.Processor;
 
 
-namespace Tabby.Client.Command.Message
+namespace Tabby.Client.Command.MessageModule
 {
     public abstract class MessageCommand : ICommand
     {

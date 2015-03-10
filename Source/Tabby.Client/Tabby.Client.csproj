@@ -74,14 +74,14 @@
     <Compile Include="Chatter.cs" />
     <Compile Include="Command\CommandParser.cs" />
     <Compile Include="Command\CommandType.cs" />
-    <Compile Include="Command\User\LogoutUserCommand.cs" />
-    <Compile Include="Command\Message\GetNewMessagesCommand.cs" />
-    <Compile Include="Command\Message\GetAllMessagesCommand.cs" />
+    <Compile Include="Command\UserModule\LogoutUserCommand.cs" />
+    <Compile Include="Command\MessageModule\GetNewMessagesCommand.cs" />
+    <Compile Include="Command\MessageModule\GetAllMessagesCommand.cs" />
     <Compile Include="Command\ICommand.cs" />
-    <Compile Include="Command\User\LoginUserCommand.cs" />
-    <Compile Include="Command\Message\MessageCommand.cs" />
-    <Compile Include="Command\Message\SendMessageCommand.cs" />
-    <Compile Include="Command\User\UserCommand.cs" />
+    <Compile Include="Command\UserModule\LoginUserCommand.cs" />
+    <Compile Include="Command\MessageModule\MessageCommand.cs" />
+    <Compile Include="Command\MessageModule\SendMessageCommand.cs" />
+    <Compile Include="Command\UserModule\UserCommand.cs" />
     <Compile Include="Checker\MessageChecker.cs" />
     <Compile Include="Logger\ILogger.cs" />
     <Compile Include="Logger\NLogLogger.cs" />
@@ -100,10 +100,6 @@
       <SubType>Designer</SubType>
     </None>
     <None Include="packages.config" />
-    <None Include="unity.config">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-      <SubType>Designer</SubType>
-    </None>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Bijuu.ServiceProvider\Bijuu.ServiceProvider.csproj">
@@ -119,6 +115,7 @@
       <Name>Taddy.BusinessLogic</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

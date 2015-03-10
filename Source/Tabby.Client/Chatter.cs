@@ -4,11 +4,9 @@ using Microsoft.Practices.Unity;
 
 using Tabby.Client.Checker;
 using Tabby.Client.Command;
-using Tabby.Client.Command.Message;
-using Tabby.Client.Command.User;
+using Tabby.Client.Command.MessageModule;
+using Tabby.Client.Command.UserModule;
 using Tabby.Client.Logger;
-
-using Taddy.BusinessLogic.Processor;
 
 
 namespace Tabby.Client
@@ -17,12 +15,6 @@ namespace Tabby.Client
     {
         [Dependency]
         public ILogger Logger { get; set; }
-
-        [Dependency]
-        public IMessageProcessor MessageProcessor { get; set; }
-
-        [Dependency]
-        public IUserProcessor UserProcessor { get; set; }
 
 
         public void Start()
@@ -48,8 +40,6 @@ namespace Tabby.Client
                     try
                     {
                         MessageCommand command = CommandParser.Parse(commandText);
-                        //command.MessageProcessor = MessageProcessor;
-                        //command.Logger = Logger;
                         command.UserId = userId;
                         command.Execute();
                     }
@@ -75,6 +65,7 @@ namespace Tabby.Client
 
         public void Dispose()
         {
+            Bootstrapper.Dispose();
         }
 
 
@@ -89,9 +80,7 @@ namespace Tabby.Client
                     Logger.Info("Please, enter your NikName: ");
                     string userName = Console.ReadLine();
                     var loginCommand = Bootstrapper.Resolve<LoginUserCommand>();
-                    //loginCommand.UserProcessor = UserProcessor;
                     loginCommand.UserName = userName;
-                    //var loginCommand = new LoginUserCommand { UserProcessor = userProcessor, UserName = userName };
                     loginCommand.Execute();
                     userId = loginCommand.Result;
                 }

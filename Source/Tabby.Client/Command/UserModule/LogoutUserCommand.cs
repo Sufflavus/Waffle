@@ -1,7 +1,7 @@
 ﻿using System;
 
 
-namespace Tabby.Client.Command.User
+namespace Tabby.Client.Command.UserModule
 {
     public class LogoutUserCommand : UserCommand
     {
