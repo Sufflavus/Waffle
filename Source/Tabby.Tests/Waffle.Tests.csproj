@@ -67,6 +67,7 @@
     <Compile Include="Tabby.Dal\Repository\MockContext.cs" />
     <Compile Include="Tabby.Dal\Repository\MessageRepositoryTests.cs" />
     <Compile Include="Tabby.Client\BusinessLogicConverterTests.cs" />
+    <Compile Include="Taddy.BusinessLogic\UserProcessor1Tests.cs" />
     <Compile Include="Taddy.BusinessLogic\DalConverterTests.cs" />
     <Compile Include="Taddy.BusinessLogic\MessageProcessorTests.cs" />
     <Compile Include="Taddy.BusinessLogic\MockMessageRepository.cs" />
@@ -85,6 +86,10 @@
     <ProjectReference Include="..\Bijuu.Contracts\Bijuu.Contracts.csproj">
       <Project>{f39fe194-52ec-49b0-b096-721b6987b19e}</Project>
       <Name>Bijuu.Contracts</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Bijuu.ServiceProvider\Bijuu.ServiceProvider.csproj">
+      <Project>{093E45F6-BADF-4309-9F03-629BD20AEFF3}</Project>
+      <Name>Bijuu.ServiceProvider</Name>
     </ProjectReference>
     <ProjectReference Include="..\Tabby.Client\Tabby.Client.csproj">
       <Project>{2645621b-f3da-46d0-b71f-2d757a8d4dc0}</Project>

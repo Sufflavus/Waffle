@@ -12,12 +12,6 @@ namespace Taddy.BusinessLogic.Processor
 {
     public class UserProcessor1 : IUserProcessor
     {
-        public UserProcessor1(IBijuuServiceClient serviceClient)
-        {
-            ServiceClient = serviceClient;
-        }
-
-
         [Dependency]
         public IBijuuServiceClient ServiceClient { get; set; }
 
