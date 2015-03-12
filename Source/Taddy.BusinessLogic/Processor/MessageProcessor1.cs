@@ -13,12 +13,6 @@ namespace Taddy.BusinessLogic.Processor
 {
     public class MessageProcessor1 : IMessageProcessor
     {
-        public MessageProcessor1(IBijuuServiceClient serviceClient)
-        {
-            ServiceClient = serviceClient;
-        }
-
-
         [Dependency]
         public IBijuuServiceClient ServiceClient { get; set; }
 

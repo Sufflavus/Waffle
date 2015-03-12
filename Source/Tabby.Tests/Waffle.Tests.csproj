@@ -67,6 +67,7 @@
     <Compile Include="Tabby.Dal\Repository\MockContext.cs" />
     <Compile Include="Tabby.Dal\Repository\MessageRepositoryTests.cs" />
     <Compile Include="Tabby.Client\BusinessLogicConverterTests.cs" />
+    <Compile Include="Taddy.BusinessLogic\MessageProcessor1Tests.cs" />
     <Compile Include="Taddy.BusinessLogic\UserProcessor1Tests.cs" />
     <Compile Include="Taddy.BusinessLogic\DalConverterTests.cs" />
     <Compile Include="Taddy.BusinessLogic\MessageProcessorTests.cs" />
