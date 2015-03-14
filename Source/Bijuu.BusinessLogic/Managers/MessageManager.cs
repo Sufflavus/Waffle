@@ -14,13 +14,6 @@ namespace Bijuu.BusinessLogic.Managers
 {
     public class MessageManager : IMessageManager
     {
-        public MessageManager(IMessageRepository messageRepository, IUserRepository userRepository)
-        {
-            MessageRepository = messageRepository;
-            UserRepository = userRepository;
-        }
-
-
         [Dependency]
         public IMessageRepository MessageRepository { get; set; }
 

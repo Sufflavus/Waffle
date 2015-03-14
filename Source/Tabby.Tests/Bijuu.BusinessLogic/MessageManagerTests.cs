@@ -21,7 +21,11 @@ namespace Waffle.Tests.Bijuu.BusinessLogic
         {
             MockUserRepository userRepository = InitMockUserRepository();
             MockMessageRepository messageRepository = InitMockMessageRepository(userRepository);
-            IMessageManager messageManager = new MessageManager(messageRepository, userRepository);
+            IMessageManager messageManager = new MessageManager
+            {
+                MessageRepository = messageRepository,
+                UserRepository = userRepository
+            };
             List<MessageEntity> messages = messageRepository.Storage;
             int itemsCount = messageRepository.Storage.Count;
 
@@ -41,7 +45,11 @@ namespace Waffle.Tests.Bijuu.BusinessLogic
             var userRepository = Substitute.For<IUserRepository>();
             var messageRepository = Substitute.For<IMessageRepository>();
             messageRepository.GetAll().Returns(new List<MessageEntity>());
-            IMessageManager manager = new MessageManager(messageRepository, userRepository);
+            IMessageManager manager = new MessageManager
+            {
+                MessageRepository = messageRepository,
+                UserRepository = userRepository
+            };
 
             manager.GetAllMessages();
 
@@ -54,7 +62,11 @@ namespace Waffle.Tests.Bijuu.BusinessLogic
         {
             MockUserRepository userRepository = InitMockUserRepository();
             MockMessageRepository messageRepository = InitMockMessageRepository(userRepository);
-            IMessageManager messageManager = new MessageManager(messageRepository, userRepository);
+            IMessageManager messageManager = new MessageManager
+            {
+                MessageRepository = messageRepository,
+                UserRepository = userRepository
+            };
             List<MessageEntity> messages = messageRepository.Storage;
             List<UserEntity> users = userRepository.Storage;
 
@@ -73,7 +85,11 @@ namespace Waffle.Tests.Bijuu.BusinessLogic
         {
             MockUserRepository userRepository = InitMockUserRepository();
             MockMessageRepository messageRepository = InitMockMessageRepository(userRepository);
-            IMessageManager messageManager = new MessageManager(messageRepository, userRepository);
+            IMessageManager messageManager = new MessageManager
+            {
+                MessageRepository = messageRepository,
+                UserRepository = userRepository
+            };
             List<UserEntity> users = userRepository.Storage;
 
             var newMessage = new MessageInfo { Text = "text", SenderId = users[0].Id };

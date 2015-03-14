@@ -12,12 +12,6 @@ namespace Bijuu.BusinessLogic.Managers
 {
     public class UserManager : IUserManager
     {
-        public UserManager(IUserRepository repository)
-        {
-            Repository = repository;
-        }
-
-
         [Dependency]
         public IUserRepository Repository { get; set; }
 

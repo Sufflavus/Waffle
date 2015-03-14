@@ -56,7 +56,7 @@ namespace Waffle.Tests.Bijuu.BusinessLogic
         public void LogIn__GetByNameCalledInRepository()
         {
             var repository = Substitute.For<IUserRepository>();
-            IUserManager manager = new UserManager(repository);
+            IUserManager manager = new UserManager { Repository = repository };
             string userName = "user";
             var user = new UserEntity { Id = Guid.NewGuid(), Name = userName, IsOnline = false };
             repository.GetByName(userName).Returns(user);
@@ -97,7 +97,7 @@ namespace Waffle.Tests.Bijuu.BusinessLogic
         public void LogOut__GetByIdCalledInRepository()
         {
             var repository = Substitute.For<IUserRepository>();
-            IUserManager manager = new UserManager(repository);
+            IUserManager manager = new UserManager { Repository = repository };
             Guid userId = Guid.NewGuid();
             var user = new UserEntity { Id = userId, Name = "user", IsOnline = true };
             repository.GetById(userId).Returns(user);
@@ -113,7 +113,7 @@ namespace Waffle.Tests.Bijuu.BusinessLogic
         public void SetFixture(MockUserRepository data)
         {
             _repository = new MockUserRepository();
-            _userManager = new UserManager(_repository);
+            _userManager = new UserManager { Repository = _repository };
         }
     }
 }
