@@ -13,12 +13,6 @@ namespace Tabby.Dal.Repository
     public abstract class Repository<TEntity> : IRepository<TEntity>
         where TEntity : BaseEntity
     {
-        protected Repository(IContext context)
-        {
-            Context = context;
-        }
-
-
         [Dependency]
         public IContext Context { get; set; }
 

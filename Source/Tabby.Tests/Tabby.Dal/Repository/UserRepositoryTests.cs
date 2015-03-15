@@ -12,16 +12,13 @@ using Xunit;
 
 namespace Waffle.Tests.Tabby.Dal.Repository
 {
-    public class UserRepositoryTests : IUseFixture<MockContext>
+    public class UserRepositoryTests
     {
-        private MockContext _context;
-
-
         [Fact]
         public void AddOrUpdate_AddOrUpdateCalledInContext()
         {
             var context = Substitute.For<IContext>();
-            IUserRepository repository = new UserRepository(context);
+            IUserRepository repository = new UserRepository { Context = context };
             var entity = new UserEntity { Id = Guid.NewGuid() };
 
             repository.AddOrUpdate(entity);
@@ -34,7 +31,7 @@ namespace Waffle.Tests.Tabby.Dal.Repository
         public void Filter_FilterCalledInContext()
         {
             var context = Substitute.For<IContext>();
-            IUserRepository repository = new UserRepository(context);
+            IUserRepository repository = new UserRepository { Context = context };
             Func<UserEntity, bool> condition = x => x.Name == "name";
 
             repository.Filter(condition);
@@ -47,7 +44,7 @@ namespace Waffle.Tests.Tabby.Dal.Repository
         public void GetAll_GetAllCalledInContext()
         {
             var context = Substitute.For<IContext>();
-            IUserRepository repository = new UserRepository(context);
+            IUserRepository repository = new UserRepository { Context = context };
 
             repository.GetAll();
 
@@ -59,7 +56,7 @@ namespace Waffle.Tests.Tabby.Dal.Repository
         public void GetById_GetByIdCalledInContext()
         {
             var context = Substitute.For<IContext>();
-            IUserRepository repository = new UserRepository(context);
+            IUserRepository repository = new UserRepository { Context = context };
             Guid id = Guid.NewGuid();
 
             repository.GetById(id);
@@ -71,10 +68,11 @@ namespace Waffle.Tests.Tabby.Dal.Repository
         [Fact]
         public void GetByName_ExistingUser_Found()
         {
-            IUserRepository repository = new UserRepository(_context);
+            var context = new MockContext();
+            IUserRepository repository = new UserRepository { Context = context };
             string userName = "Nik";
             var entity = new UserEntity { Id = Guid.NewGuid(), Name = userName };
-            _context.AddOrUpdate(entity);
+            context.AddOrUpdate(entity);
 
             UserEntity result = repository.GetByName(userName);
 
@@ -86,17 +84,12 @@ namespace Waffle.Tests.Tabby.Dal.Repository
         [Fact]
         public void GetByName_NotExistingUser_NotFound()
         {
-            IUserRepository repository = new UserRepository(_context);
+            var context = new MockContext();
+            IUserRepository repository = new UserRepository { Context = context };
 
             UserEntity result = repository.GetByName("Kit");
 
             Assert.Null(result);
-        }
-
-
-        public void SetFixture(MockContext data)
-        {
-            _context = new MockContext();
         }
     }
 }

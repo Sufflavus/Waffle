@@ -25,7 +25,7 @@ namespace Waffle.Tests.Tabby.Dal.Repository
         public void AddOrUpdate_AddOrUpdateCalledInContext()
         {
             var context = Substitute.For<IContext>();
-            IMessageRepository repository = new MessageRepository(context);
+            IMessageRepository repository = new MessageRepository { Context = context };
             var entity = new MessageEntity { Id = Guid.NewGuid(), Text = "test", CreateDate = DateTime.Now };
 
             repository.AddOrUpdate(entity);
@@ -37,7 +37,7 @@ namespace Waffle.Tests.Tabby.Dal.Repository
         [Fact]
         public void AddOrUpdate_GoodInput_AddedInContext()
         {
-            IMessageRepository repository = new MessageRepository(_context);
+            IMessageRepository repository = new MessageRepository { Context = _context };
             var entity = new MessageEntity { Id = Guid.NewGuid(), Text = "test", CreateDate = DateTime.Now };
             int itemsCount = _context.Storage.Count;
 
@@ -57,7 +57,7 @@ namespace Waffle.Tests.Tabby.Dal.Repository
         [Fact]
         public void AddOrUpdate_GoodInput_NotDeleveredMessage()
         {
-            IMessageRepository repository = new MessageRepository(_context);
+            IMessageRepository repository = new MessageRepository { Context = _context };
             var entity = new MessageEntity { Id = Guid.NewGuid(), Text = "test", CreateDate = DateTime.Now };
 
             repository.AddOrUpdate(entity);
@@ -70,7 +70,7 @@ namespace Waffle.Tests.Tabby.Dal.Repository
         [Fact]
         public void AddOrUpdate_GoodInput_UpdatedInContext()
         {
-            IMessageRepository repository = new MessageRepository(_context);
+            IMessageRepository repository = new MessageRepository { Context = _context };
             var entity = new MessageEntity { Id = _message1.Id, Text = "test3", IsDelivered = true };
             int itemsCount = _context.Storage.Count;
 
@@ -91,7 +91,7 @@ namespace Waffle.Tests.Tabby.Dal.Repository
         [Fact]
         public void Filter_BadInput_EmptyResult()
         {
-            IMessageRepository repository = new MessageRepository(_context);
+            IMessageRepository repository = new MessageRepository { Context = _context };
 
             List<MessageEntity> result = repository.Filter(x => x.Id == Guid.NewGuid());
 
@@ -103,7 +103,7 @@ namespace Waffle.Tests.Tabby.Dal.Repository
         public void Filter_FilterCalledInContext()
         {
             var context = Substitute.For<IContext>();
-            IMessageRepository repository = new MessageRepository(context);
+            IMessageRepository repository = new MessageRepository { Context = context };
             Func<MessageEntity, bool> condition = x => x.Text == "text";
 
             repository.Filter(condition);
@@ -115,7 +115,7 @@ namespace Waffle.Tests.Tabby.Dal.Repository
         [Fact]
         public void Filter_GoodInput_CorrectResult()
         {
-            IMessageRepository repository = new MessageRepository(_context);
+            IMessageRepository repository = new MessageRepository { Context = _context };
 
             List<MessageEntity> result = repository.Filter(x => x.Text == _message1.Text);
 
@@ -128,7 +128,7 @@ namespace Waffle.Tests.Tabby.Dal.Repository
         [Fact]
         public void GetAll_CorrectResult()
         {
-            IMessageRepository repository = new MessageRepository(_context);
+            IMessageRepository repository = new MessageRepository { Context = _context };
 
             List<MessageEntity> result = repository.GetAll();
 
@@ -144,7 +144,7 @@ namespace Waffle.Tests.Tabby.Dal.Repository
         public void GetAll_GetAllCalledInContext()
         {
             var context = Substitute.For<IContext>();
-            IMessageRepository repository = new MessageRepository(context);
+            IMessageRepository repository = new MessageRepository { Context = context };
 
             repository.GetAll();
 
@@ -155,7 +155,7 @@ namespace Waffle.Tests.Tabby.Dal.Repository
         [Fact]
         public void GetById_ExistingId_CorrectResult()
         {
-            IMessageRepository repository = new MessageRepository(_context);
+            IMessageRepository repository = new MessageRepository { Context = _context };
 
             MessageEntity result = repository.GetById(_message1.Id);
 
@@ -168,7 +168,7 @@ namespace Waffle.Tests.Tabby.Dal.Repository
         public void GetById_GetByIdCalledInContext()
         {
             var context = Substitute.For<IContext>();
-            IMessageRepository repository = new MessageRepository(context);
+            IMessageRepository repository = new MessageRepository { Context = context };
             Guid id = Guid.NewGuid();
 
             repository.GetById(id);
@@ -180,7 +180,7 @@ namespace Waffle.Tests.Tabby.Dal.Repository
         [Fact]
         public void GetById_NotExistingId_Null()
         {
-            IMessageRepository repository = new MessageRepository(_context);
+            IMessageRepository repository = new MessageRepository { Context = _context };
 
             MessageEntity result = repository.GetById(Guid.NewGuid());
 
