@@ -60,6 +60,7 @@
     <Compile Include="Bijuu.BusinessLogic\MockMessageRepository.cs" />
     <Compile Include="Bijuu.BusinessLogic\MockUserRepository.cs" />
     <Compile Include="Bijuu.BusinessLogic\UserManagerTests.cs" />
+    <Compile Include="Bijuu.Service\RequestProcessorTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Tabby.Client\CommandParserTests.cs" />
     <Compile Include="Tabby.Client\GetNewMessagesCommandTests.cs" />
@@ -93,6 +94,10 @@
     <ProjectReference Include="..\Bijuu.ServiceProvider\Bijuu.ServiceProvider.csproj">
       <Project>{093E45F6-BADF-4309-9F03-629BD20AEFF3}</Project>
       <Name>Bijuu.ServiceProvider</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Bijuu.Service\Bijuu.Service.csproj">
+      <Project>{4dee89f0-21ee-4873-a96f-1223d5b9b229}</Project>
+      <Name>Bijuu.Service</Name>
     </ProjectReference>
     <ProjectReference Include="..\Tabby.Client\Tabby.Client.csproj">
       <Project>{2645621b-f3da-46d0-b71f-2d757a8d4dc0}</Project>
