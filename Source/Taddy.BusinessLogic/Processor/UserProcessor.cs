@@ -10,7 +10,7 @@ using Taddy.BusinessLogic.Models;
 
 namespace Taddy.BusinessLogic.Processor
 {
-    public class UserProcessor1 : IUserProcessor
+    public class UserProcessor : IUserProcessor
     {
         [Dependency]
         public IBijuuServiceClient ServiceClient { get; set; }

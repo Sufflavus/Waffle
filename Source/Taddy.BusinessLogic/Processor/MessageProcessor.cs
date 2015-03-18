@@ -11,7 +11,7 @@ using Taddy.BusinessLogic.Models;
 
 namespace Taddy.BusinessLogic.Processor
 {
-    public class MessageProcessor1 : IMessageProcessor
+    public class MessageProcessor : IMessageProcessor
     {
         [Dependency]
         public IBijuuServiceClient ServiceClient { get; set; }

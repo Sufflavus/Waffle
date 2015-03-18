@@ -14,16 +14,16 @@ using Xunit;
 
 namespace Waffle.Tests.Taddy.BusinessLogic
 {
-    public class MessageProcessor1Tests
+    public class MessageProcessorTests
     {
         private readonly IMessageProcessor _messageProcessor;
         private readonly IBijuuServiceClient _serviceClient;
 
 
-        public MessageProcessor1Tests()
+        public MessageProcessorTests()
         {
             _serviceClient = Substitute.For<IBijuuServiceClient>();
-            _messageProcessor = new MessageProcessor1 { ServiceClient = _serviceClient };
+            _messageProcessor = new MessageProcessor { ServiceClient = _serviceClient };
         }
 
 

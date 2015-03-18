@@ -48,8 +48,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Processor\MessageProcessor1.cs" />
-    <Compile Include="Processor\UserProcessor1.cs" />
+    <Compile Include="Processor\MessageProcessor.cs" />
+    <Compile Include="Processor\UserProcessor.cs" />
     <Compile Include="Processor\IUserProcessor.cs" />
     <Compile Include="DalConverter.cs" />
     <Compile Include="Processor\IMessageProcessor.cs" />
