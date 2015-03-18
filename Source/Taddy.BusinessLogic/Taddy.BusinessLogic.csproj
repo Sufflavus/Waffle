@@ -54,10 +54,8 @@
     <Compile Include="DalConverter.cs" />
     <Compile Include="Processor\IMessageProcessor.cs" />
     <Compile Include="Models\Message.cs" />
-    <Compile Include="Processor\MessageProcessor.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Models\User.cs" />
-    <Compile Include="Processor\UserProcessor.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Bijuu.Contracts\Bijuu.Contracts.csproj">
