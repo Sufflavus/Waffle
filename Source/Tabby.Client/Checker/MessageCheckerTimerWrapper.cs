@@ -8,22 +8,21 @@ namespace Tabby.Client.Checker
 {
     public class MessageCheckerTimerWrapper : IDisposable
     {
-        private readonly Guid _userId;
+        private readonly MessageChecker _messageChecker;
         private AutoResetEvent _resetEvent;
         private Timer _timer;
 
 
         public MessageCheckerTimerWrapper(Guid userId)
         {
-            _userId = userId;
+            _messageChecker = Bootstrapper.Resolve<MessageChecker>(new ParameterOverride("userId", userId));
         }
 
 
         public void Start()
         {
-            var messageChecker = Bootstrapper.Resolve<MessageChecker>(new ParameterOverride("userId", _userId));
             _resetEvent = new AutoResetEvent(false);
-            TimerCallback timerCallback = messageChecker.GetNewMessages;
+            TimerCallback timerCallback = _messageChecker.GetNewMessages;
             _timer = new Timer(timerCallback, _resetEvent, 10000, 10000);
         }
 
