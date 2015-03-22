@@ -84,7 +84,7 @@
     <Compile Include="Command\UserModule\UserCommand.cs" />
     <Compile Include="Checker\MessageChecker.cs" />
     <Compile Include="Logger\ILogger.cs" />
-    <Compile Include="Logger\NLogLogger.cs" />
+    <Compile Include="Logger\UiNlogLogger.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Checker\MessageCheckerTimerWrapper.cs" />

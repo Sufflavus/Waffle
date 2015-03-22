@@ -5,12 +5,12 @@ using NLog;
 
 namespace Tabby.Client.Logger
 {
-    public class NLogLogger : ILogger
+    public class UiNlogLogger : ILogger
     {
         private static readonly NLog.Logger _instance;
 
 
-        static NLogLogger()
+        static UiNlogLogger()
         {
             LogManager.ReconfigExistingLoggers();
             /*var config = new LoggingConfiguration();

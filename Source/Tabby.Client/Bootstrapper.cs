@@ -46,7 +46,7 @@ namespace Tabby.Client
             Container.RegisterType<UserCommand>();
             Container.RegisterType<MessageCommand>();
 
-            Container.RegisterType<ILogger, NLogLogger>();
+            Container.RegisterType<ILogger, UiNlogLogger>();
             Container.RegisterType<IMessageProcessor, MessageProcessor>();
             Container.RegisterType<IUserProcessor, UserProcessor>();
             Container.RegisterType<IBijuuServiceClient, BijuuServiceClient>();
