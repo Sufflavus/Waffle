@@ -13,13 +13,6 @@ namespace Tabby.Client.Logger
         static UiNlogLogger()
         {
             LogManager.ReconfigExistingLoggers();
-            /*var config = new LoggingConfiguration();
-            var growlTarget = new NLog.Targets.GrowlNotify();
-            config.AddTarget("growl", growlTarget);
-            growlTarget.Port = 23053;
-            var rule = new LoggingRule("Test.*", LogLevel.Trace, growlTarget);
-            config.LoggingRules.Add(rule);
-            LogManager.Configuration = config;*/
             _instance = LogManager.GetCurrentClassLogger();
             //http://www.codeproject.com/Articles/786304/Logging-How-to-Growl-with-NLog-or
         }
