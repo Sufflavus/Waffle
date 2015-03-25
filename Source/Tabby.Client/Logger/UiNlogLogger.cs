@@ -14,7 +14,6 @@ namespace Tabby.Client.Logger
         {
             LogManager.ReconfigExistingLoggers();
             _instance = LogManager.GetCurrentClassLogger();
-            //http://www.codeproject.com/Articles/786304/Logging-How-to-Growl-with-NLog-or
         }
 
 
