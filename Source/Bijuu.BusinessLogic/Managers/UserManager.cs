@@ -25,6 +25,7 @@ namespace Bijuu.BusinessLogic.Managers
             }
             entity.IsOnline = true;
             Repository.AddOrUpdate(entity);
+
             return new UserInfo
             {
                 Id = entity.Id,
