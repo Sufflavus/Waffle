@@ -7,8 +7,8 @@
     <ProjectGuid>{2645621B-F3DA-46D0-B71F-2D757A8D4DC0}</ProjectGuid>
     <OutputType>Exe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Tabby.Client</RootNamespace>
-    <AssemblyName>Tabby.Client</AssemblyName>
+    <RootNamespace>Tabby.Terminal</RootNamespace>
+    <AssemblyName>Tabby.Terminal</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -17,7 +17,7 @@
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
-    <OutputPath>..\..\Out\Debug\Tabby.Client\</OutputPath>
+    <OutputPath>..\..\Out\Debug\Tabby.Terminal\</OutputPath>
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
@@ -26,7 +26,7 @@
     <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
-    <OutputPath>..\..\Out\Release\Tabby.Client\</OutputPath>
+    <OutputPath>..\..\Out\Release\Tabby.Terminal\</OutputPath>
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>

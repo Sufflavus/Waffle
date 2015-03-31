@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2012
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tabby.Client", "Source\Tabby.Client\Tabby.Client.csproj", "{2645621B-F3DA-46D0-B71F-2D757A8D4DC0}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tabby.Terminal", "Source\Tabby.Client\Tabby.Terminal.csproj", "{2645621B-F3DA-46D0-B71F-2D757A8D4DC0}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Taddy.BusinessLogic", "Source\Taddy.BusinessLogic\Taddy.BusinessLogic.csproj", "{B0948C51-8E8D-43D9-BA0A-C31E8A6423C4}"
 EndProject

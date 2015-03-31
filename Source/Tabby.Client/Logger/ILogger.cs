@@ -1,7 +1,7 @@
 ﻿using System;
 
 
-namespace Tabby.Client.Logger
+namespace Tabby.Terminal.Logger
 {
     public interface ILogger
     {

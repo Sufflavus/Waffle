@@ -1,6 +1,6 @@
 ﻿using System;
 
-using Tabby.Client;
+using Tabby.Terminal;
 
 using Taddy.BusinessLogic.Models;
 

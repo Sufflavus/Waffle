@@ -1,7 +1,7 @@
 ﻿using System;
 
-using Tabby.Client.Command;
-using Tabby.Client.Command.MessageModule;
+using Tabby.Terminal.Command;
+using Tabby.Terminal.Command.MessageModule;
 
 using Xunit;
 using Xunit.Extensions;

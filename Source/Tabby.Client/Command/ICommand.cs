@@ -1,7 +1,7 @@
 ﻿using System;
 
 
-namespace Tabby.Client.Command
+namespace Tabby.Terminal.Command
 {
     public interface ICommand
     {

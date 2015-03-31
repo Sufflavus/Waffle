@@ -2,12 +2,12 @@
 
 using Microsoft.Practices.Unity;
 
-using Tabby.Client.Logger;
+using Tabby.Terminal.Logger;
 
 using Taddy.BusinessLogic.Processor;
 
 
-namespace Tabby.Client.Command.MessageModule
+namespace Tabby.Terminal.Command.MessageModule
 {
     public abstract class MessageCommand : ICommand
     {

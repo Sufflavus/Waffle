@@ -1,7 +1,7 @@
 ﻿using System;
 
 
-namespace Tabby.Client
+namespace Tabby.Terminal
 {
     internal class Program
     {

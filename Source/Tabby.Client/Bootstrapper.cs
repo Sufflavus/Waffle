@@ -4,17 +4,17 @@ using Bijuu.ServiceProvider;
 
 using Microsoft.Practices.Unity;
 
-using Tabby.Client.Checker;
-using Tabby.Client.Command.MessageModule;
-using Tabby.Client.Command.UserModule;
-using Tabby.Client.Logger;
 using Tabby.Dal.Repository;
 using Tabby.Dal.Repository.Interfaces;
+using Tabby.Terminal.Checker;
+using Tabby.Terminal.Command.MessageModule;
+using Tabby.Terminal.Command.UserModule;
+using Tabby.Terminal.Logger;
 
 using Taddy.BusinessLogic.Processor;
 
 
-namespace Tabby.Client
+namespace Tabby.Terminal
 {
     internal sealed class Bootstrapper : IDisposable
     {

@@ -2,14 +2,14 @@
 
 using Microsoft.Practices.Unity;
 
-using Tabby.Client.Checker;
-using Tabby.Client.Command;
-using Tabby.Client.Command.MessageModule;
-using Tabby.Client.Command.UserModule;
-using Tabby.Client.Logger;
+using Tabby.Terminal.Checker;
+using Tabby.Terminal.Command;
+using Tabby.Terminal.Command.MessageModule;
+using Tabby.Terminal.Command.UserModule;
+using Tabby.Terminal.Logger;
 
 
-namespace Tabby.Client
+namespace Tabby.Terminal
 {
     public sealed class Chatter : IDisposable
     {

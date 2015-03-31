@@ -3,7 +3,7 @@
 using Taddy.BusinessLogic.Models;
 
 
-namespace Tabby.Client
+namespace Tabby.Terminal
 {
     public sealed class BusinessLogicConverter
     {

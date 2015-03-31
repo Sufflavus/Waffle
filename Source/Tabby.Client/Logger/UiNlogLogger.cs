@@ -3,7 +3,7 @@
 using NLog;
 
 
-namespace Tabby.Client.Logger
+namespace Tabby.Terminal.Logger
 {
     public class UiNlogLogger : ILogger
     {

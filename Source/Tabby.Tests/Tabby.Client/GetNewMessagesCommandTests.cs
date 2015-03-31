@@ -3,8 +3,8 @@ using System.Collections.Generic;
 
 using NSubstitute;
 
-using Tabby.Client.Command.MessageModule;
-using Tabby.Client.Logger;
+using Tabby.Terminal.Command.MessageModule;
+using Tabby.Terminal.Logger;
 
 using Taddy.BusinessLogic.Models;
 using Taddy.BusinessLogic.Processor;

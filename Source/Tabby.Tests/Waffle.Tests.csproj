@@ -97,9 +97,9 @@
       <Project>{4dee89f0-21ee-4873-a96f-1223d5b9b229}</Project>
       <Name>Bijuu.Service</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Tabby.Client\Tabby.Client.csproj">
+    <ProjectReference Include="..\Tabby.Client\Tabby.Terminal.csproj">
       <Project>{2645621b-f3da-46d0-b71f-2d757a8d4dc0}</Project>
-      <Name>Tabby.Client</Name>
+      <Name>Tabby.Terminal</Name>
     </ProjectReference>
     <ProjectReference Include="..\Tabby.Dal\Tabby.Dal.csproj">
       <Project>{035e2aca-31cb-4339-b83d-71012a44ea67}</Project>

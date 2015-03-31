@@ -4,7 +4,7 @@ using System.Threading;
 using Microsoft.Practices.Unity;
 
 
-namespace Tabby.Client.Checker
+namespace Tabby.Terminal.Checker
 {
     public class MessageCheckerTimerWrapper : IDisposable
     {

@@ -3,7 +3,7 @@
 using Taddy.BusinessLogic.Models;
 
 
-namespace Tabby.Client.Command.MessageModule
+namespace Tabby.Terminal.Command.MessageModule
 {
     public sealed class SendMessageCommand : MessageCommand
     {

@@ -4,13 +4,13 @@ using System.Linq;
 
 using Microsoft.Practices.Unity;
 
-using Tabby.Client.Logger;
+using Tabby.Terminal.Logger;
 
 using Taddy.BusinessLogic.Models;
 using Taddy.BusinessLogic.Processor;
 
 
-namespace Tabby.Client.Checker
+namespace Tabby.Terminal.Checker
 {
     public class MessageChecker
     {

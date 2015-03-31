@@ -1,9 +1,9 @@
 ﻿using System;
 
-using Tabby.Client.Command.MessageModule;
+using Tabby.Terminal.Command.MessageModule;
 
 
-namespace Tabby.Client.Command
+namespace Tabby.Terminal.Command
 {
     /// <summary>
     /// A class that converts a string to the command. 

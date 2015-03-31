@@ -3,7 +3,7 @@
 using Taddy.BusinessLogic.Models;
 
 
-namespace Tabby.Client.Command.UserModule
+namespace Tabby.Terminal.Command.UserModule
 {
     public class LoginUserCommand : UserCommand
     {
