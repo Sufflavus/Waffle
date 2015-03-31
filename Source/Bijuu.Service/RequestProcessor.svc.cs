@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ServiceModel;
 
 using Bijuu.BusinessLogic.Managers;
 using Bijuu.Contracts;
@@ -7,10 +8,11 @@ using Bijuu.Contracts;
 
 namespace Bijuu.Service
 {
+    //https://www.safaribooksonline.com/library/view/programming-wcf-services/0596526997/ch04s02.html
+
+    [ServiceBehavior(InstanceContextMode = InstanceContextMode.PerCall)]
     public class RequestProcessor : IRequestProcessor, IDisposable
     {
-        // TODO: multi-thread support
-
         private readonly IMessageManager _messageManager;
         private readonly IUserManager _userManager;
 
