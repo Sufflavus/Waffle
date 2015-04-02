@@ -1,6 +1,6 @@
 ﻿using System;
 
-using Tabby.Dal.Domain;
+using Bijuu.Dal.Domain;
 
 using Taddy.BusinessLogic;
 using Taddy.BusinessLogic.Models;

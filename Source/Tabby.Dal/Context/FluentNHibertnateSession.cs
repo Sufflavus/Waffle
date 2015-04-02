@@ -1,5 +1,7 @@
 ﻿using System;
 
+using Bijuu.Dal.Domain;
+
 using FluentNHibernate.Cfg;
 using FluentNHibernate.Cfg.Db;
 
@@ -7,10 +9,8 @@ using NHibernate;
 using NHibernate.Cfg;
 using NHibernate.Tool.hbm2ddl;
 
-using Tabby.Dal.Domain;
 
-
-namespace Tabby.Dal.Context
+namespace Bijuu.Dal.Context
 {
     public sealed class FluentNHibertnateSession : IDisposable
     {

@@ -1,8 +1,7 @@
 ﻿using System;
 
 using Bijuu.Contracts;
-
-using Tabby.Dal.Domain;
+using Bijuu.Dal.Domain;
 
 
 namespace Bijuu.BusinessLogic

@@ -1,10 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 
-using Tabby.Dal.Domain;
+using Bijuu.Dal.Domain;
 
 
-namespace Tabby.Dal.Repository.Interfaces
+namespace Bijuu.Dal.Repository.Interfaces
 {
     public interface IRepository<TEntity>
         where TEntity : BaseEntity

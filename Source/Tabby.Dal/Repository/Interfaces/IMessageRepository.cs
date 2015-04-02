@@ -1,9 +1,9 @@
 ﻿using System;
 
-using Tabby.Dal.Domain;
+using Bijuu.Dal.Domain;
 
 
-namespace Tabby.Dal.Repository.Interfaces
+namespace Bijuu.Dal.Repository.Interfaces
 {
     public interface IMessageRepository : IRepository<MessageEntity>
     {

@@ -1,13 +1,12 @@
 ﻿using System;
 
 using Bijuu.BusinessLogic.Managers;
+using Bijuu.Dal.Context;
+using Bijuu.Dal.Domain;
+using Bijuu.Dal.Repository;
+using Bijuu.Dal.Repository.Interfaces;
 
 using Microsoft.Practices.Unity;
-
-using Tabby.Dal.Context;
-using Tabby.Dal.Domain;
-using Tabby.Dal.Repository;
-using Tabby.Dal.Repository.Interfaces;
 
 
 namespace Bijuu.Service

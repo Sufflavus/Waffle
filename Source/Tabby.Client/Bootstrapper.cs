@@ -1,11 +1,11 @@
 ﻿using System;
 
+using Bijuu.Dal.Repository;
+using Bijuu.Dal.Repository.Interfaces;
 using Bijuu.ServiceProvider;
 
 using Microsoft.Practices.Unity;
 
-using Tabby.Dal.Repository;
-using Tabby.Dal.Repository.Interfaces;
 using Tabby.Terminal.Checker;
 using Tabby.Terminal.Command.MessageModule;
 using Tabby.Terminal.Command.UserModule;

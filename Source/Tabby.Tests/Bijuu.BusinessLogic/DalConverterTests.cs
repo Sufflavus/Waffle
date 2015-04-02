@@ -2,8 +2,7 @@
 
 using Bijuu.BusinessLogic;
 using Bijuu.Contracts;
-
-using Tabby.Dal.Domain;
+using Bijuu.Dal.Domain;
 
 using Xunit;
 

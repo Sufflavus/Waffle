@@ -3,11 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 
 using Bijuu.Contracts;
+using Bijuu.Dal.Domain;
+using Bijuu.Dal.Repository.Interfaces;
 
 using Microsoft.Practices.Unity;
-
-using Tabby.Dal.Domain;
-using Tabby.Dal.Repository.Interfaces;
 
 
 namespace Bijuu.BusinessLogic.Managers

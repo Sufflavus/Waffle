@@ -1,9 +1,9 @@
 ﻿using System;
 
+using Bijuu.Dal.Domain;
+
 using NHibernate.Cfg;
 using NHibernate.Tool.hbm2ddl;
-
-using Tabby.Dal.Domain;
 
 using Xunit;
 

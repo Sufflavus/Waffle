@@ -101,9 +101,9 @@
       <Project>{2645621b-f3da-46d0-b71f-2d757a8d4dc0}</Project>
       <Name>Tabby.Terminal</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Tabby.Dal\Tabby.Dal.csproj">
+    <ProjectReference Include="..\Tabby.Dal\Bijuu.Dal.csproj">
       <Project>{035e2aca-31cb-4339-b83d-71012a44ea67}</Project>
-      <Name>Tabby.Dal</Name>
+      <Name>Bijuu.Dal</Name>
     </ProjectReference>
     <ProjectReference Include="..\Taddy.BusinessLogic\Taddy.BusinessLogic.csproj">
       <Project>{b0948c51-8e8d-43d9-ba0a-c31e8a6423c4}</Project>

@@ -2,8 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 
-using Tabby.Dal.Domain;
-using Tabby.Dal.Repository.Interfaces;
+using Bijuu.Dal.Domain;
+using Bijuu.Dal.Repository.Interfaces;
 
 
 namespace Waffle.Tests.Taddy.BusinessLogic

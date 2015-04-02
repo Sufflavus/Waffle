@@ -1,11 +1,11 @@
 ﻿using System;
 
+using Bijuu.Dal.Domain;
+
 using FluentNHibernate.Mapping;
 
-using Tabby.Dal.Domain;
 
-
-namespace Tabby.Dal.Mappings
+namespace Bijuu.Dal.Mappings
 {
     public class UserEntityMap : ClassMap<UserEntity>
     {

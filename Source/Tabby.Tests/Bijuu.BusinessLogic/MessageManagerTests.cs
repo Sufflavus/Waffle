@@ -4,11 +4,10 @@ using System.Linq;
 
 using Bijuu.BusinessLogic.Managers;
 using Bijuu.Contracts;
+using Bijuu.Dal.Domain;
+using Bijuu.Dal.Repository.Interfaces;
 
 using NSubstitute;
-
-using Tabby.Dal.Domain;
-using Tabby.Dal.Repository.Interfaces;
 
 using Xunit;
 

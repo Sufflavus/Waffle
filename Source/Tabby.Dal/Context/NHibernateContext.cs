@@ -2,13 +2,13 @@
 using System.Collections.Generic;
 using System.Linq;
 
+using Bijuu.Dal.Domain;
+
 using NHibernate;
 using NHibernate.Linq;
 
-using Tabby.Dal.Domain;
 
-
-namespace Tabby.Dal.Context
+namespace Bijuu.Dal.Context
 {
     public class NHibernateContext : IContext
     {

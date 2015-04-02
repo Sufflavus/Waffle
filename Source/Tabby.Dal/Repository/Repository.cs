@@ -1,14 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
 
+using Bijuu.Dal.Context;
+using Bijuu.Dal.Domain;
+using Bijuu.Dal.Repository.Interfaces;
+
 using Microsoft.Practices.Unity;
 
-using Tabby.Dal.Context;
-using Tabby.Dal.Domain;
-using Tabby.Dal.Repository.Interfaces;
 
-
-namespace Tabby.Dal.Repository
+namespace Bijuu.Dal.Repository
 {
     public abstract class Repository<TEntity> : IRepository<TEntity>
         where TEntity : BaseEntity

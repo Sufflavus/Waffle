@@ -1,7 +1,7 @@
 ﻿using System;
 
 
-namespace Tabby.Dal.Domain
+namespace Bijuu.Dal.Domain
 {
     public class UserEntity : BaseEntity
     {

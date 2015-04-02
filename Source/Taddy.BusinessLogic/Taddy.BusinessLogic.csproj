@@ -66,9 +66,9 @@
       <Project>{093E45F6-BADF-4309-9F03-629BD20AEFF3}</Project>
       <Name>Bijuu.ServiceProvider</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Tabby.Dal\Tabby.Dal.csproj">
+    <ProjectReference Include="..\Tabby.Dal\Bijuu.Dal.csproj">
       <Project>{035e2aca-31cb-4339-b83d-71012a44ea67}</Project>
-      <Name>Tabby.Dal</Name>
+      <Name>Bijuu.Dal</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

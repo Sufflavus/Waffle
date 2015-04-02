@@ -1,10 +1,10 @@
 ﻿using System;
 
-using Tabby.Dal.Domain;
-using Tabby.Dal.Repository.Interfaces;
+using Bijuu.Dal.Domain;
+using Bijuu.Dal.Repository.Interfaces;
 
 
-namespace Tabby.Dal.Repository
+namespace Bijuu.Dal.Repository
 {
     public class MessageRepository : Repository<MessageEntity>, IMessageRepository
     {

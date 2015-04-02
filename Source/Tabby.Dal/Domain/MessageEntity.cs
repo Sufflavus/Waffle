@@ -3,7 +3,7 @@
 
 // TODO: попробовать Fluent NHibernate https://github.com/jagregory/fluent-nhibernate/wiki/Getting-started
 
-namespace Tabby.Dal.Domain
+namespace Bijuu.Dal.Domain
 {
     public class MessageEntity : BaseEntity
     {

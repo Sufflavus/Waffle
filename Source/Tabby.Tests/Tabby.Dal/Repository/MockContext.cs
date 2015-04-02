@@ -2,8 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 
-using Tabby.Dal.Context;
-using Tabby.Dal.Domain;
+using Bijuu.Dal.Context;
+using Bijuu.Dal.Domain;
 
 
 namespace Waffle.Tests.Tabby.Dal.Repository

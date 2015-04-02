@@ -1,10 +1,10 @@
 using System;
 using System.Collections.Generic;
 
-using Tabby.Dal.Domain;
+using Bijuu.Dal.Domain;
 
 
-namespace Tabby.Dal.Context
+namespace Bijuu.Dal.Context
 {
     public interface IContext
     {

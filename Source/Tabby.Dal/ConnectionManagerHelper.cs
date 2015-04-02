@@ -2,7 +2,7 @@
 using System.Configuration;
 
 
-namespace Tabby.Dal
+namespace Bijuu.Dal
 {
     public static class ConnectionManagerHelper
     {
