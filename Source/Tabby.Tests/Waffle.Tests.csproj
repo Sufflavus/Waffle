@@ -89,6 +89,10 @@
       <Project>{f39fe194-52ec-49b0-b096-721b6987b19e}</Project>
       <Name>Bijuu.Contracts</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Bijuu.Dal\Bijuu.Dal.csproj">
+      <Project>{035e2aca-31cb-4339-b83d-71012a44ea67}</Project>
+      <Name>Bijuu.Dal</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Bijuu.ServiceProvider\Bijuu.ServiceProvider.csproj">
       <Project>{093E45F6-BADF-4309-9F03-629BD20AEFF3}</Project>
       <Name>Bijuu.ServiceProvider</Name>
@@ -97,13 +101,9 @@
       <Project>{4dee89f0-21ee-4873-a96f-1223d5b9b229}</Project>
       <Name>Bijuu.Service</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Tabby.Client\Tabby.Terminal.csproj">
+    <ProjectReference Include="..\Tabby.Terminal\Tabby.Terminal.csproj">
       <Project>{2645621b-f3da-46d0-b71f-2d757a8d4dc0}</Project>
       <Name>Tabby.Terminal</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Tabby.Dal\Bijuu.Dal.csproj">
-      <Project>{035e2aca-31cb-4339-b83d-71012a44ea67}</Project>
-      <Name>Bijuu.Dal</Name>
     </ProjectReference>
     <ProjectReference Include="..\Taddy.BusinessLogic\Taddy.BusinessLogic.csproj">
       <Project>{b0948c51-8e8d-43d9-ba0a-c31e8a6423c4}</Project>

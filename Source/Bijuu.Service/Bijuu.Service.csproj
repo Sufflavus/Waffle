@@ -88,8 +88,8 @@
       <Project>{F39FE194-52EC-49B0-B096-721B6987B19E}</Project>
       <Name>Bijuu.Contracts</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Tabby.Dal\Bijuu.Dal.csproj">
-      <Project>{035E2ACA-31CB-4339-B83D-71012A44EA67}</Project>
+    <ProjectReference Include="..\Bijuu.Dal\Bijuu.Dal.csproj">
+      <Project>{035e2aca-31cb-4339-b83d-71012a44ea67}</Project>
       <Name>Bijuu.Dal</Name>
     </ProjectReference>
   </ItemGroup>

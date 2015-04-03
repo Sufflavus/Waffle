@@ -1,7 +1,4 @@
 ﻿using System;
-
-using Bijuu.Dal.Repository;
-using Bijuu.Dal.Repository.Interfaces;
 using Bijuu.ServiceProvider;
 
 using Microsoft.Practices.Unity;
@@ -50,8 +47,6 @@ namespace Tabby.Terminal
             Container.RegisterType<IMessageProcessor, MessageProcessor>();
             Container.RegisterType<IUserProcessor, UserProcessor>();
             Container.RegisterType<IBijuuServiceClient, BijuuServiceClient>();
-            Container.RegisterType<IUserRepository, UserRepository>();
-            Container.RegisterType<IMessageRepository, MessageRepository>();
         }
 
 
