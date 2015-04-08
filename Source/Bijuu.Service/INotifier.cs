@@ -1,10 +1,12 @@
 ﻿using System;
 
+using Bijuu.Contracts;
+
 
 namespace Bijuu.Service
 {
     public interface INotifier
     {
-        void Notify();
+        void NewMessageNotify(MessageInfo message);
     }
 }

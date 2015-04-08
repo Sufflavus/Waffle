@@ -69,7 +69,9 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="RequestProcessor.svc" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Bootstrapper.cs" />
@@ -93,6 +95,10 @@
     <ProjectReference Include="..\Bijuu.Dal\Bijuu.Dal.csproj">
       <Project>{035e2aca-31cb-4339-b83d-71012a44ea67}</Project>
       <Name>Bijuu.Dal</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Ginger.Notifier\Ginger.Notifier.csproj">
+      <Project>{fca2fa4c-14e0-4f33-af07-fd766b56000c}</Project>
+      <Name>Ginger.Notifier</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
