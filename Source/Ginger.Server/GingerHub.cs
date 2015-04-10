@@ -7,9 +7,15 @@ namespace Ginger.Server
 {
     public class GingerHub : Hub
     {
-        public void Send(string name, string message)
+        public void SendMessage(string name, string message)
         {
             Clients.All.SendMessage(name, message);
+        }
+
+
+        public void UpdateUserState(string name, string user)
+        {
+            Clients.All.UpdateUserState(name, user);
         }
     }
 }

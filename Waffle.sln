@@ -29,6 +29,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ginger.Server", "Source\Gin
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ginger.Notifier", "Source\Ginger.Notifier\Ginger.Notifier.csproj", "{FCA2FA4C-14E0-4F33-AF07-FD766B56000C}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ginger.Contracts", "Source\Ginger.Contracts\Ginger.Contracts.csproj", "{75427C42-D49E-4AC2-B708-3152B9B7D78C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -79,6 +81,10 @@ Global
 		{FCA2FA4C-14E0-4F33-AF07-FD766B56000C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FCA2FA4C-14E0-4F33-AF07-FD766B56000C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FCA2FA4C-14E0-4F33-AF07-FD766B56000C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{75427C42-D49E-4AC2-B708-3152B9B7D78C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{75427C42-D49E-4AC2-B708-3152B9B7D78C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{75427C42-D49E-4AC2-B708-3152B9B7D78C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{75427C42-D49E-4AC2-B708-3152B9B7D78C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -94,5 +100,6 @@ Global
 		{035E2ACA-31CB-4339-B83D-71012A44EA67} = {2DDDE18B-52D4-4260-9E9F-3525A5B28921}
 		{9CF1B36A-3481-4A1B-8C50-7AB2F7B19797} = {81EDA260-F423-4052-9834-7026E5C92286}
 		{FCA2FA4C-14E0-4F33-AF07-FD766B56000C} = {81EDA260-F423-4052-9834-7026E5C92286}
+		{75427C42-D49E-4AC2-B708-3152B9B7D78C} = {81EDA260-F423-4052-9834-7026E5C92286}
 	EndGlobalSection
 EndGlobal

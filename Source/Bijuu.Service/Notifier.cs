@@ -2,6 +2,7 @@
 
 using Bijuu.Contracts;
 
+using Ginger.Contracts;
 using Ginger.Notifier;
 
 using Microsoft.Practices.Unity;
@@ -15,9 +16,9 @@ namespace Bijuu.Service
         public INotificationService NotificationService { get; set; }
 
 
-        public void NewMessageNotify(MessageInfo message)
+        public void NewMessageNotify(MessageRecord message)
         {
-            NotificationService.SendMessage(message.Text);
+            NotificationService.SendMessage(message);
         }
     }
 }

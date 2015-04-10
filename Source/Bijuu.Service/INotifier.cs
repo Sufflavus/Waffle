@@ -2,11 +2,13 @@
 
 using Bijuu.Contracts;
 
+using Ginger.Contracts;
+
 
 namespace Bijuu.Service
 {
     public interface INotifier
     {
-        void NewMessageNotify(MessageInfo message);
+        void NewMessageNotify(MessageRecord message);
     }
 }
