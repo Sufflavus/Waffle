@@ -6,6 +6,9 @@ using Bijuu.Contracts;
 using Bijuu.Dal.Domain;
 using Bijuu.Dal.Repository.Interfaces;
 
+using Ginger.Contracts;
+using Ginger.Notifier;
+
 using Microsoft.Practices.Unity;
 
 
@@ -15,6 +18,9 @@ namespace Bijuu.BusinessLogic.Managers
     {
         [Dependency]
         public IMessageRepository MessageRepository { get; set; }
+
+        [Dependency]
+        public INotificationService NotificationService { get; set; }
 
         [Dependency]
         public IUserRepository UserRepository { get; set; }
@@ -49,6 +55,9 @@ namespace Bijuu.BusinessLogic.Managers
                 MessageEntity messageEntity = DalConverter.ToMessageEntity(message);
                 messageEntity.RecipientId = x.Id;
                 MessageRepository.AddOrUpdate(messageEntity);
+
+                MessageRecord record = NotifierConverter.ToMessageRecord(messageEntity);
+                NotificationService.SendMessage(record);
             });
 
             return message.Text.Length;

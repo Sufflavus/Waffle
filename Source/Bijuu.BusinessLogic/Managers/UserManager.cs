@@ -4,6 +4,9 @@ using Bijuu.Contracts;
 using Bijuu.Dal.Domain;
 using Bijuu.Dal.Repository.Interfaces;
 
+using Ginger.Contracts;
+using Ginger.Notifier;
+
 using Microsoft.Practices.Unity;
 
 
@@ -11,6 +14,9 @@ namespace Bijuu.BusinessLogic.Managers
 {
     public class UserManager : IUserManager
     {
+        [Dependency]
+        public INotificationService NotificationService { get; set; }
+
         [Dependency]
         public IUserRepository Repository { get; set; }
 
@@ -24,6 +30,9 @@ namespace Bijuu.BusinessLogic.Managers
             }
             entity.IsOnline = true;
             Repository.AddOrUpdate(entity);
+
+            UserRecord record = NotifierConverter.ToUserRecord(entity);
+            NotificationService.UpdateUserState(record);
 
             return new UserInfo
             {

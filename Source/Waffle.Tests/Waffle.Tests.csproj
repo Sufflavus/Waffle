@@ -101,6 +101,10 @@
       <Project>{4dee89f0-21ee-4873-a96f-1223d5b9b229}</Project>
       <Name>Bijuu.Service</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Ginger.Notifier\Ginger.Notifier.csproj">
+      <Project>{FCA2FA4C-14E0-4F33-AF07-FD766B56000C}</Project>
+      <Name>Ginger.Notifier</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Tabby.Terminal\Tabby.Terminal.csproj">
       <Project>{2645621b-f3da-46d0-b71f-2d757a8d4dc0}</Project>
       <Name>Tabby.Terminal</Name>

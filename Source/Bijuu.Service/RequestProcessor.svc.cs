@@ -5,6 +5,9 @@ using System.ServiceModel;
 using Bijuu.BusinessLogic.Managers;
 using Bijuu.Contracts;
 
+using Ginger.Contracts;
+using Ginger.Notifier;
+
 
 namespace Bijuu.Service
 {
@@ -15,7 +18,7 @@ namespace Bijuu.Service
     {
         private readonly IMessageManager _messageManager;
         private readonly IUserManager _userManager;
-
+        
 
         public RequestProcessor(IMessageManager messageManager, IUserManager userManager)
         {

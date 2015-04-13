@@ -6,6 +6,8 @@ using Bijuu.Dal.Domain;
 using Bijuu.Dal.Repository;
 using Bijuu.Dal.Repository.Interfaces;
 
+using Ginger.Notifier;
+
 using Microsoft.Practices.Unity;
 
 
@@ -39,6 +41,8 @@ namespace Bijuu.Service
 
             Container.RegisterType<IMessageManager, MessageManager>();
             Container.RegisterType<IUserManager, UserManager>();
+
+            Container.RegisterType<INotificationService, NotificationService>();
 
             Container.RegisterType<IContext, NHibernateContext>();
             Container.RegisterType<IUserRepository, UserRepository>();

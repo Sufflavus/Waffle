@@ -52,6 +52,7 @@
     <Compile Include="Managers\IUserManager.cs" />
     <Compile Include="Managers\MessageManager.cs" />
     <Compile Include="Managers\IMessageManager.cs" />
+    <Compile Include="NotifierConverter.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Managers\UserManager.cs" />
   </ItemGroup>
@@ -63,6 +64,14 @@
     <ProjectReference Include="..\Bijuu.Dal\Bijuu.Dal.csproj">
       <Project>{035e2aca-31cb-4339-b83d-71012a44ea67}</Project>
       <Name>Bijuu.Dal</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Ginger.Contracts\Ginger.Contracts.csproj">
+      <Project>{75427C42-D49E-4AC2-B708-3152B9B7D78C}</Project>
+      <Name>Ginger.Contracts</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Ginger.Notifier\Ginger.Notifier.csproj">
+      <Project>{FCA2FA4C-14E0-4F33-AF07-FD766B56000C}</Project>
+      <Name>Ginger.Notifier</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
