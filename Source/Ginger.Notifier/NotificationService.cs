@@ -11,8 +11,40 @@ using Newtonsoft.Json;
 
 namespace Ginger.Notifier
 {
-    public sealed class NotificationService : INotificationService
+    public sealed class NotificationService : INotificationService, IDisposable
     {
+        private readonly HubConnection _connection;
+        private readonly IHubProxy _hub;
+
+
+        public NotificationService()
+        {
+            _connection = new HubConnection(Settings.Default.ServiceUrl);
+            _connection.Start();
+            _hub = _connection.CreateHubProxy(ServerSettings.HubClassName);
+        }
+
+
+        public void Dispose()
+        {
+            _connection.Dispose();
+        }
+
+
+        public MessageRecord ReceiveMessage()
+        {
+            //_hub.On(ServerSettings.ReceiveMessageMethodName, x => Console.WriteLine(x));
+            throw new NotImplementedException();
+        }
+
+
+        public UserRecord ReceiveUserState()
+        {
+            //_hub.On(ServerSettings.ReceiveUserStateMethodName, x => Console.WriteLine(x));
+            throw new NotImplementedException();
+        }
+
+
         public void SendMessage(MessageRecord message)
         {
             InvokeServiceMethod(ServerSettings.SendMessageMethodName, message);
@@ -27,13 +59,8 @@ namespace Ginger.Notifier
 
         private void InvokeServiceMethod(string methodName, object objectForSend)
         {
-            using (var connection = new HubConnection(Settings.Default.ServiceUrl))
-            {
-                IHubProxy hub = connection.CreateHubProxy(ServerSettings.HubClassName);
-                connection.Start();
-                string objectForSendJson = JsonConvert.SerializeObject(objectForSend);
-                hub.Invoke(methodName, objectForSendJson).Wait();
-            }
+            string objectForSendJson = JsonConvert.SerializeObject(objectForSend);
+            _hub.Invoke(methodName, objectForSendJson).Wait();
         }
     }
 }

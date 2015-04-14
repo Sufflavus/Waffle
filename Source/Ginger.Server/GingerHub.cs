@@ -9,13 +9,13 @@ namespace Ginger.Server
     {
         public void SendMessage(string name, string message)
         {
-            Clients.All.SendMessage(name, message);
+            Clients.All.ReceiveMessage(name, message);
         }
 
 
         public void UpdateUserState(string name, string user)
         {
-            Clients.All.UpdateUserState(name, user);
+            Clients.All.ReceiveUserState(name, user);
         }
     }
 }
