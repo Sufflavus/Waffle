@@ -15,7 +15,8 @@ namespace Ginger.Notifier
     {
         private readonly HubConnection _connection;
         private readonly IHubProxy _hub;
-
+        private IDisposable _receivingMessageSubscription;
+        private IDisposable _receivingUserStateSubscription;
 
         public NotificationService()
         {
@@ -27,21 +28,37 @@ namespace Ginger.Notifier
 
         public void Dispose()
         {
+            if (_receivingMessageSubscription != null)
+            {
+                _receivingMessageSubscription.Dispose();
+            }
+
+            if (_receivingUserStateSubscription != null)
+            {
+                _receivingUserStateSubscription.Dispose();
+            }
+
             _connection.Dispose();
         }
 
 
-        public MessageRecord ReceiveMessage()
+        public void SubscribeForReceivingMessage(Action<MessageRecord> onMessageReceive)
         {
-            //_hub.On(ServerSettings.ReceiveMessageMethodName, x => Console.WriteLine(x));
-            throw new NotImplementedException();
+            _receivingMessageSubscription = _hub.On<string>(ServerSettings.ReceiveMessageMethodName, x =>
+            {
+                var record = JsonConvert.DeserializeObject<MessageRecord>(x);
+                onMessageReceive(record);
+            });
         }
 
 
-        public UserRecord ReceiveUserState()
+        public void SubscribeForReceivingUserState(Action<UserRecord> onUserStateReceive)
         {
-            //_hub.On(ServerSettings.ReceiveUserStateMethodName, x => Console.WriteLine(x));
-            throw new NotImplementedException();
+            _receivingUserStateSubscription = _hub.On<string>(ServerSettings.ReceiveUserStateMethodName, x =>
+            {
+                var record = JsonConvert.DeserializeObject<UserRecord>(x);
+                onUserStateReceive(record);
+            });
         }
 
 

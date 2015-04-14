@@ -7,10 +7,10 @@ namespace Ginger.Notifier
 {
     public interface INotificationService
     {
-        MessageRecord ReceiveMessage();
+        void SubscribeForReceivingMessage(Action<MessageRecord> onMessageReceive);
 
-        UserRecord ReceiveUserState();
-
+        void SubscribeForReceivingUserState(Action<UserRecord> onUserStateReceive);
+        
         void SendMessage(MessageRecord message);
 
         void UpdateUserState(UserRecord user);
