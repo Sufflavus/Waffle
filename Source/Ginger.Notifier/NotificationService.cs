@@ -21,8 +21,8 @@ namespace Ginger.Notifier
         public NotificationService()
         {
             _connection = new HubConnection(Settings.Default.ServiceUrl);
-            _connection.Start();
             _hub = _connection.CreateHubProxy(ServerSettings.HubClassName);
+            _connection.Start();
         }
 
 

@@ -1,6 +1,8 @@
 ﻿using System;
 using Bijuu.ServiceProvider;
 
+using Ginger.Notifier;
+
 using Microsoft.Practices.Unity;
 
 using Tabby.Terminal.Checker;
@@ -47,6 +49,8 @@ namespace Tabby.Terminal
             Container.RegisterType<IMessageProcessor, MessageProcessor>();
             Container.RegisterType<IUserProcessor, UserProcessor>();
             Container.RegisterType<IBijuuServiceClient, BijuuServiceClient>();
+
+            Container.RegisterType<INotificationService, NotificationService>();
         }
 
 

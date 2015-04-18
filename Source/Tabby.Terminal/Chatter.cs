@@ -1,5 +1,8 @@
 ﻿using System;
 
+using Ginger.Notifier;
+using Ginger.Contracts;
+
 using Microsoft.Practices.Unity;
 
 using Tabby.Terminal.Checker;
@@ -15,6 +18,16 @@ namespace Tabby.Terminal
     {
         [Dependency]
         public ILogger Logger { get; set; }
+
+        [Dependency]
+        public INotificationService NotificationService { get; set; }
+
+
+        public void Init()
+        {
+            NotificationService.SubscribeForReceivingMessage(x => Logger.Info("Message has been received: " + x.Text));
+            NotificationService.SubscribeForReceivingUserState(x => Logger.Info("Message has been received: " + x.Name));
+        }
 
 
         public void Start()

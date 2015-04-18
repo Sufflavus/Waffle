@@ -106,6 +106,14 @@
       <Project>{093e45f6-badf-4309-9f03-629bd20aeff3}</Project>
       <Name>Bijuu.ServiceProvider</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Ginger.Contracts\Ginger.Contracts.csproj">
+      <Project>{75427c42-d49e-4ac2-b708-3152b9b7d78c}</Project>
+      <Name>Ginger.Contracts</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Ginger.Notifier\Ginger.Notifier.csproj">
+      <Project>{FCA2FA4C-14E0-4F33-AF07-FD766B56000C}</Project>
+      <Name>Ginger.Notifier</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Taddy.BusinessLogic\Taddy.BusinessLogic.csproj">
       <Project>{b0948c51-8e8d-43d9-ba0a-c31e8a6423c4}</Project>
       <Name>Taddy.BusinessLogic</Name>
