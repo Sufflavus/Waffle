@@ -20,7 +20,7 @@ namespace Bijuu.BusinessLogic.Managers
         public IMessageRepository MessageRepository { get; set; }
 
         [Dependency]
-        public INotificationService NotificationService { get; set; }
+        public INotificationSender NotificationSender { get; set; }
 
         [Dependency]
         public IUserRepository UserRepository { get; set; }
@@ -57,7 +57,7 @@ namespace Bijuu.BusinessLogic.Managers
                 MessageRepository.AddOrUpdate(messageEntity);
 
                 MessageRecord record = NotifierConverter.ToMessageRecord(messageEntity);
-                NotificationService.SendMessage(record);
+                NotificationSender.NotifySendMessage(record);
             });
 
             return message.Text.Length;

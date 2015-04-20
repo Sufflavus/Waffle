@@ -20,13 +20,13 @@ namespace Tabby.Terminal
         public ILogger Logger { get; set; }
 
         [Dependency]
-        public INotificationService NotificationService { get; set; }
+        public INotificationReceiver NotificationReceiver { get; set; }
 
 
         public void Init()
         {
-            NotificationService.SubscribeForReceivingMessage(x => Logger.Info("Message has been received: " + x.Text));
-            NotificationService.SubscribeForReceivingUserState(x => Logger.Info("Message has been received: " + x.Name));
+            NotificationReceiver.SubscribeForReceivingMessage(x => Logger.Info("Message has been received: " + x.Text));
+            NotificationReceiver.SubscribeForReceivingUserState(x => Logger.Info("Message has been received: " + x.Name));
         }
 
 

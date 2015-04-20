@@ -15,7 +15,7 @@ namespace Bijuu.BusinessLogic.Managers
     public class UserManager : IUserManager
     {
         [Dependency]
-        public INotificationService NotificationService { get; set; }
+        public INotificationSender NotificationSender { get; set; }
 
         [Dependency]
         public IUserRepository Repository { get; set; }
@@ -32,7 +32,7 @@ namespace Bijuu.BusinessLogic.Managers
             Repository.AddOrUpdate(entity);
 
             UserRecord record = NotifierConverter.ToUserRecord(entity);
-            NotificationService.UpdateUserState(record);
+            NotificationSender.NotifyUpdateUserState(record);
 
             return new UserInfo
             {

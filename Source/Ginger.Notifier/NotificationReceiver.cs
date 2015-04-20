@@ -11,14 +11,15 @@ using Newtonsoft.Json;
 
 namespace Ginger.Notifier
 {
-    public sealed class NotificationService : INotificationService, IDisposable
+    public sealed class NotificationReceiver : INotificationReceiver, IDisposable
     {
         private readonly HubConnection _connection;
         private readonly IHubProxy _hub;
         private IDisposable _receivingMessageSubscription;
         private IDisposable _receivingUserStateSubscription;
 
-        public NotificationService()
+
+        public NotificationReceiver()
         {
             _connection = new HubConnection(Settings.Default.ServiceUrl);
             _hub = _connection.CreateHubProxy(ServerSettings.HubClassName);
@@ -59,25 +60,6 @@ namespace Ginger.Notifier
                 var record = JsonConvert.DeserializeObject<UserRecord>(x);
                 onUserStateReceive(record);
             });
-        }
-
-
-        public void SendMessage(MessageRecord message)
-        {
-            InvokeServiceMethod(ServerSettings.SendMessageMethodName, message);
-        }
-
-
-        public void UpdateUserState(UserRecord user)
-        {
-            InvokeServiceMethod(ServerSettings.UpdateUserStateMethodName, user);
-        }
-
-
-        private void InvokeServiceMethod(string methodName, object objectForSend)
-        {
-            string objectForSendJson = JsonConvert.SerializeObject(objectForSend);
-            _hub.Invoke(methodName, objectForSendJson).Wait();
         }
     }
 }

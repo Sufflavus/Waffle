@@ -42,7 +42,7 @@ namespace Bijuu.Service
             Container.RegisterType<IMessageManager, MessageManager>();
             Container.RegisterType<IUserManager, UserManager>();
 
-            Container.RegisterType<INotificationService, NotificationService>();
+            Container.RegisterType<INotificationSender, NotificationSender>();
 
             Container.RegisterType<IContext, NHibernateContext>();
             Container.RegisterType<IUserRepository, UserRepository>();

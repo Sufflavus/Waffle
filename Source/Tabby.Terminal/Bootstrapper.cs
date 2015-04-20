@@ -50,7 +50,7 @@ namespace Tabby.Terminal
             Container.RegisterType<IUserProcessor, UserProcessor>();
             Container.RegisterType<IBijuuServiceClient, BijuuServiceClient>();
 
-            Container.RegisterType<INotificationService, NotificationService>();
+            Container.RegisterType<INotificationReceiver, NotificationReceiver>();
         }
 
 
