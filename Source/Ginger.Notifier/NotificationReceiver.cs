@@ -23,7 +23,7 @@ namespace Ginger.Notifier
         {
             _connection = new HubConnection(Settings.Default.ServiceUrl);
             _hub = _connection.CreateHubProxy(ServerSettings.HubClassName);
-            _connection.Start();
+            _connection.Start().Wait();
         }
 
 
