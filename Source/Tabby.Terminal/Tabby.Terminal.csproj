@@ -83,6 +83,7 @@
     <Compile Include="Command\MessageModule\SendMessageCommand.cs" />
     <Compile Include="Command\UserModule\UserCommand.cs" />
     <Compile Include="Checker\MessageChecker.cs" />
+    <Compile Include="NotifierConverter.cs" />
     <Compile Include="Logger\ILogger.cs" />
     <Compile Include="Logger\UiNlogLogger.cs" />
     <Compile Include="Program.cs" />
