@@ -25,7 +25,7 @@ namespace Tabby.Terminal
         public void Init()
         {
             NotificationReceiver.SubscribeForReceivingMessage(x => Logger.Info("Message has been received: " + NotifierConverter.ToMessage(x)));
-            NotificationReceiver.SubscribeForReceivingUserState(x => Logger.Info("Message has been received: " + NotifierConverter.ToUser(x)));
+            NotificationReceiver.SubscribeForReceivingUserState(x => Logger.Info(string.Format("User {0} is now online", NotifierConverter.ToUser(x))));
         }
 
 
@@ -38,8 +38,8 @@ namespace Tabby.Terminal
             Logger.Info("GetAll");
             Logger.Info("GetNew");
 
-            var timer = new MessageCheckerTimerWrapper(userId);
-            timer.Start();
+            //var timer = new MessageCheckerTimerWrapper(userId);
+            //timer.Start();
 
             bool hasCommand;
             do
@@ -71,7 +71,7 @@ namespace Tabby.Terminal
             logoutCommand.UserId = userId;
             logoutCommand.Execute();
 
-            timer.Stop();
+            //timer.Stop();
         }
 
 
