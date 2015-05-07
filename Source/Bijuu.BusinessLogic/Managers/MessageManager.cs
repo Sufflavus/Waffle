@@ -55,6 +55,7 @@ namespace Bijuu.BusinessLogic.Managers
                 MessageEntity messageEntity = DalConverter.ToMessageEntity(message);
                 messageEntity.RecipientId = x.Id;
                 MessageRepository.AddOrUpdate(messageEntity);
+                messageEntity = MessageRepository.GetById(messageEntity.Id);
 
                 MessageRecord record = NotifierConverter.ToMessageRecord(messageEntity);
                 NotificationSender.NotifySendMessage(record);

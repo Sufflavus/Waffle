@@ -15,7 +15,8 @@ namespace Bijuu.Dal.Mappings
 
             Id(x => x.Id)
                 .Column("Id")
-                .GeneratedBy.GuidComb();
+                .GeneratedBy
+                .GuidComb();
 
             Map(x => x.Text)
                 .Not.Nullable();
