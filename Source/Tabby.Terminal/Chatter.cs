@@ -1,20 +1,24 @@
 ﻿using System;
 
+using Ginger.Contracts;
 using Ginger.Notifier;
 
 using Microsoft.Practices.Unity;
 
-using Tabby.Terminal.Checker;
 using Tabby.Terminal.Command;
 using Tabby.Terminal.Command.MessageModule;
 using Tabby.Terminal.Command.UserModule;
 using Tabby.Terminal.Logger;
+
+using Taddy.BusinessLogic.Models;
 
 
 namespace Tabby.Terminal
 {
     public sealed class Chatter : IDisposable
     {
+        private Guid _userId;
+
         [Dependency]
         public ILogger Logger { get; set; }
 
@@ -24,14 +28,14 @@ namespace Tabby.Terminal
 
         public void Init()
         {
-            NotificationReceiver.SubscribeForReceivingMessage(x => Logger.Info("Message has been received: " + NotifierConverter.ToMessage(x)));
-            NotificationReceiver.SubscribeForReceivingUserState(x => Logger.Info(string.Format("User {0} is now online", NotifierConverter.ToUser(x))));
+            NotificationReceiver.SubscribeForReceivingMessage(OnMessageReceive);
+            NotificationReceiver.SubscribeForReceivingUserState(OnUserStateChanged);
         }
 
 
         public void Start()
         {
-            Guid userId = Login();
+            _userId = Login();
 
             Logger.Info("Available commands:");
             Logger.Info("Send: Message text");
@@ -52,7 +56,7 @@ namespace Tabby.Terminal
                     try
                     {
                         MessageCommand command = CommandParser.Parse(commandText);
-                        command.UserId = userId;
+                        command.UserId = _userId;
                         command.Execute();
                     }
                     catch (ArgumentException)
@@ -68,7 +72,7 @@ namespace Tabby.Terminal
             while (hasCommand);
 
             var logoutCommand = Bootstrapper.Resolve<LogoutUserCommand>();
-            logoutCommand.UserId = userId;
+            logoutCommand.UserId = _userId;
             logoutCommand.Execute();
 
             //timer.Stop();
@@ -107,6 +111,25 @@ namespace Tabby.Terminal
             }
             while (!userId.HasValue);
             return userId.Value;
+        }
+
+
+        private void OnMessageReceive(MessageRecord record)
+        {
+            if (record.RecipientId == _userId)
+            {
+                Logger.Info("Message has been received: " + NotifierConverter.ToMessage(record));
+            }
+        }
+
+
+        private void OnUserStateChanged(UserRecord record)
+        {
+            if (record.Id != _userId)
+            {
+                User user = NotifierConverter.ToUser(record);
+                Logger.Info(string.Format("User {0} is now {1}", user, record.IsOnline ? "online" : "offline"));
+            }
         }
     }
 }
