@@ -6,6 +6,7 @@ namespace Taddy.BusinessLogic.Models
     public sealed class User
     {
         public Guid Id { get; set; }
+        public bool IsOnline { get; set; }
         public string Name { get; set; }
 
 

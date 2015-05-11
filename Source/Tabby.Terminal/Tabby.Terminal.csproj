@@ -70,7 +70,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Bootstrapper.cs" />
-    <Compile Include="BusinessLogicConverter.cs" />
+    <Compile Include="Converters\BusinessLogicConverter.cs" />
     <Compile Include="Chatter.cs" />
     <Compile Include="Command\CommandParser.cs" />
     <Compile Include="Command\CommandType.cs" />
@@ -84,7 +84,7 @@
     <Compile Include="Command\UserModule\UserCommand.cs" />
     <Compile Include="Checker\MessageChecker.cs" />
     <Compile Include="NotificationReceiverWrapper.cs" />
-    <Compile Include="NotifierConverter.cs" />
+    <Compile Include="Converters\NotifierConverter.cs" />
     <Compile Include="Logger\ILogger.cs" />
     <Compile Include="Logger\UiNlogLogger.cs" />
     <Compile Include="Program.cs" />

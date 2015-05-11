@@ -51,6 +51,8 @@ namespace Tabby.Terminal
             Container.RegisterType<IBijuuServiceClient, BijuuServiceClient>();
 
             Container.RegisterType<INotificationReceiver, NotificationReceiver>();
+
+            Container.RegisterType<NotificationReceiverWrapper>();
         }
 
 

@@ -1,13 +1,11 @@
 ﻿using System;
 
-using Ginger.Contracts;
-using Ginger.Notifier;
-
 using Microsoft.Practices.Unity;
 
 using Tabby.Terminal.Command;
 using Tabby.Terminal.Command.MessageModule;
 using Tabby.Terminal.Command.UserModule;
+using Tabby.Terminal.Converters;
 using Tabby.Terminal.Logger;
 
 using Taddy.BusinessLogic.Models;
@@ -23,7 +21,7 @@ namespace Tabby.Terminal
         public ILogger Logger { get; set; }
 
         [Dependency]
-        public INotificationReceiver NotificationReceiver { get; set; }
+        public NotificationReceiverWrapper NotificationReceiver { get; set; }
 
 
         public void Init()
@@ -114,21 +112,20 @@ namespace Tabby.Terminal
         }
 
 
-        private void OnMessageReceive(MessageRecord record)
+        private void OnMessageReceive(Message message)
         {
-            if (record.RecipientId == _userId)
+            if (message.RecipientId == _userId)
             {
-                Logger.Info("Message has been received: " + NotifierConverter.ToMessage(record));
+                Logger.Info("Message has been received: " + message);
             }
         }
 
 
-        private void OnUserStateChanged(UserRecord record)
+        private void OnUserStateChanged(User user)
         {
-            if (record.Id != _userId)
+            if (user.Id != _userId)
             {
-                User user = NotifierConverter.ToUser(record);
-                Logger.Info(string.Format("User {0} is now {1}", user, record.IsOnline ? "online" : "offline"));
+                Logger.Info(string.Format("User {0} is now {1}", user, user.IsOnline ? "online" : "offline"));
             }
         }
     }

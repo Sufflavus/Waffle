@@ -1,6 +1,7 @@
 ﻿using System;
 
 using Tabby.Terminal;
+using Tabby.Terminal.Converters;
 
 using Taddy.BusinessLogic.Models;
 
