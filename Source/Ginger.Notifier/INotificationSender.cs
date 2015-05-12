@@ -2,6 +2,8 @@ using System;
 
 using Ginger.Contracts;
 
+using Microsoft.AspNet.SignalR;
+
 
 namespace Ginger.Notifier
 {

@@ -4,6 +4,7 @@ using Ginger.Contracts;
 using Ginger.Notifier.Properties;
 using Ginger.Server;
 
+using Microsoft.AspNet.SignalR;
 using Microsoft.AspNet.SignalR.Client;
 
 using Newtonsoft.Json;
@@ -40,6 +41,12 @@ namespace Ginger.Notifier
             }
 
             _connection.Dispose();
+        }
+
+
+        public void RegisterReceiver(IUserIdProvider idProvider)
+        {
+            GlobalHost.DependencyResolver.Register(typeof(IUserIdProvider), () => idProvider);
         }
 
 

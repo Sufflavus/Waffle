@@ -1,5 +1,6 @@
 ﻿using System;
 
+using Microsoft.AspNet.SignalR;
 using Microsoft.Practices.Unity;
 
 using Tabby.Terminal.Command;
@@ -13,7 +14,7 @@ using Taddy.BusinessLogic.Models;
 
 namespace Tabby.Terminal
 {
-    public sealed class Chatter : IDisposable
+    public sealed class Chatter :  IUserIdProvider, IDisposable
     {
         private Guid _userId;
 
@@ -24,16 +25,9 @@ namespace Tabby.Terminal
         public NotificationReceiverWrapper NotificationReceiver { get; set; }
 
 
-        public void Init()
-        {
-            NotificationReceiver.SubscribeForReceivingMessage(OnMessageReceive);
-            NotificationReceiver.SubscribeForReceivingUserState(OnUserStateChanged);
-        }
-
-
         public void Start()
         {
-            _userId = Login();
+            Init();
 
             Logger.Info("Available commands:");
             Logger.Info("Send: Message text");
@@ -82,6 +76,18 @@ namespace Tabby.Terminal
             Bootstrapper.Dispose();
         }
 
+        private void Init()
+        {
+            _userId = Login();
+            Subscribe();
+        }
+
+        private void Subscribe()
+        {
+            NotificationReceiver.RegisterReceiver(this);
+            NotificationReceiver.SubscribeForReceivingMessage(OnMessageReceive);
+            NotificationReceiver.SubscribeForReceivingUserState(OnUserStateChanged);
+        }
 
         private Guid Login()
         {
@@ -127,6 +133,12 @@ namespace Tabby.Terminal
             {
                 Logger.Info(string.Format("User {0} is now {1}", user, user.IsOnline ? "online" : "offline"));
             }
+        }
+
+
+        public string GetUserId(IRequest request)
+        {
+            return _userId.ToString();
         }
     }
 }

@@ -2,6 +2,7 @@
 
 using Ginger.Notifier;
 
+using Microsoft.AspNet.SignalR;
 using Microsoft.Practices.Unity;
 
 using Tabby.Terminal.Converters;
@@ -16,6 +17,11 @@ namespace Tabby.Terminal
         [Dependency]
         public INotificationReceiver NotificationReceiver { get; set; }
 
+
+        public void RegisterReceiver(IUserIdProvider idProvider)
+        {
+            NotificationReceiver.RegisterReceiver(idProvider);
+        }
 
         public void SubscribeForReceivingMessage(Action<Message> onMessageReceive)
         {
