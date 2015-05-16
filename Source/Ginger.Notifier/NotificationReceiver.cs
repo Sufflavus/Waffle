@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Net;
 
 using Ginger.Contracts;
 using Ginger.Notifier.Properties;
@@ -14,17 +15,18 @@ namespace Ginger.Notifier
 {
     public sealed class NotificationReceiver : INotificationReceiver, IDisposable
     {
-        private readonly HubConnection _connection;
-        private readonly IHubProxy _hub;
+        private HubConnection _connection;
+        private IHubProxy _hub;
         private IDisposable _receivingMessageSubscription;
         private IDisposable _receivingUserStateSubscription;
 
 
         public NotificationReceiver()
         {
-            _connection = new HubConnection(Settings.Default.ServiceUrl);
+            /*_connection = new HubConnection(Settings.Default.ServiceUrl);
+            _connection.Headers.Add("myauthtoken", /* token data #1#);
             _hub = _connection.CreateHubProxy(ServerSettings.HubClassName);
-            _connection.Start().Wait();
+            _connection.Start().Wait();*/
         }
 
 
@@ -46,6 +48,11 @@ namespace Ginger.Notifier
 
         public void RegisterReceiver(IUserIdProvider idProvider)
         {
+            _connection = new HubConnection(Settings.Default.ServiceUrl);
+            _connection.Headers.Add("myauthtoken", idProvider.GetUserId(null));
+            _hub = _connection.CreateHubProxy(ServerSettings.HubClassName);
+            _connection.Start().Wait();
+
             GlobalHost.DependencyResolver.Register(typeof(IUserIdProvider), () => idProvider);
         }
 
