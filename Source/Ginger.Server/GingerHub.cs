@@ -63,25 +63,25 @@ namespace Ginger.Server
 
         public void SendMessage(string receiverId, string message)
         {
-            foreach (var connectionId in _connections.GetConnections(receiverId))
+            /*foreach (var connectionId in _connections.GetConnections(receiverId))
             {
                 Clients.Client(connectionId).ReceiveMessage(message);
-            }
+            }*/
 
             //Clients.User(receiverId).ReceiveMessage(message);
-            //Clients.All.ReceiveMessage(message);
+            Clients.All.ReceiveMessage(message);
         }
 
 
         public void UpdateUserState(string excludeReceiverId, string user)
         {
-            foreach (var connectionId in _connections.GetConnections(excludeReceiverId))
+            /*foreach (var connectionId in _connections.GetConnections(excludeReceiverId))
             {
                 Clients.AllExcept(connectionId).ReceiveUserState(user);
-            }
+            }*/
 
             //Clients.AllExcept(excludeReceiverId).ReceiveUserState(user);
-            //Clients.All.ReceiveUserState(user);
+            Clients.All.ReceiveUserState(user);
         }
     }
 }
