@@ -26,6 +26,8 @@ namespace Tabby.Terminal.Command
             {
                 case CommandType.Send:
                     return CreateSendMessageCommand(commandText);
+                case CommandType.SendTo:
+                    return CreateSendMessageToUserCommand(commandText);
                 case CommandType.GetAll:
                     return Bootstrapper.Resolve<GetAllMessagesCommand>();
                 case CommandType.GetNew:
@@ -52,6 +54,25 @@ namespace Tabby.Terminal.Command
         }
 
 
+        private static SendMessageToUserCommand CreateSendMessageToUserCommand(string commandText)
+        {
+            int separatorIndex = commandText.IndexOf(CommandTypeSeparator);
+            string commandPrefix = commandText.Substring(0, separatorIndex).Trim();
+            string recipientName = commandPrefix.Trim().Split(' ')[1];
+            string messageText = commandText.Substring(separatorIndex + 1).Trim();
+
+            if (separatorIndex < 0 || string.IsNullOrEmpty(messageText) || string.IsNullOrEmpty(recipientName))
+            {
+                throw new ArgumentException("Invalid command");
+            }
+
+            var command = Bootstrapper.Resolve<SendMessageToUserCommand>();
+            command.RecipientName = recipientName;
+            command.MessageText = messageText;
+            return command;
+        }
+
+
         private static CommandType GetCommandType(string commandText)
         {
             string[] commandParts = commandText.Trim().ToLower().Split(CommandTypeSeparator);
@@ -65,6 +86,8 @@ namespace Tabby.Terminal.Command
             {
                 case "send":
                     return CommandType.Send;
+                case "sendto":
+                    return CommandType.SendTo;
                 case "getall":
                     return CommandType.GetAll;
                 case "getnew":

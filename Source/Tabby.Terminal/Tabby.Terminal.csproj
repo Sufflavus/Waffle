@@ -73,6 +73,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Bootstrapper.cs" />
+    <Compile Include="Command\MessageModule\SendMessageToUserCommand.cs" />
     <Compile Include="Converters\BusinessLogicConverter.cs" />
     <Compile Include="Chatter.cs" />
     <Compile Include="Command\CommandParser.cs" />
