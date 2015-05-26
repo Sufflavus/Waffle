@@ -16,6 +16,12 @@ namespace Taddy.BusinessLogic.Processor
         public IBijuuServiceClient ServiceClient { get; set; }
 
 
+        public User GetUserByName(string userName)
+        {
+            throw new NotImplementedException();
+        }
+
+
         public void LogIn(User user)
         {
             UserInfo userInfo = ServiceClient.LogIn(user.Name);

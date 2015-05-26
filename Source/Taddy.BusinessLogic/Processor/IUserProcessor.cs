@@ -7,6 +7,7 @@ namespace Taddy.BusinessLogic.Processor
 {
     public interface IUserProcessor
     {
+        User GetUserByName(string userName);
         void LogIn(User user);
         void LogOut(Guid userId);
     }
