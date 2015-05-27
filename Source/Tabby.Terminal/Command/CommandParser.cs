@@ -56,11 +56,12 @@ namespace Tabby.Terminal.Command
 
         private static SendMessageToUserCommand CreateSendMessageToUserCommand(string commandText)
         {
-            int separatorIndex = commandText.IndexOf(CommandTypeSeparator);
-            string commandPrefix = commandText.Substring(0, separatorIndex).Trim();
-            string recipientName = commandPrefix.Trim().Split(' ')[1];
-            string messageText = commandText.Substring(separatorIndex + 1).Trim();
-
+            string[] commandParts = commandText.Trim().ToLower().Split(CommandTypeSeparator);
+            string commandData = commandParts[1].Trim();
+            int separatorIndex = commandData.IndexOf(' ');
+            string recipientName = commandData.Substring(0, separatorIndex).Trim();
+            string messageText = commandData.Substring(separatorIndex + 1).Trim();
+            
             if (separatorIndex < 0 || string.IsNullOrEmpty(messageText) || string.IsNullOrEmpty(recipientName))
             {
                 throw new ArgumentException("Invalid command");

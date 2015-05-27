@@ -29,7 +29,7 @@ namespace Tabby.Terminal
 
             Logger.Info("Available commands:");
             Logger.Info("Send: Message text");
-            Logger.Info("SendTo UserName: Message text");
+            Logger.Info("SendTo: UserName Message text");
             Logger.Info("GetAll");
             Logger.Info("GetNew");
 
