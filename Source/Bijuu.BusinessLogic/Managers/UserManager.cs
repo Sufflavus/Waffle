@@ -21,6 +21,23 @@ namespace Bijuu.BusinessLogic.Managers
         public IUserRepository Repository { get; set; }
 
 
+        public UserInfo GetUserByName(string userName)
+        {
+            UserEntity entity = Repository.GetByName(userName);
+
+            if (entity == null)
+            {
+                return null;
+            }
+
+            return new UserInfo
+            {
+                Id = entity.Id,
+                Name = entity.Name
+            };
+        }
+
+
         public UserInfo LogIn(string userName)
         {
             UserEntity entity = Repository.GetByName(userName);

@@ -5,9 +5,6 @@ using System.ServiceModel;
 using Bijuu.BusinessLogic.Managers;
 using Bijuu.Contracts;
 
-using Ginger.Contracts;
-using Ginger.Notifier;
-
 
 namespace Bijuu.Service
 {
@@ -18,7 +15,7 @@ namespace Bijuu.Service
     {
         private readonly IMessageManager _messageManager;
         private readonly IUserManager _userManager;
-        
+
 
         public RequestProcessor(IMessageManager messageManager, IUserManager userManager)
         {
@@ -49,6 +46,12 @@ namespace Bijuu.Service
         public List<MessageInfo> GetNewMessages(Guid userId)
         {
             return _messageManager.GetNewMessages(userId);
+        }
+
+
+        public UserInfo GetUserByName(string userName)
+        {
+            return _userManager.GetUserByName(userName);
         }
 
 

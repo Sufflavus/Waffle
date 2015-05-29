@@ -32,6 +32,14 @@ namespace Bijuu.ServiceProvider
         }
 
 
+        public UserInfo GetUserByName(string userName)
+        {
+            string uri = UrlAddressFactory.GetUserByName(userName);
+            var data = GetData<UserInfo>(uri);
+            return data;
+        }
+
+
         public UserInfo LogIn(string userName)
         {
             string uri = UrlAddressFactory.LogIn(userName);
