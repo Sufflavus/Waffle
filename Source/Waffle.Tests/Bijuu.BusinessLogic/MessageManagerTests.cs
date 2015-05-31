@@ -7,6 +7,8 @@ using Bijuu.Contracts;
 using Bijuu.Dal.Domain;
 using Bijuu.Dal.Repository.Interfaces;
 
+using Ginger.Notifier;
+
 using NSubstitute;
 
 using Xunit;
@@ -84,14 +86,16 @@ namespace Waffle.Tests.Bijuu.BusinessLogic
         {
             MockUserRepository userRepository = InitMockUserRepository();
             MockMessageRepository messageRepository = InitMockMessageRepository(userRepository);
+            var notificationSender = Substitute.For<INotificationSender>();
             IMessageManager messageManager = new MessageManager
             {
                 MessageRepository = messageRepository,
-                UserRepository = userRepository
+                UserRepository = userRepository,
+                NotificationSender = notificationSender
             };
             List<UserEntity> users = userRepository.Storage;
 
-            var newMessage = new MessageInfo { Text = "text", SenderId = users[0].Id };
+            var newMessage = new MessageInfo { Text = "text", SenderId = users[0].Id};
             List<UserEntity> recipients = userRepository.Storage.Where(x => x.Id != newMessage.SenderId).ToList();
             int messagesCount = messageRepository.Storage.Count;
 

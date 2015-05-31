@@ -5,6 +5,8 @@ using Bijuu.Contracts;
 using Bijuu.Dal.Domain;
 using Bijuu.Dal.Repository.Interfaces;
 
+using Ginger.Notifier;
+
 using NSubstitute;
 
 using Xunit;
@@ -55,7 +57,8 @@ namespace Waffle.Tests.Bijuu.BusinessLogic
         public void LogIn__GetByNameCalledInRepository()
         {
             var repository = Substitute.For<IUserRepository>();
-            IUserManager manager = new UserManager { Repository = repository };
+            var notificationSender = Substitute.For<INotificationSender>();
+            IUserManager manager = new UserManager { Repository = repository, NotificationSender = notificationSender };
             string userName = "user";
             var user = new UserEntity { Id = Guid.NewGuid(), Name = userName, IsOnline = false };
             repository.GetByName(userName).Returns(user);
@@ -112,7 +115,8 @@ namespace Waffle.Tests.Bijuu.BusinessLogic
         public void SetFixture(MockUserRepository data)
         {
             _repository = new MockUserRepository();
-            _userManager = new UserManager { Repository = _repository };
+            var notificationSender = Substitute.For<INotificationSender>();
+            _userManager = new UserManager { Repository = _repository, NotificationSender = notificationSender };
         }
     }
 }
