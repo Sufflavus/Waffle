@@ -8,7 +8,6 @@ using Bijuu.Dal.Repository.Interfaces;
 
 namespace Waffle.Tests.Bijuu.BusinessLogic
 {
-    //TODO: подобрать правильные моки
     public class MockMessageRepository : IMessageRepository
     {
         public MockMessageRepository()
@@ -32,6 +31,10 @@ namespace Waffle.Tests.Bijuu.BusinessLogic
             if (message != null)
             {
                 Storage.Remove(entity);
+            }
+            if (entity.Id == Guid.Empty)
+            {
+                entity.Id = Guid.NewGuid();
             }
             Storage.Add(entity);
         }

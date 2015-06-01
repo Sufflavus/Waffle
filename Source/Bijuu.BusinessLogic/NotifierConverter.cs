@@ -20,10 +20,10 @@ namespace Bijuu.BusinessLogic
             {
                 Text = message.Text,
                 SenderId = message.SenderId,
-                Sender = ToUserRecord(message.Sender),
+                Sender = message.Sender == null ? null : ToUserRecord(message.Sender),
                 CreateDate = message.CreateDate,
                 RecipientId = message.RecipientId,
-                Recipient = ToUserRecord(message.Recipient)
+                Recipient = message.Recipient == null ? null : ToUserRecord(message.Recipient)
             };
         }
 
