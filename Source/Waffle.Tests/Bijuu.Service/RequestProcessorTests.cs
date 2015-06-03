@@ -51,6 +51,18 @@ namespace Waffle.Tests.Bijuu.Service
 
 
         [Fact]
+        public void GetUserByName_MessageManager_IsCalled()
+        {
+            string userName = "user";
+            _userManager.GetUserByName(userName).Returns(new UserInfo());
+
+            _requestProcessor.GetUserByName(userName);
+
+            _userManager.Received().GetUserByName(userName);
+        }
+
+
+        [Fact]
         public void LogIn_MessageManager_IsCalled()
         {
             string userName = "user";
