@@ -56,7 +56,7 @@ namespace Tabby.Terminal.Command
 
         private static SendMessageToUserCommand CreateSendMessageToUserCommand(string commandText)
         {
-            string[] commandParts = commandText.Trim().ToLower().Split(CommandTypeSeparator);
+            string[] commandParts = commandText.Trim().Split(CommandTypeSeparator);
             string commandData = commandParts[1].Trim();
             int separatorIndex = commandData.IndexOf(' ');
             string recipientName = commandData.Substring(0, separatorIndex).Trim();
@@ -76,11 +76,12 @@ namespace Tabby.Terminal.Command
 
         private static CommandType GetCommandType(string commandText)
         {
-            string[] commandParts = commandText.Trim().ToLower().Split(CommandTypeSeparator);
-            if (commandParts.Length < 1)
+            if (string.IsNullOrEmpty(commandText))
             {
                 throw new ArgumentException("Invalid command");
             }
+
+            string[] commandParts = commandText.Trim().ToLower().Split(CommandTypeSeparator);
             string commandType = commandParts[0];
 
             switch (commandType)
