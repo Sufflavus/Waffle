@@ -62,14 +62,15 @@
     <Compile Include="Bijuu.BusinessLogic\UserManagerTests.cs" />
     <Compile Include="Bijuu.Service\RequestProcessorTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Tabby.Client\CommandParserTests.cs" />
-    <Compile Include="Tabby.Client\GetNewMessagesCommandTests.cs" />
-    <Compile Include="Tabby.Client\GetAllMessagesCommandTests.cs" />
     <Compile Include="Tabby.Dal\GenerateSchemaTests.cs" />
     <Compile Include="Tabby.Dal\Repository\UserRepositoryTests.cs" />
     <Compile Include="Tabby.Dal\Repository\MockContext.cs" />
     <Compile Include="Tabby.Dal\Repository\MessageRepositoryTests.cs" />
-    <Compile Include="Tabby.Client\BusinessLogicConverterTests.cs" />
+    <Compile Include="Tabby.Terminal\BusinessLogicConverterTests.cs" />
+    <Compile Include="Tabby.Terminal\CommandParserTests.cs" />
+    <Compile Include="Tabby.Terminal\GetAllMessagesCommandTests.cs" />
+    <Compile Include="Tabby.Terminal\GetNewMessagesCommandTests.cs" />
+    <Compile Include="Tabby.Terminal\LogoutUserCommandTests.cs" />
     <Compile Include="Taddy.BusinessLogic\MessageProcessorTests.cs" />
     <Compile Include="Taddy.BusinessLogic\DalConverterTests.cs" />
     <Compile Include="Taddy.BusinessLogic\MockMessageRepository.cs" />
@@ -114,9 +115,7 @@
       <Name>Taddy.BusinessLogic</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Tabby.Terminal\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>
