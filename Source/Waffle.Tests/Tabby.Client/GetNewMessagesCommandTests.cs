@@ -12,7 +12,7 @@ using Taddy.BusinessLogic.Processor;
 using Xunit;
 
 
-namespace Waffle.Tests.Tabby.Client
+namespace Waffle.Tests.Tabby.Terminal
 {
     public class GetNewMessagesCommandTests
     {
