@@ -34,6 +34,10 @@
     <Reference Include="Iesi.Collections">
       <HintPath>..\..\packages\Iesi.Collections.4.0.0.4000\lib\net40\Iesi.Collections.dll</HintPath>
     </Reference>
+    <Reference Include="Microsoft.AspNet.SignalR.Core, Version=2.2.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\packages\Microsoft.AspNet.SignalR.Core.2.2.0\lib\net45\Microsoft.AspNet.SignalR.Core.dll</HintPath>
+    </Reference>
     <Reference Include="NHibernate">
       <HintPath>..\..\packages\NHibernate.4.0.2.4000\lib\net40\NHibernate.dll</HintPath>
     </Reference>
@@ -68,6 +72,7 @@
     <Compile Include="Tabby.Dal\Repository\MessageRepositoryTests.cs" />
     <Compile Include="Tabby.Terminal\BusinessLogicConverterTests.cs" />
     <Compile Include="Tabby.Terminal\CommandParserTests.cs" />
+    <Compile Include="Tabby.Terminal\NotificationReceiverWrapperTests.cs" />
     <Compile Include="Tabby.Terminal\GetAllMessagesCommandTests.cs" />
     <Compile Include="Tabby.Terminal\GetNewMessagesCommandTests.cs" />
     <Compile Include="Tabby.Terminal\LogoutUserCommandTests.cs" />
@@ -101,6 +106,10 @@
     <ProjectReference Include="..\Bijuu.Service\Bijuu.Service.csproj">
       <Project>{4dee89f0-21ee-4873-a96f-1223d5b9b229}</Project>
       <Name>Bijuu.Service</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Ginger.Contracts\Ginger.Contracts.csproj">
+      <Project>{75427C42-D49E-4AC2-B708-3152B9B7D78C}</Project>
+      <Name>Ginger.Contracts</Name>
     </ProjectReference>
     <ProjectReference Include="..\Ginger.Notifier\Ginger.Notifier.csproj">
       <Project>{FCA2FA4C-14E0-4F33-AF07-FD766B56000C}</Project>
