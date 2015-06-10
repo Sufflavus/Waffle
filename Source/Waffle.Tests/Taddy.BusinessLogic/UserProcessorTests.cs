@@ -27,6 +27,19 @@ namespace Waffle.Tests.Taddy.BusinessLogic
 
 
         [Fact]
+        public void GetUserByName_ServiceClient_IsCalled()
+        {
+            string userName = "user";
+            var userInfo = new UserInfo { Name = userName };
+            _serviceClient.GetUserByName(userName).Returns(userInfo);
+
+            _userProcessor.GetUserByName(userName);
+
+            _serviceClient.Received().GetUserByName(userName);
+        }
+
+
+        [Fact]
         public void LogIn_CorrectResult()
         {
             string userName = "user";

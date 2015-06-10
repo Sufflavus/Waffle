@@ -18,7 +18,8 @@ namespace Taddy.BusinessLogic.Processor
 
         public User GetUserByName(string userName)
         {
-            throw new NotImplementedException();
+            UserInfo userInfo = ServiceClient.GetUserByName(userName);
+            return DalConverter.ToUser(userInfo);
         }
 
 
