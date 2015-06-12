@@ -72,6 +72,7 @@
     <Compile Include="Tabby.Dal\Repository\MessageRepositoryTests.cs" />
     <Compile Include="Tabby.Terminal\BusinessLogicConverterTests.cs" />
     <Compile Include="Tabby.Terminal\CommandParserTests.cs" />
+    <Compile Include="Tabby.Terminal\NotifierConverterTests.cs" />
     <Compile Include="Tabby.Terminal\NotificationReceiverWrapperTests.cs" />
     <Compile Include="Tabby.Terminal\GetAllMessagesCommandTests.cs" />
     <Compile Include="Tabby.Terminal\GetNewMessagesCommandTests.cs" />

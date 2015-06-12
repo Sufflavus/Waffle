@@ -11,12 +11,28 @@ namespace Tabby.Terminal.Converters
     {
         public static Message ToMessage(MessageRecord record)
         {
-            return new Message { SenderId = record.SenderId, Sender = ToUser(record.Sender), Text = record.Text, CreateDate = record.CreateDate.Value };
+            if (record == null)
+            {
+                return null;
+            }
+
+            return new Message
+            {
+                SenderId = record.SenderId,
+                Sender = ToUser(record.Sender),
+                Text = record.Text,
+                CreateDate = record.CreateDate.Value
+            };
         }
 
 
         public static User ToUser(UserRecord record)
         {
+            if (record == null)
+            {
+                return null;
+            }
+
             return new User { Id = record.Id, Name = record.Name };
         }
     }
