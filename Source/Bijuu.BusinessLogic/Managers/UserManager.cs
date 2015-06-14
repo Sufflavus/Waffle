@@ -30,11 +30,7 @@ namespace Bijuu.BusinessLogic.Managers
                 return null;
             }
 
-            return new UserInfo
-            {
-                Id = entity.Id,
-                Name = entity.Name
-            };
+            return DalConverter.ToUserInfo(entity);
         }
 
 
@@ -51,12 +47,7 @@ namespace Bijuu.BusinessLogic.Managers
             UserRecord record = NotifierConverter.ToUserRecord(entity);
             NotificationSender.NotifyUpdateUserState(record);
 
-            return new UserInfo
-            {
-                Id = entity.Id,
-                IsOnline = entity.IsOnline,
-                Name = entity.Name
-            };
+            return DalConverter.ToUserInfo(entity);
         }
 
 

@@ -59,6 +59,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Bijuu.BusinessLogic\NotifierConverterTests.cs" />
     <Compile Include="Bijuu.BusinessLogic\DalConverterTests.cs" />
     <Compile Include="Bijuu.BusinessLogic\MessageManagerTests.cs" />
     <Compile Include="Bijuu.BusinessLogic\MockMessageRepository.cs" />

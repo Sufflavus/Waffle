@@ -83,12 +83,12 @@ namespace Waffle.Tests.Bijuu.BusinessLogic
         [Fact]
         public void ToUserInfo_GoodUserEntity_UserInfo()
         {
-            var enrity = new UserEntity { Id = Guid.NewGuid(), Name = "user" };
+            var entity = new UserEntity { Id = Guid.NewGuid(), Name = "user" };
 
-            UserInfo result = DalConverter.ToUserInfo(enrity);
+            UserInfo result = DalConverter.ToUserInfo(entity);
 
-            Assert.Equal(enrity.Id, result.Id);
-            Assert.Equal(enrity.Name, result.Name);
+            Assert.Equal(entity.Id, result.Id);
+            Assert.Equal(entity.Name, result.Name);
         }
 
 

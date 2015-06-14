@@ -21,6 +21,52 @@ namespace Waffle.Tests.Bijuu.BusinessLogic
 
 
         [Fact]
+        public void GetUserByName_ExistingUser_CorrectUserInfo()
+        {
+            var repository = Substitute.For<IUserRepository>();
+            IUserManager manager = new UserManager { Repository = repository };
+            string userName = "user";
+            var user = new UserEntity { Id = Guid.NewGuid(), Name = userName, IsOnline = false };
+            repository.GetByName(userName).Returns(user);
+
+            UserInfo result = manager.GetUserByName(userName);
+
+            Assert.Equal(user.Id, result.Id);
+            Assert.Equal(user.Name, result.Name);
+        }
+
+
+        [Fact]
+        public void GetUserByName_GetByNameCalledInRepository()
+        {
+            var repository = Substitute.For<IUserRepository>();
+            IUserManager manager = new UserManager { Repository = repository };
+            string userName = "user";
+            var user = new UserEntity { Id = Guid.NewGuid(), Name = userName, IsOnline = false };
+            repository.GetByName(userName).Returns(user);
+
+            manager.GetUserByName(userName);
+
+            repository.Received().GetByName(userName);
+        }
+
+
+        [Fact]
+        public void GetUserByName_NotExistingUser_Null()
+        {
+            var repository = Substitute.For<IUserRepository>();
+            IUserManager manager = new UserManager { Repository = repository };
+            string userName = "user";
+            UserEntity user = null;
+            repository.GetByName(userName).Returns(user);
+
+            UserInfo result = manager.GetUserByName(userName);
+
+            Assert.Null(result);
+        }
+
+
+        [Fact]
         public void LogIn_ExistingOfflineUser_Online()
         {
             var user1 = new UserEntity { Id = Guid.NewGuid(), Name = "user1", IsOnline = false };
@@ -40,21 +86,7 @@ namespace Waffle.Tests.Bijuu.BusinessLogic
 
 
         [Fact]
-        public void LogIn_NotExistingUser_UserAdded()
-        {
-            int itemsCount = _repository.Storage.Count;
-
-            UserInfo result = _userManager.LogIn("newUser");
-
-            Assert.Equal(_repository.Storage.Count, itemsCount + 1);
-            Assert.True(result.IsOnline);
-            BaseEntity actual = _repository.Storage[0];
-            Assert.True(((UserEntity)actual).IsOnline);
-        }
-
-
-        [Fact]
-        public void LogIn__GetByNameCalledInRepository()
+        public void LogIn_GetByNameCalledInRepository()
         {
             var repository = Substitute.For<IUserRepository>();
             var notificationSender = Substitute.For<INotificationSender>();
@@ -71,7 +103,21 @@ namespace Waffle.Tests.Bijuu.BusinessLogic
 
 
         [Fact]
-        public void LogOut_ExistingOnlineUser_Offline()
+        public void LogIn_NotExistingUser_UserAdded()
+        {
+            int itemsCount = _repository.Storage.Count;
+
+            UserInfo result = _userManager.LogIn("newUser");
+
+            Assert.Equal(_repository.Storage.Count, itemsCount + 1);
+            Assert.True(result.IsOnline);
+            BaseEntity actual = _repository.Storage[0];
+            Assert.True(((UserEntity)actual).IsOnline);
+        }
+
+
+        [Fact]
+        public void LogOut_ExistingOnlineUser_SettedOffline()
         {
             var user1 = new UserEntity { Id = Guid.NewGuid(), Name = "user1", IsOnline = true };
             var user2 = new UserEntity { Id = Guid.NewGuid(), Name = "user2", IsOnline = true };
