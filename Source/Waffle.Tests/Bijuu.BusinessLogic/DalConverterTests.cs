@@ -81,6 +81,42 @@ namespace Waffle.Tests.Bijuu.BusinessLogic
 
 
         [Fact]
+        public void ToMessageInfo_NullRecipient_Throws()
+        {
+            var entity = new MessageEntity
+            {
+                Text = "text",
+                CreateDate = DateTime.Now,
+                SenderId = Guid.NewGuid(),
+                Sender = new UserEntity { Id = Guid.NewGuid(), Name = "user" },
+                RecipientId = Guid.NewGuid(),
+                Recipient = null
+            };
+
+            Exception result = Assert.Throws<ArgumentException>(() => DalConverter.ToMessageInfo(entity));
+            Assert.IsType(typeof(ArgumentException), result);
+        }
+
+
+        [Fact]
+        public void ToMessageInfo_NullSender_Throws()
+        {
+            var entity = new MessageEntity
+            {
+                Text = "text",
+                CreateDate = DateTime.Now,
+                SenderId = Guid.NewGuid(),
+                Sender = null,
+                RecipientId = Guid.NewGuid(),
+                Recipient = new UserEntity { Id = Guid.NewGuid(), Name = "user" }
+            };
+
+            Exception result = Assert.Throws<ArgumentException>(() => DalConverter.ToMessageInfo(entity));
+            Assert.IsType(typeof(ArgumentException), result);
+        }
+
+
+        [Fact]
         public void ToUserInfo_GoodUserEntity_UserInfo()
         {
             var entity = new UserEntity { Id = Guid.NewGuid(), Name = "user" };
