@@ -26,6 +26,24 @@ namespace Taddy.BusinessLogic
         }
 
 
+        public static MessageInfo ToMessageInfo(Message message)
+        {
+            if (message == null)
+            {
+                throw new ArgumentException("Message can't be null");
+            }
+
+            return new MessageInfo
+            {
+                Text = message.Text,
+                SenderId = message.SenderId,
+                RecipientId = message.RecipientId,
+                IsDelivered = false,
+                CreateDate = null,
+            };
+        }
+
+
         public static User ToUser(UserInfo userInfo)
         {
             if (userInfo == null)

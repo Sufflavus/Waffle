@@ -44,9 +44,7 @@ namespace Bijuu.BusinessLogic.Managers
             entity.IsOnline = true;
             Repository.AddOrUpdate(entity);
 
-            UserRecord record = NotifierConverter.ToUserRecord(entity);
-            NotificationSender.NotifyUpdateUserState(record);
-
+            NotifyAboutUpdateUserState(entity);
             return DalConverter.ToUserInfo(entity);
         }
 
@@ -60,6 +58,15 @@ namespace Bijuu.BusinessLogic.Managers
             }
             entity.IsOnline = false;
             Repository.AddOrUpdate(entity);
+
+            NotifyAboutUpdateUserState(entity);
+        }
+
+
+        private void NotifyAboutUpdateUserState(UserEntity entity)
+        {
+            UserRecord record = NotifierConverter.ToUserRecord(entity);
+            NotificationSender.NotifyUpdateUserState(record);
         }
     }
 }

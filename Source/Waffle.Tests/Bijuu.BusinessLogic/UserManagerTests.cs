@@ -145,7 +145,8 @@ namespace Waffle.Tests.Bijuu.BusinessLogic
         public void LogOut__GetByIdCalledInRepository()
         {
             var repository = Substitute.For<IUserRepository>();
-            IUserManager manager = new UserManager { Repository = repository };
+            var notificationSender = Substitute.For<INotificationSender>();
+            IUserManager manager = new UserManager { Repository = repository, NotificationSender = notificationSender };
             Guid userId = Guid.NewGuid();
             var user = new UserEntity { Id = userId, Name = "user", IsOnline = true };
             repository.GetById(userId).Returns(user);

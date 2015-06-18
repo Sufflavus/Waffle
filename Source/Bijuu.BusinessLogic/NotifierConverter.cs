@@ -18,6 +18,7 @@ namespace Bijuu.BusinessLogic
 
             return new MessageRecord
             {
+                Id = message.Id,
                 Text = message.Text,
                 SenderId = message.SenderId,
                 Sender = message.Sender == null ? null : ToUserRecord(message.Sender),

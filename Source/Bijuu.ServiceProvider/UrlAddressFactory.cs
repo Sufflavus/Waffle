@@ -45,6 +45,12 @@ namespace Bijuu.ServiceProvider
         }
 
 
+        public static string SendMessageToUser()
+        {
+            return CreateUri(Terms.SendMessageToUser);
+        }
+
+
         private static string CreateUri(string relativeUrl)
         {
             return UrlPathCombine(_baseUri, relativeUrl);

@@ -11,5 +11,6 @@ namespace Bijuu.ServiceProvider
         public const string LogIn = "/LogIn?userName={0}";
         public const string LogOut = "/LogOut";
         public const string SendMessage = "/SendMessage";
+        public const string SendMessageToUser = "/SendMessageToUser";
     }
 }

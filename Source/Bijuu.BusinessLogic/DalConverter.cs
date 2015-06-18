@@ -15,7 +15,12 @@ namespace Bijuu.BusinessLogic
                 throw new ArgumentException("Message can't be null");
             }
 
-            return new MessageEntity { Text = message.Text, SenderId = message.SenderId };
+            return new MessageEntity
+            {
+                Text = message.Text, 
+                SenderId = message.SenderId, 
+                RecipientId = message.RecipientId.HasValue ? message.RecipientId.Value : Guid.Empty
+            };
         }
 
 

@@ -62,6 +62,7 @@ namespace Waffle.Tests.Bijuu.BusinessLogic
         {
             var message = new MessageEntity
             {
+                Id = Guid.NewGuid(),
                 Text = "text",
                 CreateDate = DateTime.Now,
                 SenderId = Guid.NewGuid(),
@@ -72,6 +73,7 @@ namespace Waffle.Tests.Bijuu.BusinessLogic
 
             MessageRecord result = NotifierConverter.ToMessageRecord(message);
 
+            Assert.Equal(message.Id, result.Id);
             Assert.Equal(message.Text, result.Text);
             Assert.Equal(message.CreateDate, result.CreateDate);
             Assert.Equal(message.SenderId, result.SenderId);

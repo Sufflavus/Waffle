@@ -42,7 +42,7 @@ namespace Ginger.Notifier
         public void NotifyUpdateUserState(UserRecord user)
         {
             string objectForSendJson = JsonConvert.SerializeObject(user);
-            _hub.Invoke(ServerSettings.SendMessageMethodName, user.Id.ToString(), objectForSendJson).Wait();
+            _hub.Invoke(ServerSettings.UpdateUserStateMethodName, user.Id.ToString(), objectForSendJson).Wait();
             //InvokeServiceMethod(ServerSettings.UpdateUserStateMethodName, user);
         }
 

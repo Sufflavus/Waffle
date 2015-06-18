@@ -13,6 +13,36 @@ namespace Waffle.Tests.Taddy.BusinessLogic
     public class DalConverterTests
     {
         [Fact]
+        public void ToMessageInfo_GoodMessage_MessageInfo()
+        {
+            var message = new Message
+            {
+                Text = "text",
+                CreateDate = DateTime.Now,
+                SenderId = Guid.NewGuid(),
+                RecipientId = Guid.NewGuid()
+            };
+
+            MessageInfo result = DalConverter.ToMessageInfo(message);
+
+            Assert.Equal(message.Text, result.Text);
+            Assert.Equal(message.SenderId, result.SenderId);
+            Assert.Equal(message.RecipientId, result.RecipientId);
+            Assert.Null(result.CreateDate);
+            Assert.False(result.IsDelivered);
+        }
+
+
+        [Fact]
+        public void ToMessageInfo_NullMessage_Throws()
+        {
+            Exception result = Assert.Throws<ArgumentException>(() => DalConverter.ToMessageInfo(null));
+
+            Assert.IsType(typeof(ArgumentException), result);
+        }
+
+
+        [Fact]
         public void ToMessage_GoodMessageInfo_Message()
         {
             var messageInfo = new MessageInfo

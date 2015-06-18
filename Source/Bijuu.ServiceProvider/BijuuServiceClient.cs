@@ -79,6 +79,15 @@ namespace Bijuu.ServiceProvider
         }
 
 
+        public int SendMessageToUser(MessageInfo message)
+        {
+            string uri = UrlAddressFactory.SendMessageToUser();
+            string jsonPostData = JsonConvert.SerializeObject(message);
+            PostData(uri, jsonPostData);
+            return message.Text.Length;
+        }
+
+
         private T GetData<T>(string uri)
         {
             using (var client = new HttpClient())

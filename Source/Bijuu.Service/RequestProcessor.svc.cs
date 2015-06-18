@@ -71,5 +71,11 @@ namespace Bijuu.Service
         {
             _messageManager.SendMessage(message);
         }
+
+
+        public void SendMessageToUser(MessageInfo message)
+        {
+            _messageManager.SendMessageToUser(message);
+        }
     }
 }

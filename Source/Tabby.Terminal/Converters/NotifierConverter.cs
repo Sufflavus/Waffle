@@ -20,6 +20,8 @@ namespace Tabby.Terminal.Converters
             {
                 SenderId = record.SenderId,
                 Sender = ToUser(record.Sender),
+                RecipientId = record.RecipientId.Value,
+                Recipient = ToUser(record.Recipient),
                 Text = record.Text,
                 CreateDate = record.CreateDate.Value
             };
@@ -33,7 +35,12 @@ namespace Tabby.Terminal.Converters
                 return null;
             }
 
-            return new User { Id = record.Id, Name = record.Name };
+            return new User
+            {
+                Id = record.Id, 
+                Name = record.Name, 
+                IsOnline = record.IsOnline
+            };
         }
     }
 }

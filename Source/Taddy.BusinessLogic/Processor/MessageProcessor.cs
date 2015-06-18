@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 
+using Bijuu.Contracts;
 using Bijuu.ServiceProvider;
 
 using Microsoft.Practices.Unity;
@@ -36,6 +37,13 @@ namespace Taddy.BusinessLogic.Processor
         public int SendMessage(Message message)
         {
             return ServiceClient.SendMessage(message.Text, message.SenderId);
+        }
+
+
+        public int SendMessageToUser(Message message)
+        {
+            MessageInfo messageInfo = DalConverter.ToMessageInfo(message);
+            return ServiceClient.SendMessageToUser(messageInfo);
         }
     }
 }

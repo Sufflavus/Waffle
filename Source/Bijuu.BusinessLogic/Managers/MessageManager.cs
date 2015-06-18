@@ -52,16 +52,36 @@ namespace Bijuu.BusinessLogic.Managers
             List<UserEntity> recipients = UserRepository.Filter(x => x.Id != message.SenderId);
             recipients.ForEach(x =>
             {
-                MessageEntity messageEntity = DalConverter.ToMessageEntity(message);
-                messageEntity.RecipientId = x.Id;
-                MessageRepository.AddOrUpdate(messageEntity);
-                messageEntity = MessageRepository.GetById(messageEntity.Id);
-
-                MessageRecord record = NotifierConverter.ToMessageRecord(messageEntity);
-                NotificationSender.NotifySendMessage(record);
+                message.RecipientId = x.Id;
+                MessageEntity messageEntity = DoSendMessageToUser(message);
+                NotifyAboutSendMessage(messageEntity);
             });
 
             return message.Text.Length;
+        }
+
+
+        public int SendMessageToUser(MessageInfo message)
+        {
+            MessageEntity messageEntity = DoSendMessageToUser(message);
+            NotifyAboutSendMessage(messageEntity);
+            return message.Text.Length;
+        }
+
+
+        private MessageEntity DoSendMessageToUser(MessageInfo message)
+        {
+            MessageEntity messageEntity = DalConverter.ToMessageEntity(message);
+            MessageRepository.AddOrUpdate(messageEntity);
+            messageEntity = MessageRepository.GetById(messageEntity.Id);
+            return messageEntity;
+        }
+
+
+        private void NotifyAboutSendMessage(MessageEntity messageEntity)
+        {
+            MessageRecord record = NotifierConverter.ToMessageRecord(messageEntity);
+            NotificationSender.NotifySendMessage(record);
         }
     }
 }

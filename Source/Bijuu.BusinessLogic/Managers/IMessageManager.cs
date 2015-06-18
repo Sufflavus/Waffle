@@ -11,5 +11,6 @@ namespace Bijuu.BusinessLogic.Managers
         List<MessageInfo> GetAllMessages();
         List<MessageInfo> GetNewMessages(Guid userId);
         int SendMessage(MessageInfo message);
+        int SendMessageToUser(MessageInfo message);
     }
 }

@@ -3,9 +3,11 @@
 using Ginger.Contracts;
 
 using Tabby.Terminal.Converters;
+
 using Taddy.BusinessLogic.Models;
 
 using Xunit;
+using Xunit.Extensions;
 
 
 namespace Waffle.Tests.Tabby.Terminal
@@ -21,6 +23,7 @@ namespace Waffle.Tests.Tabby.Terminal
                 Text = "text",
                 CreateDate = DateTime.Now,
                 SenderId = Guid.NewGuid(),
+                RecipientId = Guid.NewGuid(),
                 Sender = new UserRecord { Id = Guid.NewGuid() },
             };
 
@@ -30,6 +33,7 @@ namespace Waffle.Tests.Tabby.Terminal
             Assert.Equal(record.CreateDate, result.CreateDate);
             Assert.Equal(record.SenderId, result.SenderId);
             Assert.Equal(record.Sender.Id, result.Sender.Id);
+            Assert.Equal(record.RecipientId, result.RecipientId);
         }
 
 
@@ -41,15 +45,18 @@ namespace Waffle.Tests.Tabby.Terminal
         }
 
 
-        [Fact]
-        public void ToUser_GoodUserRecord_ReturnsUser()
+        [Theory]
+        [InlineData(true)]
+        [InlineData(false)]
+        public void ToUser_GoodUserRecord_ReturnsUser(bool isOnline)
         {
-            var record = new UserRecord { Id = Guid.NewGuid(), Name = "user" };
+            var record = new UserRecord { Id = Guid.NewGuid(), Name = "user", IsOnline = isOnline };
 
             User result = NotifierConverter.ToUser(record);
 
             Assert.Equal(record.Id, result.Id);
             Assert.Equal(record.Name, result.Name);
+            Assert.Equal(isOnline, result.IsOnline);
         }
 
 

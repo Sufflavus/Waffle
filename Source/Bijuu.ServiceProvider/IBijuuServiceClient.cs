@@ -14,5 +14,6 @@ namespace Bijuu.ServiceProvider
         UserInfo LogIn(string userName);
         void LogOut(Guid userId);
         int SendMessage(string message, Guid senderId);
+        int SendMessageToUser(MessageInfo message);
     }
 }

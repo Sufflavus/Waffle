@@ -24,7 +24,7 @@ namespace Tabby.Terminal.Command.MessageModule
             Message message = BusinessLogicConverter.ToMessage(MessageText);
             message.SenderId = UserId;
             message.RecipientId = Recipient.Id;
-            int result = MessageProcessor.SendMessage(message);
+            int result = MessageProcessor.SendMessageToUser(message);
             Logger.Trace(string.Format("The message '{0}' has been send. Message length: {1}", MessageText, result));
         }
     }
