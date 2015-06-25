@@ -5,14 +5,13 @@ using Ginger.Notifier;
 using Microsoft.AspNet.SignalR;
 using Microsoft.Practices.Unity;
 
-using Tabby.Terminal.Converters;
-
+using Taddy.BusinessLogic.Converters;
 using Taddy.BusinessLogic.Models;
 
 
-namespace Tabby.Terminal
+namespace Taddy.BusinessLogic
 {
-    public sealed class NotificationReceiverWrapper : IUserIdProvider
+    public sealed class NotificationReceiverWrapper
     {
         private Guid _receiverId;
 
@@ -23,7 +22,7 @@ namespace Tabby.Terminal
         public void RegisterReceiver(Guid receiverId)
         {
             _receiverId = receiverId;
-            NotificationReceiver.RegisterReceiver(this);
+            //NotificationReceiver.RegisterReceiver(this);
         }
 
 

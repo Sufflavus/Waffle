@@ -2,8 +2,7 @@
 
 using Ginger.Contracts;
 
-using Tabby.Terminal.Converters;
-
+using Taddy.BusinessLogic.Converters;
 using Taddy.BusinessLogic.Models;
 
 using Xunit;

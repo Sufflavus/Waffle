@@ -7,6 +7,7 @@ using Bijuu.ServiceProvider;
 
 using Microsoft.Practices.Unity;
 
+using Taddy.BusinessLogic.Converters;
 using Taddy.BusinessLogic.Models;
 
 

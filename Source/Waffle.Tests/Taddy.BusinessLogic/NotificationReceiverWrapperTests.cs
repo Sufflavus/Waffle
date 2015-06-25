@@ -4,12 +4,12 @@ using Ginger.Notifier;
 
 using NSubstitute;
 
-using Tabby.Terminal;
+using Taddy.BusinessLogic;
 
 using Xunit;
 
 
-namespace Waffle.Tests.Tabby.Terminal
+namespace Waffle.Tests.Taddy.BusinessLogic
 {
     public class NotificationReceiverWrapperTests
     {

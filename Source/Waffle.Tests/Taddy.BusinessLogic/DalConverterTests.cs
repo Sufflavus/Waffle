@@ -3,6 +3,7 @@
 using Bijuu.Contracts;
 
 using Taddy.BusinessLogic;
+using Taddy.BusinessLogic.Converters;
 using Taddy.BusinessLogic.Models;
 
 using Xunit;

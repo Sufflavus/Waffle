@@ -1,14 +1,13 @@
 ﻿using System;
 
-using Tabby.Terminal.Converters;
-
+using Taddy.BusinessLogic.Converters;
 using Taddy.BusinessLogic.Models;
 
 using Xunit;
 using Xunit.Extensions;
 
 
-namespace Waffle.Tests.Tabby.Terminal
+namespace Waffle.Tests.Taddy.BusinessLogic
 {
     public class BusinessLogicConverterTests
     {

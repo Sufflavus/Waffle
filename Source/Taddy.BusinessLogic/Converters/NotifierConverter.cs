@@ -5,7 +5,7 @@ using Ginger.Contracts;
 using Taddy.BusinessLogic.Models;
 
 
-namespace Tabby.Terminal.Converters
+namespace Taddy.BusinessLogic.Converters
 {
     public sealed class NotifierConverter
     {
@@ -37,8 +37,8 @@ namespace Tabby.Terminal.Converters
 
             return new User
             {
-                Id = record.Id, 
-                Name = record.Name, 
+                Id = record.Id,
+                Name = record.Name,
                 IsOnline = record.IsOnline
             };
         }

@@ -7,6 +7,7 @@ using Tabby.Terminal.Command.MessageModule;
 using Tabby.Terminal.Command.UserModule;
 using Tabby.Terminal.Logger;
 
+using Taddy.BusinessLogic;
 using Taddy.BusinessLogic.Models;
 
 

@@ -2,8 +2,7 @@
 
 using Microsoft.Practices.Unity;
 
-using Tabby.Terminal.Converters;
-
+using Taddy.BusinessLogic.Converters;
 using Taddy.BusinessLogic.Models;
 using Taddy.BusinessLogic.Processor;
 

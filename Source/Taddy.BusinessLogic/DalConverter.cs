@@ -5,7 +5,7 @@ using Bijuu.Contracts;
 using Taddy.BusinessLogic.Models;
 
 
-namespace Taddy.BusinessLogic
+namespace Taddy.BusinessLogic.Converters
 {
     public static class DalConverter
     {

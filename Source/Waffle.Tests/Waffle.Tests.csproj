@@ -71,10 +71,10 @@
     <Compile Include="Tabby.Dal\Repository\UserRepositoryTests.cs" />
     <Compile Include="Tabby.Dal\Repository\MockContext.cs" />
     <Compile Include="Tabby.Dal\Repository\MessageRepositoryTests.cs" />
-    <Compile Include="Tabby.Terminal\BusinessLogicConverterTests.cs" />
+    <Compile Include="Taddy.BusinessLogic\BusinessLogicConverterTests.cs" />
     <Compile Include="Tabby.Terminal\CommandParserTests.cs" />
     <Compile Include="Tabby.Terminal\NotifierConverterTests.cs" />
-    <Compile Include="Tabby.Terminal\NotificationReceiverWrapperTests.cs" />
+    <Compile Include="Taddy.BusinessLogic\NotificationReceiverWrapperTests.cs" />
     <Compile Include="Tabby.Terminal\GetAllMessagesCommandTests.cs" />
     <Compile Include="Tabby.Terminal\GetNewMessagesCommandTests.cs" />
     <Compile Include="Tabby.Terminal\LogoutUserCommandTests.cs" />
