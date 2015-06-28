@@ -4,7 +4,7 @@
         Title="Chat room" Height="350" Width="525" Loaded="Chatter_Loaded">
     <Grid>
         <TextBox HorizontalAlignment="Left" Name="TbRecentMessages" Height="211" Margin="19,26,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="477" IsEnabled="False"/>
-        <TextBox HorizontalAlignment="Left" Height="58" Margin="19,242,0,0" TextWrapping="Wrap" AcceptsReturn="True" VerticalAlignment="Top" Width="397"/>
-        <Button Content="Send" HorizontalAlignment="Left" Margin="421,242,0,0" VerticalAlignment="Top" Width="75" Height="58"/>
+        <TextBox HorizontalAlignment="Left" Name="TbMessageText" Height="58" Margin="19,242,0,0" TextWrapping="Wrap" AcceptsReturn="True" VerticalAlignment="Top" Width="397"/>
+        <Button Content="Send" HorizontalAlignment="Left" Margin="421,242,0,0" VerticalAlignment="Top" Width="75" Height="58" Click="Send_Click"/>
     </Grid>
 </Window>
