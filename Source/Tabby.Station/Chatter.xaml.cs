@@ -1,11 +1,14 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
 using System.Windows;
 
 using Microsoft.Practices.Unity;
 
+using Taddy.BusinessLogic.Converters;
 using Taddy.BusinessLogic.Models;
 using Taddy.BusinessLogic.Processor;
-using Taddy.BusinessLogic.Converters;
 
 
 namespace Tabby.Station
@@ -17,8 +20,6 @@ namespace Tabby.Station
     {
         private Guid _userId;
 
-        [Dependency]
-        public IMessageProcessor MessageProcessor { get; set; }
 
         public Chatter()
         {
@@ -26,10 +27,26 @@ namespace Tabby.Station
         }
 
 
+        [Dependency]
+        public IMessageProcessor MessageProcessor { get; set; }
+
+
         private void Chatter_Loaded(object sender, RoutedEventArgs e)
         {
-            TbRecentMessages.Text = "Hello!";
+            List<Message> messages = MessageProcessor.GetAllMessages();
+            var result = new StringBuilder();
+            if (messages.Any())
+            {
+                result.AppendLine("All messages:");
+                messages.ForEach(x => result.AppendLine(x.ToString()));
+            }
+            else
+            {
+                result.AppendLine("There is not any message");
+            }
+            TbRecentMessages.Text = result.ToString();
         }
+
 
         private void Send_Click(object sender, RoutedEventArgs e)
         {
