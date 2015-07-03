@@ -6,6 +6,7 @@ using System.Windows;
 
 using Microsoft.Practices.Unity;
 
+using Taddy.BusinessLogic;
 using Taddy.BusinessLogic.Converters;
 using Taddy.BusinessLogic.Models;
 using Taddy.BusinessLogic.Processor;
@@ -34,6 +35,9 @@ namespace Tabby.Station
         public IMessageProcessor MessageProcessor { get; set; }
 
         [Dependency]
+        public NotificationReceiverWrapper NotificationReceiver { get; set; }
+
+        [Dependency]
         public IUserProcessor UserProcessor { get; set; }
 
 
@@ -41,9 +45,28 @@ namespace Tabby.Station
         {
             List<Message> messages = MessageProcessor.GetAllMessages();
             ShowOldMessages(messages);
+            Subscribe();
 
             var onlineUsers = new List<string> { "user 1", "user 1" };
             LvUsers.ItemsSource = onlineUsers;
+        }
+
+
+        private void OnMessageReceive(Message message)
+        {
+            if (message.RecipientId == _userId)
+            {
+                //TODO
+            }
+        }
+
+
+        private void OnUserStateChanged(User user)
+        {
+            if (user.Id != _userId)
+            {
+                //TODO
+            }
         }
 
 
@@ -75,6 +98,14 @@ namespace Tabby.Station
             }
 
             TbRecentMessages.Text = result.ToString();
+        }
+
+
+        private void Subscribe()
+        {
+            NotificationReceiver.RegisterReceiver(_userId);
+            NotificationReceiver.SubscribeForReceivingMessage(OnMessageReceive);
+            NotificationReceiver.SubscribeForReceivingUserState(OnUserStateChanged);
         }
     }
 }
