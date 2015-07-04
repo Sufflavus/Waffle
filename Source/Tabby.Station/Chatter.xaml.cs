@@ -19,12 +19,14 @@ namespace Tabby.Station
     /// </summary>
     public partial class Chatter : Window
     {
+        private readonly List<string> _onlineUsers;
         private readonly Guid _userId;
 
 
         public Chatter(Guid userId)
         {
             _userId = userId;
+            _onlineUsers = new List<string>();
 
             WindowStartupLocation = WindowStartupLocation.CenterScreen;
             InitializeComponent();
@@ -47,8 +49,8 @@ namespace Tabby.Station
             ShowOldMessages(messages);
             Subscribe();
 
-            var onlineUsers = new List<string> { "user 1", "user 1" };
-            LvUsers.ItemsSource = onlineUsers;
+            _onlineUsers.AddRange(new List<string> { "user 1", "user 1" });
+            LvUsers.ItemsSource = _onlineUsers;
         }
 
 
@@ -56,7 +58,10 @@ namespace Tabby.Station
         {
             if (message.RecipientId == _userId)
             {
-                //TODO
+                var result = new StringBuilder();
+                result.AppendLine(TbRecentMessages.Text);
+                result.AppendLine(message.ToString());
+                TbRecentMessages.Text = result.ToString();
             }
         }
 
@@ -65,7 +70,14 @@ namespace Tabby.Station
         {
             if (user.Id != _userId)
             {
-                //TODO
+                if (user.IsOnline && !_onlineUsers.Contains(user.Name))
+                {
+                    _onlineUsers.Add(user.Name);
+                }
+                else if (_onlineUsers.Contains(user.Name))
+                {
+                    _onlineUsers.Remove(user.Name);
+                }
             }
         }
 
