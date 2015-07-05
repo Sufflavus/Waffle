@@ -45,12 +45,9 @@ namespace Tabby.Station
 
         private void Chatter_Loaded(object sender, RoutedEventArgs e)
         {
-            List<Message> messages = MessageProcessor.GetAllMessages();
-            ShowOldMessages(messages);
+            ShowOnlineUsers();
+            ShowOldMessages();
             Subscribe();
-
-            _onlineUsers.AddRange(new List<string> { "user 1", "user 1" });
-            LvUsers.ItemsSource = _onlineUsers;
         }
 
 
@@ -96,8 +93,9 @@ namespace Tabby.Station
         }
 
 
-        private void ShowOldMessages(List<Message> messages)
+        private void ShowOldMessages()
         {
+            List<Message> messages = MessageProcessor.GetAllMessages();
             var result = new StringBuilder();
             if (messages.Any())
             {
@@ -110,6 +108,14 @@ namespace Tabby.Station
             }
 
             TbRecentMessages.Text = result.ToString();
+        }
+
+
+        private void ShowOnlineUsers()
+        {
+            IEnumerable<string> users = UserProcessor.GetOnlineUsers().Select(x => x.Name);
+            _onlineUsers.AddRange(users);
+            LvUsers.ItemsSource = _onlineUsers;
         }
 
 

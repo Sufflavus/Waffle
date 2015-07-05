@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 using Bijuu.Contracts;
 using Bijuu.ServiceProvider;
@@ -15,6 +16,12 @@ namespace Taddy.BusinessLogic.Processor
     {
         [Dependency]
         public IBijuuServiceClient ServiceClient { get; set; }
+
+
+        public List<User> GetOnlineUsers()
+        {
+            throw new NotImplementedException();
+        }
 
 
         public User GetUserByName(string userName)
