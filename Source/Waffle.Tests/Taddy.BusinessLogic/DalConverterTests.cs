@@ -2,7 +2,6 @@
 
 using Bijuu.Contracts;
 
-using Taddy.BusinessLogic;
 using Taddy.BusinessLogic.Converters;
 using Taddy.BusinessLogic.Models;
 
@@ -77,12 +76,13 @@ namespace Waffle.Tests.Taddy.BusinessLogic
         [Fact]
         public void ToUser_GoodUserInfo_User()
         {
-            var userInfo = new UserInfo { Id = Guid.NewGuid(), Name = "user" };
+            var userInfo = new UserInfo { Id = Guid.NewGuid(), Name = "user", IsOnline = true };
 
             User result = DalConverter.ToUser(userInfo);
 
             Assert.Equal(userInfo.Id, result.Id);
             Assert.Equal(userInfo.Name, result.Name);
+            Assert.True(userInfo.IsOnline);
         }
 
 

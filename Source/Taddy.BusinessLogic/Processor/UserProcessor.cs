@@ -9,6 +9,8 @@ using Microsoft.Practices.Unity;
 using Taddy.BusinessLogic.Converters;
 using Taddy.BusinessLogic.Models;
 
+using System.Linq;
+
 
 namespace Taddy.BusinessLogic.Processor
 {
@@ -20,7 +22,12 @@ namespace Taddy.BusinessLogic.Processor
 
         public List<User> GetOnlineUsers()
         {
-            throw new NotImplementedException();
+            List<UserInfo> users = ServiceClient.GetUsers();
+            var result = users.Where(x => x.IsOnline)
+                .Select(DalConverter.ToUser)
+                .ToList();
+
+            return result;
         }
 
 

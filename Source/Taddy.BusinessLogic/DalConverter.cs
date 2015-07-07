@@ -51,7 +51,7 @@ namespace Taddy.BusinessLogic.Converters
                 throw new ArgumentException("User can't be null");
             }
 
-            return new User { Id = userInfo.Id, Name = userInfo.Name };
+            return new User { Id = userInfo.Id, Name = userInfo.Name, IsOnline = userInfo.IsOnline };
         }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 using Bijuu.Contracts;
 using Bijuu.ServiceProvider;
@@ -36,6 +37,33 @@ namespace Waffle.Tests.Taddy.BusinessLogic
             _userProcessor.GetUserByName(userName);
 
             _serviceClient.Received().GetUserByName(userName);
+        }
+
+
+        [Fact]
+        public void GetOnlineUsers_ServiceClient_IsCalled()
+        {
+            var users = new List<UserInfo> { new UserInfo { Name = "user" } };
+            _serviceClient.GetUsers().Returns(users);
+
+            _userProcessor.GetOnlineUsers();
+
+            _serviceClient.Received().GetUsers();
+        }
+
+        [Fact]
+        public void GetOnlineUsers_CorrectResult()
+        {
+            var user1 = new UserInfo { Name = "user1", IsOnline = true };
+            var user2 = new UserInfo { Name = "user2", IsOnline = false };
+            var users = new List<UserInfo> { user1, user2 };
+            _serviceClient.GetUsers().Returns(users);
+
+            List<User> result = _userProcessor.GetOnlineUsers();
+
+            Assert.Equal(result.Count, 1);
+            Assert.Equal(result[0].Name, user1.Name);
+            Assert.True(result[0].IsOnline);
         }
 
 

@@ -40,6 +40,14 @@ namespace Bijuu.ServiceProvider
         }
 
 
+        public List<UserInfo> GetUsers()
+        {
+            string uri = UrlAddressFactory.GetUsers();
+            var data = GetData<List<UserInfo>>(uri);
+            return data;
+        }
+
+
         public UserInfo LogIn(string userName)
         {
             string uri = UrlAddressFactory.LogIn(userName);
