@@ -6,6 +6,8 @@ using Ginger.Notifier;
 
 using Microsoft.Practices.Unity;
 
+using Tabby.Station.ViewModels;
+
 using Taddy.BusinessLogic;
 using Taddy.BusinessLogic.Processor;
 
@@ -37,6 +39,8 @@ namespace Tabby.Station
         private static void CreateContainer()
         {
             Container = new UnityContainer();
+
+            Container.RegisterType<LoginWindowViewModel>();
 
             Container.RegisterType<IMessageProcessor, MessageProcessor>();
             Container.RegisterType<IUserProcessor, UserProcessor>();

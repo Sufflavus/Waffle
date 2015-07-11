@@ -1,0 +1,13 @@
+﻿<Window x:Class="Tabby.Station.Views.LoginWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:ViewModel="clr-namespace:Tabby.Station.ViewModels"
+        xmlns:View="clr-namespace:Tabby.Station.Views"
+        Title="Login" Height="205" Width="308" ResizeMode="NoResize">
+    
+    <Window.DataContext>
+        <ViewModel:LoginWindowViewModel/>
+    </Window.DataContext>
+
+    <View:LoginView/>
+</Window>
