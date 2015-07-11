@@ -4,29 +4,52 @@ using System.Windows.Input;
 
 namespace Tabby.Station
 {
-    public class Command : ICommand
+    public class Command<T> : ICommand
     {
-        private readonly Action _action;
+        private readonly Predicate<T> _canExecute;
+        private readonly Action<T> _execute;
 
 
-        public Command(Action action)
+        public Command(Action<T> execute)
+            : this(execute, null)
         {
-            _action = action;
+        }
+
+
+        public Command(Action<T> execute, Predicate<T> canExecute)
+        {
+            _execute = execute;
+            _canExecute = canExecute;
         }
 
 
         public event EventHandler CanExecuteChanged;
 
 
+        public void RaiseCanExecuteChanged()
+        {
+            EventHandler handler = CanExecuteChanged;
+            if (handler != null)
+            {
+                handler(this, EventArgs.Empty);
+            }
+        }
+
+
         public bool CanExecute(object parameter)
         {
-            return true;
+            if (_canExecute == null)
+            {
+                return true;
+            }
+
+            return _canExecute((T)parameter);
         }
 
 
         public void Execute(object parameter)
         {
-            _action();
+            _execute((T)parameter);
         }
     }
 }
