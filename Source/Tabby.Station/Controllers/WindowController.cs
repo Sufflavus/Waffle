@@ -3,7 +3,7 @@
 
 namespace Tabby.Station.Controllers
 {
-    public class WindowController
+    public class WindowController : IWindowController
     {
         public void OpenChatterWindow(Guid userId)
         {

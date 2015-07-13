@@ -3,6 +3,8 @@ using System.Windows.Input;
 
 using Microsoft.Practices.Unity;
 
+using Tabby.Station.Controllers;
+
 using Taddy.BusinessLogic.Converters;
 using Taddy.BusinessLogic.Models;
 using Taddy.BusinessLogic.Processor;
@@ -19,6 +21,7 @@ namespace Tabby.Station.ViewModels
         public LoginWindowViewModel()
         {
             UserProcessor = Bootstrapper.Resolve<UserProcessor>();
+            WindowController = Bootstrapper.Resolve<WindowController>();
         }
 
 
@@ -56,6 +59,9 @@ namespace Tabby.Station.ViewModels
         [Dependency]
         public IUserProcessor UserProcessor { get; set; }
 
+        [Dependency]
+        public IWindowController WindowController { get; set; }
+
 
         private void DoLogin()
         {
@@ -64,23 +70,19 @@ namespace Tabby.Station.ViewModels
                 ErrorMessage = "User name can't be empty";
             }
 
-            Guid userId;
-
             try
             {
-                userId = GetUserId(UserName);
-                //TODO: open login window
+                Guid userId = GetUserId(UserName);
+                WindowController.OpenChatterWindow(userId);
                 RaiseRequestClose();
             }
             catch (ArgumentException)
             {
                 ErrorMessage = "Invalid NikName";
-                return;
             }
             catch (Exception)
             {
                 ErrorMessage = "Error occured";
-                return;
             }
         }
 
