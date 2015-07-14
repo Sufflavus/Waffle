@@ -68,9 +68,16 @@
     <Compile Include="Command.cs" />
     <Compile Include="Controllers\IWindowController.cs" />
     <Compile Include="Controllers\WindowController.cs" />
+    <Compile Include="ViewModels\ChatterWindowViewModel.cs" />
     <Compile Include="ViewModels\LoginWindowViewModel.cs" />
     <Compile Include="ViewModels\ViewModelBase.cs" />
     <Compile Include="ViewModels\WindowViewModelBase.cs" />
+    <Compile Include="Views\ChatterView.xaml.cs">
+      <DependentUpon>ChatterView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ChatterWindow.xaml.cs">
+      <DependentUpon>ChatterWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\LoginView.xaml.cs">
       <DependentUpon>LoginView.xaml</DependentUpon>
     </Compile>
@@ -90,6 +97,14 @@
       <DependentUpon>Chatter.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="Views\ChatterView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\ChatterWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\LoginView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

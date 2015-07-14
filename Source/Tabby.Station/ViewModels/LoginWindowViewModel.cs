@@ -12,7 +12,7 @@ using Taddy.BusinessLogic.Processor;
 
 namespace Tabby.Station.ViewModels
 {
-    public class LoginWindowViewModel : WindowViewModelBase
+    public sealed class LoginWindowViewModel : WindowViewModelBase
     {
         private string _errorMessage = string.Empty;
         private string _userName;
@@ -92,7 +92,6 @@ namespace Tabby.Station.ViewModels
             User user = BusinessLogicConverter.ToUser(userName);
             UserProcessor.LogIn(user);
             return user.Id;
-            //return Guid.NewGuid();
         }
     }
 }

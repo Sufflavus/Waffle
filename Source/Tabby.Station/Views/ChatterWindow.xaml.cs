@@ -1,22 +1,23 @@
 ﻿using System;
 using System.Windows;
 
-using Tabby.Station.ViewModels;
-
 
 namespace Tabby.Station.Views
 {
     /// <summary>
-    /// Interaction logic for LoginWindow.xaml
+    /// Interaction logic for ChatterWindow.xaml
     /// </summary>
-    public partial class LoginWindow : Window
+    public partial class ChatterWindow : Window
     {
-        public LoginWindow()
+        private readonly Guid _userId;
+
+
+        public ChatterWindow(Guid userId)
         {
+            _userId = userId;
+
             WindowStartupLocation = WindowStartupLocation.CenterScreen;
             InitializeComponent();
-
-            (DataContext as WindowViewModelBase).RequestClose += (sender, args) => Close();
         }
     }
 }

@@ -1,0 +1,12 @@
+﻿<Window x:Class="Tabby.Station.Views.ChatterWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:ViewModel="clr-namespace:Tabby.Station.ViewModels"
+        xmlns:View="clr-namespace:Tabby.Station.Views"
+        Title="Chat room" Height="333" Width="660">
+    <Window.DataContext>
+        <ViewModel:ChatterWindowViewModel/>
+    </Window.DataContext>
+
+    <View:ChatterView/>
+</Window>
