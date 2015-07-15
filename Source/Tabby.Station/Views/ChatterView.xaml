@@ -8,7 +8,7 @@
              d:DesignHeight="300" d:DesignWidth="640"
              d:DataContext="{d:DesignInstance ViewModel:ChatterWindowViewModel}">
     <Grid>
-        <TextBox HorizontalAlignment="Left" Height="211" TextWrapping="Wrap" VerticalAlignment="Top" Width="477" IsEnabled="False" Grid.ColumnSpan="2" Margin="10,10,0,0"/>
+        <TextBox Text="{Binding RecentMessages, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" Height="211" TextWrapping="Wrap" VerticalAlignment="Top" Width="477" IsEnabled="False" Grid.ColumnSpan="2" Margin="10,10,0,0"/>
         <TextBox Text="{Binding NewMessageText, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" Height="58" Margin="10,226,0,0" TextWrapping="Wrap" AcceptsReturn="True" VerticalAlignment="Top" Width="397"/>
         <Button Content="Send" Command="{Binding SendMessageCommand}" IsDefault="True" HorizontalAlignment="Left" Margin="412,226,0,0" Width="75" Height="58" VerticalAlignment="Top" Grid.ColumnSpan="2"/>
         <ListView HorizontalAlignment="Left" Height="274" Margin="497,10,0,0" VerticalAlignment="Top" Width="138">

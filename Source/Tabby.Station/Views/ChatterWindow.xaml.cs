@@ -9,13 +9,8 @@ namespace Tabby.Station.Views
     /// </summary>
     public partial class ChatterWindow : Window
     {
-        private readonly Guid _userId;
-
-
-        public ChatterWindow(Guid userId)
+        public ChatterWindow()
         {
-            _userId = userId;
-
             WindowStartupLocation = WindowStartupLocation.CenterScreen;
             InitializeComponent();
         }
