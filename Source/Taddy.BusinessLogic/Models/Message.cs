@@ -15,7 +15,7 @@ namespace Taddy.BusinessLogic.Models
 
         public override string ToString()
         {
-            return string.Format("CreateDate: {0}, Text: {1}, SenderName: {2}", CreateDate.ToString("dd.MM.yyyy"), Text, Sender.Name);
+            return string.Format("[{0}] {1}: {2}", CreateDate.ToString("yyyy.MM.dd"), Sender.Name, Text);
         }
     }
 }

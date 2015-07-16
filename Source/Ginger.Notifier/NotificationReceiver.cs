@@ -23,10 +23,10 @@ namespace Ginger.Notifier
 
         public NotificationReceiver()
         {
-            /*_connection = new HubConnection(Settings.Default.ServiceUrl);
-            _connection.Headers.Add("myauthtoken", /* token data #1#);
+            _connection = new HubConnection(Settings.Default.ServiceUrl);
+            //_connection.Headers.Add("myauthtoken");
             _hub = _connection.CreateHubProxy(ServerSettings.HubClassName);
-            _connection.Start().Wait();*/
+            _connection.Start().Wait();
         }
 
 

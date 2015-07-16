@@ -17,14 +17,17 @@ namespace Tabby.Station.ViewModels
     public sealed class ChatterWindowViewModel : WindowViewModelBase
     {
         private string _newMessageText;
+        private List<string> _onlineUsers;
         private string _recentMessages;
+        private Guid _userId;
 
 
         public ChatterWindowViewModel()
         {
             MessageProcessor = Bootstrapper.Resolve<MessageProcessor>();
             NotificationReceiver = Bootstrapper.Resolve<NotificationReceiverWrapper>();
-            ShowOnlineUsers();
+            _onlineUsers = new List<string>();
+            //ShowOnlineUsers();
             ShowOldMessages();
             Subscribe();
         }
@@ -52,6 +55,16 @@ namespace Tabby.Station.ViewModels
         [Dependency]
         public NotificationReceiverWrapper NotificationReceiver { get; set; }
 
+        public List<string> OnlineUsers
+        {
+            get { return _onlineUsers; }
+            set
+            {
+                _onlineUsers = value;
+                RaisePropertyChangedEvent("OnlineUsers");
+            }
+        }
+
         public string RecentMessages
         {
             get { return _recentMessages; }
@@ -67,7 +80,15 @@ namespace Tabby.Station.ViewModels
             get { return new Command<string>(x => DoSendMessage()); }
         }
 
-        public Guid UserId { private get; set; }
+        public Guid UserId
+        {
+            private get { return _userId; }
+            set
+            {
+                _userId = value;
+                Subscribe();
+            }
+        }
 
         [Dependency]
         public IUserProcessor UserProcessor { get; set; }
@@ -82,7 +103,9 @@ namespace Tabby.Station.ViewModels
 
             Message message = BusinessLogicConverter.ToMessage(NewMessageText);
             message.SenderId = UserId;
-            int result = MessageProcessor.SendMessage(message);
+            MessageProcessor.SendMessage(message);
+            //TODO: show in list of messages
+            //TODO: show error
         }
 
 
@@ -121,7 +144,6 @@ namespace Tabby.Station.ViewModels
             var result = new StringBuilder();
             if (messages.Any())
             {
-                result.AppendLine("All messages:");
                 messages.ForEach(x => result.AppendLine(x.ToString()));
             }
             else
@@ -135,16 +157,14 @@ namespace Tabby.Station.ViewModels
 
         private void ShowOnlineUsers()
         {
-            /*IEnumerable<string> users = UserProcessor.GetOnlineUsers().Select(x => x.Name);
-            _onlineUsers.AddRange(users);
-            LvUsers.ItemsSource = _onlineUsers;*/
+            IEnumerable<string> users = UserProcessor.GetOnlineUsers().Select(x => x.Name);
+            OnlineUsers.AddRange(users);
         }
 
 
         private void Subscribe()
         {
-            //NotificationReceiver.RegisterReceiver(UserId);
-            NotificationReceiver.RegisterReceiver(Guid.NewGuid()); // FAKE
+            NotificationReceiver.RegisterReceiver(UserId);
             NotificationReceiver.SubscribeForReceivingMessage(OnMessageReceive);
             NotificationReceiver.SubscribeForReceivingUserState(OnUserStateChanged);
         }
