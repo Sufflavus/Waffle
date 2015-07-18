@@ -24,10 +24,10 @@ namespace Tabby.Station.ViewModels
 
         public ChatterWindowViewModel()
         {
-            MessageProcessor = Bootstrapper.Resolve<MessageProcessor>();
-            NotificationReceiver = Bootstrapper.Resolve<NotificationReceiverWrapper>();
             _onlineUsers = new List<string>();
-            //ShowOnlineUsers();
+
+            ResolveDependencies();
+            ShowOnlineUsers();
             ShowOldMessages();
             Subscribe();
         }
@@ -94,6 +94,15 @@ namespace Tabby.Station.ViewModels
         public IUserProcessor UserProcessor { get; set; }
 
 
+        private void AddMessageToRecentMessages(Message message)
+        {
+            var result = new StringBuilder();
+            result.AppendLine(RecentMessages);
+            result.AppendLine(message.ToString());
+            RecentMessages = result.ToString();
+        }
+
+
         private void DoSendMessage()
         {
             if (string.IsNullOrEmpty(NewMessageText))
@@ -104,7 +113,7 @@ namespace Tabby.Station.ViewModels
             Message message = BusinessLogicConverter.ToMessage(NewMessageText);
             message.SenderId = UserId;
             MessageProcessor.SendMessage(message);
-            //TODO: show in list of messages
+            AddMessageToRecentMessages(message);
             //TODO: show error
         }
 
@@ -113,10 +122,7 @@ namespace Tabby.Station.ViewModels
         {
             if (message.RecipientId == UserId)
             {
-                var result = new StringBuilder();
-                result.AppendLine(RecentMessages);
-                result.AppendLine(message.ToString());
-                RecentMessages = result.ToString();
+                AddMessageToRecentMessages(message);
             }
         }
 
@@ -135,6 +141,14 @@ namespace Tabby.Station.ViewModels
             {
                 _onlineUsers.Remove(user.Name);
             }*/
+        }
+
+
+        private void ResolveDependencies()
+        {
+            MessageProcessor = Bootstrapper.Resolve<MessageProcessor>();
+            UserProcessor = Bootstrapper.Resolve<UserProcessor>();
+            NotificationReceiver = Bootstrapper.Resolve<NotificationReceiverWrapper>();
         }
 
 

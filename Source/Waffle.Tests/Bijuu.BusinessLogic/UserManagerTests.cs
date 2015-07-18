@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 using Bijuu.BusinessLogic.Managers;
 using Bijuu.Contracts;
@@ -18,6 +19,36 @@ namespace Waffle.Tests.Bijuu.BusinessLogic
     {
         private MockUserRepository _repository;
         private IUserManager _userManager;
+
+
+        [Fact]
+        public void GetAllUsers_ExistingUser_CorrectUserInfo()
+        {
+            var repository = Substitute.For<IUserRepository>();
+            IUserManager manager = new UserManager { Repository = repository };
+            string userName = "user";
+            var user = new UserEntity { Id = Guid.NewGuid(), Name = userName, IsOnline = false };
+            repository.GetAll().Returns(new List<UserEntity> { user });
+
+            List<UserInfo> result = manager.GetAllUsers();
+
+            Assert.Equal(user.Id, result[0].Id);
+            Assert.Equal(user.Name, result[0].Name);
+            Assert.Equal(user.IsOnline, result[0].IsOnline);
+        }
+
+
+        [Fact]
+        public void GetAllUsers_GetAllCalledInRepository()
+        {
+            var repository = Substitute.For<IUserRepository>();
+            IUserManager manager = new UserManager { Repository = repository };
+            repository.GetAll().Returns(new List<UserEntity>());
+
+            manager.GetAllUsers();
+
+            repository.Received().GetAll();
+        }
 
 
         [Fact]

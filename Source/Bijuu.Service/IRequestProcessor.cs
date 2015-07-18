@@ -27,6 +27,11 @@ namespace Bijuu.Service
 
 
         [OperationContract]
+        [WebGet(ResponseFormat = WebMessageFormat.Json, UriTemplate = "/GetUsers")]
+        List<UserInfo> GetUsers();
+
+
+        [OperationContract]
         [WebGet(ResponseFormat = WebMessageFormat.Json, UriTemplate = "/LogIn?userName={userName}")]
         UserInfo LogIn(string userName);
 

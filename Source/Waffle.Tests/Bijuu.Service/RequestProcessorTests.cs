@@ -51,7 +51,7 @@ namespace Waffle.Tests.Bijuu.Service
 
 
         [Fact]
-        public void GetUserByName_MessageManager_IsCalled()
+        public void GetUserByName_UserManager_IsCalled()
         {
             string userName = "user";
             _userManager.GetUserByName(userName).Returns(new UserInfo());
@@ -63,7 +63,15 @@ namespace Waffle.Tests.Bijuu.Service
 
 
         [Fact]
-        public void LogIn_MessageManager_IsCalled()
+        public void GetUsers_UserManager_IsCalled()
+        {
+            _requestProcessor.GetUsers();
+            _userManager.Received().GetAllUsers();
+        }
+
+
+        [Fact]
+        public void LogIn_UserManager_IsCalled()
         {
             string userName = "user";
             var userInfo = new UserInfo();
@@ -76,7 +84,7 @@ namespace Waffle.Tests.Bijuu.Service
 
 
         [Fact]
-        public void LogOut_MessageManager_IsCalled()
+        public void LogOut_UserManager_IsCalled()
         {
             var userInfo = new UserInfo { Id = Guid.NewGuid() };
 

@@ -55,6 +55,12 @@ namespace Bijuu.Service
         }
 
 
+        public List<UserInfo> GetUsers()
+        {
+            return _userManager.GetAllUsers();
+        }
+
+
         public UserInfo LogIn(string userName)
         {
             return _userManager.LogIn(userName);
