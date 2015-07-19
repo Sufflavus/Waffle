@@ -17,19 +17,21 @@ namespace Tabby.Station.ViewModels
     public sealed class ChatterWindowViewModel : WindowViewModelBase
     {
         private string _newMessageText;
-        private List<string> _onlineUsers;
+        private List<User> _onlineUsers;
         private string _recentMessages;
         private Guid _userId;
 
 
         public ChatterWindowViewModel()
         {
-            _onlineUsers = new List<string>();
+            _onlineUsers = new List<User>();
 
             ResolveDependencies();
             ShowOnlineUsers();
-            ShowOldMessages();
-            Subscribe();
+            ShowOldMessages(); // TODO: only user's messages
+            //Subscribe();
+
+            //TODO: logout
         }
 
 
@@ -55,7 +57,7 @@ namespace Tabby.Station.ViewModels
         [Dependency]
         public NotificationReceiverWrapper NotificationReceiver { get; set; }
 
-        public List<string> OnlineUsers
+        public List<User> OnlineUsers
         {
             get { return _onlineUsers; }
             set
@@ -133,14 +135,14 @@ namespace Tabby.Station.ViewModels
             {
                 return;
             }
-            /*if (user.IsOnline && !_onlineUsers.Contains(user.Name))
+
+            if (user.IsOnline && !_onlineUsers.Any(x => x.Id == user.Id))
             {
-                _onlineUsers.Add(user.Name);
+                _onlineUsers.Add(user);
+                return;
             }
-            else if (_onlineUsers.Contains(user.Name))
-            {
-                _onlineUsers.Remove(user.Name);
-            }*/
+
+            _onlineUsers.RemoveAll(x => x.Id == user.Id);
         }
 
 
@@ -171,7 +173,7 @@ namespace Tabby.Station.ViewModels
 
         private void ShowOnlineUsers()
         {
-            IEnumerable<string> users = UserProcessor.GetOnlineUsers().Select(x => x.Name);
+            IEnumerable<User> users = UserProcessor.GetOnlineUsers();
             OnlineUsers.AddRange(users);
         }
 
