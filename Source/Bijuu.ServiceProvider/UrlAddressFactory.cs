@@ -27,6 +27,12 @@ namespace Bijuu.ServiceProvider
         }
 
 
+        public static string GetUserMessages(Guid userId)
+        {
+            return CreateUri(string.Format(Terms.GetUserMessages, userId));
+        }
+
+
         public static string GetUsers()
         {
             return CreateUri(Terms.GetUsers);

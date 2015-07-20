@@ -28,8 +28,6 @@ namespace Tabby.Station.ViewModels
 
             ResolveDependencies();
             ShowOnlineUsers();
-            ShowOldMessages(); // TODO: only user's messages
-            //Subscribe();
 
             //TODO: logout
         }
@@ -89,6 +87,7 @@ namespace Tabby.Station.ViewModels
             {
                 _userId = value;
                 Subscribe();
+                ShowOldMessages();
             }
         }
 
@@ -156,7 +155,7 @@ namespace Tabby.Station.ViewModels
 
         private void ShowOldMessages()
         {
-            List<Message> messages = MessageProcessor.GetAllMessages();
+            List<Message> messages = MessageProcessor.GetUserMessages(UserId);
             var result = new StringBuilder();
             if (messages.Any())
             {

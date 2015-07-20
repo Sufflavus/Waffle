@@ -35,6 +35,14 @@ namespace Taddy.BusinessLogic.Processor
         }
 
 
+        public List<Message> GetUserMessages(Guid userId)
+        {
+            return ServiceClient.GetUserMessages(userId)
+                .Select(DalConverter.ToMessage)
+                .ToList();
+        }
+
+
         public int SendMessage(Message message)
         {
             return ServiceClient.SendMessage(message.Text, message.SenderId);

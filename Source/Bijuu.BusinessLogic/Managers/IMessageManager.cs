@@ -9,6 +9,7 @@ namespace Bijuu.BusinessLogic.Managers
     public interface IMessageManager
     {
         List<MessageInfo> GetAllMessages();
+        List<MessageInfo> GetUserMessages(Guid userId);
         List<MessageInfo> GetNewMessages(Guid userId);
         int SendMessage(MessageInfo message);
         int SendMessageToUser(MessageInfo message);

@@ -40,6 +40,14 @@ namespace Bijuu.ServiceProvider
         }
 
 
+        public List<MessageInfo> GetUserMessages(Guid userId)
+        {
+            string uri = UrlAddressFactory.GetUserMessages(userId);
+            var data = GetData<List<MessageInfo>>(uri);
+            return data;
+        }
+
+
         public List<UserInfo> GetUsers()
         {
             string uri = UrlAddressFactory.GetUsers();

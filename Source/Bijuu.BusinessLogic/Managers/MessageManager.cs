@@ -34,6 +34,14 @@ namespace Bijuu.BusinessLogic.Managers
         }
 
 
+        public List<MessageInfo> GetUserMessages(Guid userId)
+        {
+            return MessageRepository.Filter(x => x.SenderId == userId || x.RecipientId == userId)
+                .Select(DalConverter.ToMessageInfo)
+                .ToList();
+        }
+
+
         public List<MessageInfo> GetNewMessages(Guid userId)
         {
             List<MessageEntity> newMessages = MessageRepository.Filter(x => x.SenderId != userId && x.RecipientId == userId && !x.IsDelivered);

@@ -17,6 +17,11 @@ namespace Bijuu.Service
 
 
         [OperationContract]
+        [WebGet(ResponseFormat = WebMessageFormat.Json, UriTemplate = "/GetUserMessages?userId={userId}")]
+        List<MessageInfo> GetUserMessages(Guid userId);
+
+
+        [OperationContract]
         [WebGet(ResponseFormat = WebMessageFormat.Json, UriTemplate = "/GetNewMessages?userId={userId}")]
         List<MessageInfo> GetNewMessages(Guid userId);
 

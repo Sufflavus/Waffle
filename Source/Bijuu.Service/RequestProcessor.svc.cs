@@ -43,6 +43,12 @@ namespace Bijuu.Service
         }
 
 
+        public List<MessageInfo> GetUserMessages(Guid userId)
+        {
+            return _messageManager.GetUserMessages(userId);
+        }
+
+
         public List<MessageInfo> GetNewMessages(Guid userId)
         {
             return _messageManager.GetNewMessages(userId);
