@@ -33,6 +33,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ginger.Contracts", "Source\
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tabby.Station", "Source\Tabby.Station\Tabby.Station.csproj", "{8550B062-7724-49C1-8DF3-57E64A7F31D5}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Waffle.FitNesseTests", "Source\Waffle.FitNesseTests\Waffle.FitNesseTests.csproj", "{78EB05BF-5B05-4100-B659-EE07BA4451AB}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -91,6 +93,10 @@ Global
 		{8550B062-7724-49C1-8DF3-57E64A7F31D5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8550B062-7724-49C1-8DF3-57E64A7F31D5}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8550B062-7724-49C1-8DF3-57E64A7F31D5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{78EB05BF-5B05-4100-B659-EE07BA4451AB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{78EB05BF-5B05-4100-B659-EE07BA4451AB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{78EB05BF-5B05-4100-B659-EE07BA4451AB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{78EB05BF-5B05-4100-B659-EE07BA4451AB}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
