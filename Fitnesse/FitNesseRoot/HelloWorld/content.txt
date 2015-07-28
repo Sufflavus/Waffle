@@ -1,0 +1,7 @@
+!path ..\Out\Debug\Waffle.FitNesseTests\Waffle.FitNesseTests.dll
+!define COMMAND_PATTERN {%m -r fitnesse.fitserver.FitServer,dotnet2\fit.dll %p}
+!define TEST_RUNNER {dotnet2\Runner.exe}
+
+!|Waffle.FitNesseTests.HelloWorld|
+|str1|str2|Concatenate?|
+|Hello|World|Hello World|
