@@ -24,7 +24,7 @@ namespace Bijuu.Service
         }
 
 
-        private RequestProcessor()
+        public RequestProcessor()
         {
             _messageManager = Bootstrapper.Resolve<IMessageManager>();
             _userManager = Bootstrapper.Resolve<IUserManager>();

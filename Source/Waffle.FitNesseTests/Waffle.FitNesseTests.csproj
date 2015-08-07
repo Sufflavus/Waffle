@@ -69,9 +69,24 @@
   <ItemGroup>
     <Compile Include="HelloWorld.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SetUpTestEnvironment.cs" />
+    <Compile Include="UserLogin.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="App.config">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Bijuu.Contracts\Bijuu.Contracts.csproj">
+      <Project>{F39FE194-52EC-49B0-B096-721B6987B19E}</Project>
+      <Name>Bijuu.Contracts</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Bijuu.Service\Bijuu.Service.csproj">
+      <Project>{4dee89f0-21ee-4873-a96f-1223d5b9b229}</Project>
+      <Name>Bijuu.Service</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
