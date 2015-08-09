@@ -1,0 +1,14 @@
+!path ..\Out\Debug\Waffle.FitNesseTests\Waffle.FitNesseTests.dll
+!define COMMAND_PATTERN {%m -r fitnesse.fitserver.FitServer,dotnet2\fit.dll %p}
+!define TEST_RUNNER {dotnet2\Runner.exe}
+
+!|import|
+|Waffle.FitNesseTests|
+!|Set Up Test Environment|
+!|User Login|
+|username|User Id?|
+|johnsmith|>>UserId|
+
+!|User Details|
+|User Id|User Name?|Is Online?|
+|<<UserId|johnsmith|true|
