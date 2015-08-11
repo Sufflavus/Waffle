@@ -23,6 +23,14 @@ namespace Bijuu.BusinessLogic.Managers
         public IUserRepository Repository { get; set; }
 
 
+        public List<UserInfo> GetAllUsers()
+        {
+            return Repository.GetAll()
+                .Select(DalConverter.ToUserInfo)
+                .ToList();
+        }
+
+
         public UserInfo GetUserByName(string userName)
         {
             UserEntity entity = Repository.GetByName(userName);
@@ -33,14 +41,6 @@ namespace Bijuu.BusinessLogic.Managers
             }
 
             return DalConverter.ToUserInfo(entity);
-        }
-
-
-        public List<UserInfo> GetAllUsers()
-        {
-            return Repository.GetAll()
-                .Select(DalConverter.ToUserInfo)
-                .ToList();
         }
 
 

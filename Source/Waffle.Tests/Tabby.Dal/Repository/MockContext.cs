@@ -8,7 +8,6 @@ using Bijuu.Dal.Domain;
 
 namespace Waffle.Tests.Tabby.Dal.Repository
 {
-    //TODO: подобрать правильные моки http://nsubstitute.github.io/
     public class MockContext : IContext
     {
         public MockContext()

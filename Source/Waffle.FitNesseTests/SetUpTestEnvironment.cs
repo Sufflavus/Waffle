@@ -1,6 +1,8 @@
 ﻿using System;
 
-using Bijuu.Service;
+using Bijuu.BusinessLogic.Managers;
+using Bijuu.Dal.Context;
+using Bijuu.Dal.Repository;
 
 using fit;
 
@@ -9,12 +11,19 @@ namespace Waffle.FitNesseTests
 {
     public class SetUpTestEnvironment : Fixture
     {
-        internal static IRequestProcessor RequestProcessor;
+        internal static IUserManager UserManager;
 
 
         public SetUpTestEnvironment()
         {
-            RequestProcessor = new RequestProcessor();
+            UserManager = new UserManager
+            {
+                NotificationSender = new MockNotificationSender(),
+                Repository = new UserRepository
+                {
+                    Context = new NHibernateContext()
+                }
+            };
         }
     }
 }

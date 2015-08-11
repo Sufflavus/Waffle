@@ -15,7 +15,7 @@ namespace Waffle.FitNesseTests
 
         public Guid UserId()
         {
-            return SetUpTestEnvironment.RequestProcessor.LogIn(Username).Id;
+            return SetUpTestEnvironment.UserManager.LogIn(Username).Id;
         }
     }
 
@@ -29,13 +29,7 @@ namespace Waffle.FitNesseTests
 
         public void LogOut()
         {
-            SetUpTestEnvironment.RequestProcessor.LogOut(GetUser());
-        }
-
-
-        private UserInfo GetUser()
-        {
-            return SetUpTestEnvironment.RequestProcessor.GetUsers().FirstOrDefault(x => x.Id == UserId);
+            SetUpTestEnvironment.UserManager.LogOut(UserId);
         }
     }
 
@@ -57,7 +51,7 @@ namespace Waffle.FitNesseTests
 
         private UserInfo GetUser()
         {
-            return SetUpTestEnvironment.RequestProcessor.GetUsers().FirstOrDefault(x => x.Id == UserId);
+            return SetUpTestEnvironment.UserManager.GetAllUsers().FirstOrDefault(x => x.Id == UserId);
         }
     }
 }

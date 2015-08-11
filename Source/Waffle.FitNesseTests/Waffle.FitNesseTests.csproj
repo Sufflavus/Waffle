@@ -83,6 +83,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="HelloWorld.cs" />
+    <Compile Include="MockNotificationSender.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Properties\Settings.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -95,6 +96,7 @@
   <ItemGroup>
     <Content Include="App.config">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <SubType>Designer</SubType>
     </Content>
     <Content Include="App_Data\Waffle.mdf">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
@@ -110,13 +112,29 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Bijuu.BusinessLogic\Bijuu.BusinessLogic.csproj">
+      <Project>{7C5E5F37-373C-4992-96DE-358579D60344}</Project>
+      <Name>Bijuu.BusinessLogic</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Bijuu.Contracts\Bijuu.Contracts.csproj">
       <Project>{F39FE194-52EC-49B0-B096-721B6987B19E}</Project>
       <Name>Bijuu.Contracts</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Bijuu.Dal\Bijuu.Dal.csproj">
+      <Project>{035E2ACA-31CB-4339-B83D-71012A44EA67}</Project>
+      <Name>Bijuu.Dal</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Bijuu.Service\Bijuu.Service.csproj">
       <Project>{4dee89f0-21ee-4873-a96f-1223d5b9b229}</Project>
       <Name>Bijuu.Service</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Ginger.Contracts\Ginger.Contracts.csproj">
+      <Project>{75427C42-D49E-4AC2-B708-3152B9B7D78C}</Project>
+      <Name>Ginger.Contracts</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Ginger.Notifier\Ginger.Notifier.csproj">
+      <Project>{FCA2FA4C-14E0-4F33-AF07-FD766B56000C}</Project>
+      <Name>Ginger.Notifier</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

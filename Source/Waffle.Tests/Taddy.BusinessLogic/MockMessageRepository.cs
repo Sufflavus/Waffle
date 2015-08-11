@@ -8,7 +8,6 @@ using Bijuu.Dal.Repository.Interfaces;
 
 namespace Waffle.Tests.Taddy.BusinessLogic
 {
-    //TODO: подобрать правильные моки
     public class MockMessageRepository : IMessageRepository
     {
         public MockMessageRepository()
