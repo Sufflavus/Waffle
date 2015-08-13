@@ -1,7 +1,7 @@
 !|import|
 |Waffle.FitNesseTests|
 
-!|Commands|
+!|dbfit.SqlServerTest|
 
 !|Connect|${TABBY_CONNECTIONSTRING}|
 

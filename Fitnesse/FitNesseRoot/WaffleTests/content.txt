@@ -8,7 +8,7 @@
 !define TESTSDIRECTORY {..\Out\Debug\Waffle.FitNesseTests}
 !define COLLAPSE_SETUP {true}
 !define COLLAPSE_TEARDOWN {true}
-!define TABBY_CONNECTIONSTRING {Data Source=(LocalDB)\v11.0;AttachDbFilename=|${TESTSDIRECTORY}|\App_Data\Waffle.mdf;Integrated Security=True}
+!define TABBY_CONNECTIONSTRING {Data Source=(LocalDB)\v11.0;AttachDbFilename=${TESTSDIRECTORY}\App_Data\Waffle.mdf;Integrated Security=True}
 
 *!
 #
