@@ -1,2 +1,20 @@
+!3 ''!-Waffle-!'' project acceptance tests suite
+
+#
+!*> Define variables
+!define COMMAND_PATTERN {%m -a ..\Out\Debug\Waffle.FitNesseTests\Waffle.FitNesseTests.dll.config -r fitnesse.fitserver.FitServer,dotnet2\fit.dll %p} 
+!define TEST_RUNNER {dotnet2\Runner.exe} 
+!path ..\Out\Debug\Waffle.FitNesseTests\*.dll
+!define TESTSDIRECTORY {..\Out\Debug\Waffle.FitNesseTests}
+!define COLLAPSE_SETUP {true}
+!define COLLAPSE_TEARDOWN {true}
+!define TABBY_CONNECTIONSTRING {Data Source=(LocalDB)\v11.0;AttachDbFilename=|${TESTSDIRECTORY}|\App_Data\Waffle.mdf;Integrated Security=True}
+
+*!
+#
+
+!contents -R2
+
+
 1. HelloWorld
 2. UserLogin

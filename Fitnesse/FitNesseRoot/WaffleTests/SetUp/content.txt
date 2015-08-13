@@ -1,0 +1,13 @@
+!|import|
+|Waffle.FitNesseTests|
+
+!|Commands|
+
+!|Connect|${TABBY_CONNECTIONSTRING}|
+
+!|Clean|
+|Table|
+|Message|
+|User|
+
+!|Commit|

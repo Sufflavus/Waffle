@@ -1,5 +1,8 @@
 !path ..\Out\Debug\Waffle.FitNesseTests\Waffle.FitNesseTests.dll
-!define COMMAND_PATTERN {%m -r fitnesse.fitserver.FitServer,dotnet2\fit.dll %p}
+
+!define TESTSDIRECTORY {..\Out\Debug\Waffle.FitNesseTests}
+
+!define COMMAND_PATTERN {%m -a ${TESTSDIRECTORY}\Waffle.FitNesseTests.dll.config -r fitnesse.fitserver.FitServer,dotnet2\fit.dll %p}
 !define TEST_RUNNER {dotnet2\Runner.exe}
 
 !|import|
