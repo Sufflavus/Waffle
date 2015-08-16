@@ -8,6 +8,6 @@
 !|Clean|
 |Table|
 |Message|
-|User|
+|[User]|
 
 !|Commit|
