@@ -1,7 +1,7 @@
 !|import|
 |Waffle.FitNesseTests|
 
-!|dbfit.SqlServerTest|
+!|ServiceManager|
 
 !|Connect|${TABBY_CONNECTIONSTRING}|
 
@@ -11,5 +11,3 @@
 |[User]|
 
 !|Commit|
-
-!|Start Server|

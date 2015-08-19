@@ -14,7 +14,3 @@
 #
 
 !contents -R2
-
-
-1. HelloWorld
-2. UserLogin

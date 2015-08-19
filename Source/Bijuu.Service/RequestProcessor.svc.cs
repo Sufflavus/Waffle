@@ -10,7 +10,7 @@ namespace Bijuu.Service
 {
     //https://www.safaribooksonline.com/library/view/programming-wcf-services/0596526997/ch04s02.html
 
-    [ServiceBehavior(InstanceContextMode = InstanceContextMode.PerCall)]
+    [ServiceBehavior(InstanceContextMode = InstanceContextMode.Single)]
     public class RequestProcessor : IRequestProcessor, IDisposable
     {
         private readonly IMessageManager _messageManager;

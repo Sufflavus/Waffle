@@ -128,6 +128,8 @@
     <Reference Include="System" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
+    <Reference Include="System.ServiceModel" />
+    <Reference Include="System.ServiceModel.Web" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -136,7 +138,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Bootstrapper.cs" />
-    <Compile Include="StopServer.cs" />
+    <Compile Include="ServiceManager.cs" />
     <Compile Include="HelloWorld.cs" />
     <Compile Include="MockNotificationSender.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -146,7 +148,6 @@
       <DependentUpon>Settings.settings</DependentUpon>
     </Compile>
     <Compile Include="SetUpTestEnvironment.cs" />
-    <Compile Include="StartServer.cs" />
     <Compile Include="UserLogin.cs" />
   </ItemGroup>
   <ItemGroup>
