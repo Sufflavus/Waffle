@@ -11,6 +11,7 @@ namespace Waffle.FitNesseTests
 {
     public class ServiceManager : SqlServerTest
     {
+        private const string BijuuHost = "http://localhost:8083/BijuuService";
         private readonly WebServiceHost _serviceInstance;
 
 
@@ -21,8 +22,8 @@ namespace Waffle.FitNesseTests
 
             IRequestProcessor _processor = new RequestProcessor(messageManager, userManager);
 
-            Uri[] uris = { new Uri("http://localhost:8083/BijuuService") };
-            _serviceInstance = new WebServiceHost(_processor, uris);
+            Uri[] host = { new Uri(BijuuHost) };
+            _serviceInstance = new WebServiceHost(_processor, host);
         }
 
 
