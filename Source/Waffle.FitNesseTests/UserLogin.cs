@@ -8,7 +8,7 @@ using fit;
 
 namespace Waffle.FitNesseTests
 {
-    public class UserLogin : ColumnFixture
+    /*public class UserLogin : ColumnFixture
     {
         public string Username { get; set; }
 
@@ -53,5 +53,5 @@ namespace Waffle.FitNesseTests
         {
             return SetUpTestEnvironment.UserManager.GetAllUsers().FirstOrDefault(x => x.Id == UserId);
         }
-    }
+    }*/
 }

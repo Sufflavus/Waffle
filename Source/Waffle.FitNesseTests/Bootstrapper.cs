@@ -5,6 +5,7 @@ using Bijuu.Dal.Context;
 using Bijuu.Dal.Domain;
 using Bijuu.Dal.Repository;
 using Bijuu.Dal.Repository.Interfaces;
+using Bijuu.ServiceProvider;
 
 using Ginger.Notifier;
 
@@ -47,6 +48,8 @@ namespace Waffle.FitNesseTests
             Container.RegisterType<IContext, NHibernateContext>();
             Container.RegisterType<IUserRepository, UserRepository>();
             Container.RegisterType<IMessageRepository, MessageRepository>();
+
+            Container.RegisterType<IBijuuServiceClient, BijuuServiceClient>();
         }
 
 

@@ -149,6 +149,8 @@
     </Compile>
     <Compile Include="SetUpTestEnvironment.cs" />
     <Compile Include="UserLogin.cs" />
+    <Compile Include="User\UserChecker.cs" />
+    <Compile Include="User\UserLogin.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="App.config">
@@ -180,6 +182,10 @@
     <ProjectReference Include="..\Bijuu.Dal\Bijuu.Dal.csproj">
       <Project>{035E2ACA-31CB-4339-B83D-71012A44EA67}</Project>
       <Name>Bijuu.Dal</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Bijuu.ServiceProvider\Bijuu.ServiceProvider.csproj">
+      <Project>{093e45f6-badf-4309-9f03-629bd20aeff3}</Project>
+      <Name>Bijuu.ServiceProvider</Name>
     </ProjectReference>
     <ProjectReference Include="..\Bijuu.Service\Bijuu.Service.csproj">
       <Project>{4dee89f0-21ee-4873-a96f-1223d5b9b229}</Project>

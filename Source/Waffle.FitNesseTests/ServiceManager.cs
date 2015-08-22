@@ -4,14 +4,18 @@ using System.ServiceModel.Web;
 using Bijuu.BusinessLogic.Managers;
 using Bijuu.Service;
 
+using Waffle.FitNesseTests.User;
+
 using dbfit;
+
+using fit;
 
 
 namespace Waffle.FitNesseTests
 {
     public class ServiceManager : SqlServerTest
     {
-        private const string BijuuHost = "http://localhost:8083/BijuuService";
+        private const string BijuuHost = "http://localhost:8085/BijuuService";
         private readonly WebServiceHost _serviceInstance;
 
 
@@ -26,6 +30,15 @@ namespace Waffle.FitNesseTests
             _serviceInstance = new WebServiceHost(_processor, host);
         }
 
+        public Fixture UserLogin()
+        {
+            return Bootstrapper.Resolve<UserLogin>();
+        }
+
+        public Fixture CheckUser()
+        {
+            return Bootstrapper.Resolve<UserChecker>();
+        }
 
         public void StartService()
         {
