@@ -138,6 +138,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Bootstrapper.cs" />
+    <Compile Include="Message\MessageChecker.cs" />
+    <Compile Include="Message\SendMessage.cs" />
     <Compile Include="ServiceManager.cs" />
     <Compile Include="HelloWorld.cs" />
     <Compile Include="MockNotificationSender.cs" />
@@ -149,6 +151,7 @@
     </Compile>
     <Compile Include="SetUpTestEnvironment.cs" />
     <Compile Include="UserLogin.cs" />
+    <Compile Include="User\UserLogOut.cs" />
     <Compile Include="User\UserChecker.cs" />
     <Compile Include="User\UserLogin.cs" />
   </ItemGroup>
@@ -217,6 +220,7 @@
       <Install>false</Install>
     </BootstrapperPackage>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

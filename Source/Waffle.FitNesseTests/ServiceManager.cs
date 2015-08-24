@@ -4,6 +4,7 @@ using System.ServiceModel.Web;
 using Bijuu.BusinessLogic.Managers;
 using Bijuu.Service;
 
+using Waffle.FitNesseTests.Message;
 using Waffle.FitNesseTests.User;
 
 using dbfit;
@@ -30,15 +31,24 @@ namespace Waffle.FitNesseTests
             _serviceInstance = new WebServiceHost(_processor, host);
         }
 
-        public Fixture UserLogin()
+
+        public Fixture CheckMessage()
         {
-            return Bootstrapper.Resolve<UserLogin>();
+            return Bootstrapper.Resolve<MessageChecker>();
         }
+
 
         public Fixture CheckUser()
         {
             return Bootstrapper.Resolve<UserChecker>();
         }
+
+
+        public Fixture SendMessage()
+        {
+            return Bootstrapper.Resolve<SendMessage>();
+        }
+
 
         public void StartService()
         {
@@ -49,6 +59,18 @@ namespace Waffle.FitNesseTests
         public void StopService()
         {
             _serviceInstance.Close();
+        }
+
+
+        public Fixture UserLogOut()
+        {
+            return Bootstrapper.Resolve<UserLogOut>();
+        }
+
+
+        public Fixture UserLogin()
+        {
+            return Bootstrapper.Resolve<UserLogin>();
         }
     }
 }
